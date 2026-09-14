@@ -1,3 +1,113 @@
-{# section: about — markup filled in by ticket 04 #}
-<section id="about">
+{# section: about — one short story, one photograph, one line from the brand. #}
+
+<style>
+  .about {
+    background-color: var(--color-paper);
+    /* Anchor jumps land below the fixed bar, not under it. */
+    scroll-margin-block-start: 64px;
+  }
+
+  @media (min-width: 768px) {
+    .about {
+      scroll-margin-block-start: 80px;
+    }
+  }
+
+  .about__grid {
+    display: grid;
+    gap: clamp(40px, 6vw, 88px);
+    align-items: start;
+  }
+
+  @media (min-width: 900px) {
+    .about__grid {
+      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+      gap: clamp(48px, 7vw, 112px);
+    }
+  }
+
+  .about__eyebrow {
+    margin-block-end: calc(var(--spacing) * 6);
+  }
+
+  .about__title {
+    max-width: 16ch;
+    margin: 0;
+    font-size: var(--text-h1);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+    text-wrap: balance;
+  }
+
+  .about__body {
+    max-width: var(--spacing-measure);
+    margin-block: calc(var(--spacing) * 8) 0;
+    font-size: clamp(1.125rem, 0.6vw + 1rem, 1.375rem);
+    line-height: 1.65;
+    color: var(--color-ink-soft);
+  }
+
+  .about__quote {
+    max-width: 24ch;
+    margin: clamp(48px, 6vw, 80px) 0 0;
+    padding-inline-start: calc(var(--spacing) * 6);
+    border-inline-start: 2px solid var(--color-latte);
+  }
+
+  .about__quote p {
+    margin: 0;
+    font-size: var(--text-h3);
+    line-height: 1.35;
+    font-weight: 500;
+    color: var(--color-sage-deep);
+    text-wrap: balance;
+  }
+
+  .about__quote footer {
+    margin-block-start: calc(var(--spacing) * 3);
+    font-size: var(--text-small);
+    color: var(--color-ink-soft);
+  }
+
+  .about__figure {
+    margin: 0;
+  }
+
+  .about__figure picture,
+  .about__figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-tile);
+  }
+
+  /* On wide screens the photograph drops below the first text line — the page
+     breathes instead of lining everything up on one baseline. */
+  @media (min-width: 900px) {
+    .about__figure {
+      margin-block-start: calc(var(--spacing) * 10);
+    }
+  }
+</style>
+
+<section id="about" class="section about" aria-labelledby="about-title">
+  <div class="container-page about__grid">
+    <div class="about__text">
+      <p class="eyebrow about__eyebrow" data-reveal>{{ t.about.eyebrow }}</p>
+      <h2 id="about-title" class="about__title" data-reveal data-reveal-delay="60">{{ t.about.title }}</h2>
+      <p class="about__body" data-reveal data-reveal-delay="120">{{ t.about.body }}{% if t.about.bodyDraft %} <span class="draft-badge" title="{{ t.a11y.draftBadgeHint }}">{{ t.a11y.draftBadge }}</span>{% endif %}</p>
+
+      <blockquote class="about__quote" data-reveal data-reveal-delay="180">
+        <p>{{ t.about.quote }}</p>
+        <footer>{{ t.about.quoteSource }}</footer>
+      </blockquote>
+    </div>
+
+    {% if t.about.image in media.files %}
+    <figure class="about__figure" data-reveal data-reveal-delay="120">
+      {% image t.about.image, t.about.imageAlt, "(min-width: 1440px) 500px, (min-width: 900px) 38vw, 90vw" %}
+    </figure>
+    {% endif %}
+  </div>
 </section>
