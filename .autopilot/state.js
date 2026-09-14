@@ -11,7 +11,7 @@ window.STATE =
   "memoryFile": "CLAUDE.md",
   "skillDir": "/Users/bek/.agents/skills/autopilot",
   "startedAt": "2026-09-14T12:12:37+05:00",
-  "updatedAt": "2026-09-14T18:47:41+05:00",
+  "updatedAt": "2026-09-15T04:33:12+05:00",
   "finishedAt": null,
   "stages": [
     {
@@ -52,13 +52,13 @@ window.STATE =
       "id": "build",
       "status": "active",
       "startedAt": "2026-09-14T18:35:09+05:00",
-      "note": "1 из 7 тасков готов"
+      "note": "3 из 7 тасков готовы"
     },
     {
       "id": "review",
       "status": "active",
       "startedAt": "2026-09-14T18:47:41+05:00",
-      "note": "проверен 1 из 7"
+      "note": "проверены 3 из 7"
     },
     {
       "id": "final",
@@ -67,7 +67,7 @@ window.STATE =
   ],
   "requirements": {
     "total": 0,
-    "done": 0,
+    "done": 39,
     "inTicket": 78,
     "inSpec": 0,
     "placeholder": 0,
@@ -159,10 +159,13 @@ window.STATE =
         "src/assets/images/",
         "ASSETS.md"
       ],
-      "status": "pending",
+      "status": "done",
       "retries": 0,
-      "repairs": 0,
-      "handoffs": 0
+      "repairs": 1,
+      "handoffs": 0,
+      "startedAt": "2026-09-14T18:48:06+05:00",
+      "finishedAt": "2026-09-15T04:33:12+05:00",
+      "note": "закрыт после дозапросов; все находки ревью сняты"
     },
     {
       "id": "03",
@@ -193,10 +196,13 @@ window.STATE =
         "src/_data/",
         "scripts/"
       ],
-      "status": "pending",
+      "status": "done",
       "retries": 0,
-      "repairs": 0,
-      "handoffs": 0
+      "repairs": 1,
+      "handoffs": 1,
+      "startedAt": "2026-09-14T18:48:06+05:00",
+      "note": "закрыт после дозапросов; все находки ревью сняты",
+      "finishedAt": "2026-09-15T04:33:12+05:00"
     },
     {
       "id": "04",
@@ -239,10 +245,11 @@ window.STATE =
         "src/_includes/sections/about.njk",
         "src/_includes/sections/menu.njk"
       ],
-      "status": "pending",
+      "status": "in-progress",
       "retries": 0,
       "repairs": 0,
-      "handoffs": 0
+      "handoffs": 0,
+      "startedAt": "2026-09-15T04:33:12+05:00"
     },
     {
       "id": "05",
@@ -274,10 +281,11 @@ window.STATE =
         "src/_includes/sections/instagram.njk",
         "src/_includes/sections/footer.njk"
       ],
-      "status": "pending",
+      "status": "in-progress",
       "retries": 0,
       "repairs": 0,
-      "handoffs": 0
+      "handoffs": 0,
+      "startedAt": "2026-09-15T04:33:12+05:00"
     },
     {
       "id": "06",
@@ -368,7 +376,9 @@ window.STATE =
     "src/css/main.css:240 — .h-display и .eyebrow дублируют литералами значения из токенов --text-*",
     "src/_includes/sections/{nav,footer}.njk — заглушки без лендмарков <nav>/<footer> (→ таски 04, 05)",
     ".eleventy.js:13 — resolveImageSource принимает три формы пути при одной задокументированной",
-    "src/css/main.css:216 — глобальный transition-duration !important под reduced-motion шире решения спецификации (→ таск 06)"
+    "src/css/main.css:216 — глобальный transition-duration !important под reduced-motion шире решения спецификации (→ таск 06)",
+    "src/_data/content.{en,ar}.json — 61 непереводимое значение записано дважды; паритет стережёт ключи, но не значения",
+    "imageNote и quoteSourceNote — служебные строки внутри словаря, который владеет видимыми текстами; если их станет много, выносить отдельно"
   ],
   "reviewers": {
     "manifestSpec": "a3594414ddf8b0ec6",

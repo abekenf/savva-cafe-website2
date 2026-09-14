@@ -89,3 +89,135 @@
   это не запрос; проверка «внешних ссылок» в таске 07 должна смотреть только `href`/`src`;
 - `npm run dev` поднимает watch Tailwind фоном через `&`, пакет `concurrently` ставить нельзя;
 - `npm audit` показывает 3 high в транзитивных `sharp`/`image-size` — версии не менялись намеренно.
+
+### Из таска 03 — словари двух языков
+
+**Фильтра нет.** `.eleventy.js` вне зоны таска 03, поэтому разворачивание `draft`-объектов
+происходит в слое данных (`src/_data/eleventyComputed.js`). В шаблоне `t.*` — **всегда
+обычная строка**, никаких `{{ t.x | text }}`.
+
+**Четыре глобала в шаблонах:** `t`, `site`, `media`, `draftSections` / `draftPaths`.
+
+**`t` — схема ключей** (одинаковая в обоих языках, 194 пути; паритет **действительно** проверяется
+`scripts/content-todo.js` — расхождение роняет сборку с перечислением путей):
+
+- `meta{title, description, ogAlt, path, altPath}`
+- `a11y{skipToContent, primaryNav, footerNav, openMenu, closeMenu, backToTop,
+  languageSwitch, openLightbox, closeLightbox, previousImage, nextImage,
+  galleryImageCount, draftBadge, draftBadgeHint}`
+- `nav{brand, brandAlt, links[6]{id, href, label},
+  language{current, other, otherHref, otherLang}}`
+- `hero{eyebrow, title, titleAlt, subtitle, ctaMenu, ctaDirections, scrollHint, image, imageAlt}`
+- `about{eyebrow, title, body, quote, quoteSource, image, imageAlt}`
+- `menu{eyebrow, title, photoComingSoon, items[6]{id, name, desc, image, imageAlt}}`
+- `gallery{eyebrow, title, items[11]{image, alt}}`
+- `experience{eyebrow, title, items[6]{id, label}}`
+- `visit{eyebrow, title, addressLabel, phoneLabel, hoursLabel, showMap, mapTitle,
+  mapPreviewAlt, openInMaps, copyAddress, addressCopied, openNow, closedNow,
+  opensAt, closesAt, days{sat…fri}}`
+- `instagram{eyebrow, title, cta, note, items[9]{image, alt, href}}`
+- `footer{logoAlt, navTitle, followTitle, findTitle, contactTitle, instagram, maps,
+  copyright, ratingNote}`
+
+Порядок `menu.items` фиксирован: `flat-white`, `spanish-latte`, `matcha-latte`,
+`cold-brew`, `cheesecake`, `cookies`.
+Порядок `experience.items` фиксирован: `specialty-coffee`, `fresh-desserts`,
+`cozy-interior`, `free-wifi`, `outdoor-seating`, `friendly-staff`.
+
+**`site`** — `name, nameAr, legalName, category, handle, url, locale{en,ar},
+phone{display,href}, address{full, streetAddress, addressLocality, addressRegion,
+postalCode, addressCountry, plusCode}, geo{latitude,longitude},
+hours[7]{day, dayOfWeek, opens, closes}, rating{value,count},
+links{maps, mapsEmbed, instagram}, capturedOn`.
+
+**Форма `draft`.** В JSON пишется как `{"text": "…", "draft": true}`, в шаблон приходит
+обычной строкой плюс соседним булевым `<ключ>Draft`. То есть `{{ t.about.body }}` печатает
+текст, а `{% if t.about.bodyDraft %}` включает янтарный бейдж.
+Черновые сегодня: `hero.subtitle`, `about.body`, `menu.items[i].desc`,
+`instagram.items[i].href`, `site.url`.
+`draftSections` = `{hero, about, menu, instagram, site}` — **ключ `site` не секция**,
+бейджем его не помечать. `draftPaths` — массив путей, по одному на строку.
+
+**`media`** — `{hero[], gallery[], menu[], instagram[], brand[], files[], count}`,
+пути относительно `src/`, ровно в той форме, которую ждёт шорткод `image`.
+**Перед каждым вызовом `{% image %}` проверяй `{% if item.image in media.files %}`** —
+иначе рисуй фирменную плитку-заглушку. Имена файлов в словарях писались до того, как
+таск 02 положил кадры, поэтому часть путей не совпадёт; `media.files` для того и есть.
+
+**Подстановки в текстах**, которые раскрывают таски 05 и 06:
+`{year}` в `footer.copyright`, `{time}` в `visit.opensAt` / `visit.closesAt`,
+`{n}` и `{total}` в `a11y.galleryImageCount`.
+
+### Из таска 02 — фотографии
+
+Раскладка: `src/assets/images/<категория>/<имя-по-содержимому>.jpg`.
+Путь для шорткода `image` — `"assets/images/<категория>/<файл>.jpg"`.
+Происхождение каждого файла — `ASSETS.md` в корне: источник, дата съёма, что на кадре.
+
+- **`hero/` — 2.** `interior-lounge-arches-wide.jpg` (1600×900, **это hero**: настоящий
+  интерьер, арочные окна, бархатные диваны, растения) и `storefront-evening-wide.jpg`
+  (1170×655, запасной).
+- **`gallery/` — 11.** Три интерьера, три витрина/терраса, пять деталей и напитков.
+- **`menu/` — 3.** `flat-white.jpg`, `matcha-latte.jpg`, `madini-cookies.jpg`, все 4:5.
+- **`instagram/` — 9**, девять последних постов на 2026-09-14, от новых к старым:
+  `madini-cookies-closeup`, `iced-berry-drink`, `frozen-berry-drink`,
+  `pouring-berry-drink`, `espresso-into-savva-cups`,
+  `sandwich-and-iced-coffee-window-seat`, `tray-at-car-window`,
+  `sandwich-on-branded-plate`, `three-cups-on-counter`.
+  **Ссылки на посты, даты и авторские описания — в `ASSETS.md`.**
+- **`brand/` — 1.** `savva-logo.jpg`, 1024×1024, кремовое «SAVVA COFFEE» на шалфейном.
+
+**Без своего кадра остались три позиции меню — `spanish-latte`, `cold-brew`,
+`cheesecake`.** Там рисуется фирменная плитка (таск 04).
+
+**Потолок разрешения.** Только 5 кадров из 26 добирают все четыре ширины: eleventy-img
+не увеличивает, а публичная сетка Instagram упёрта в 640 px, анонимный просмотр Google
+Maps — в «limited view». Это записано в §7 спецификации и в «Открытых местах»:
+оригиналы от владельца поднимут инстаграмные кадры выше 640.
+
+**Оговорка по `menu/flat-white.jpg`:** это молочный кофе с латте-артом из галереи Google,
+а не кадр, который Savva подписала «Flat White». В `ASSETS.md` сказано прямо, чтобы имя
+файла не читалось как подпись.
+
+### Уточнения после дозапросов по таскам 02 и 03
+
+- **Форма `draft` живёт в `scripts/content-lib.js`** — один модуль, которым пользуются и
+  слой данных, и генератор `CONTENT-TODO.md`. Узел с ключом `draft` или `text`, но с
+  нарушенной формой, **роняет сборку** с именем ключа. Второй обход словаря не писать.
+- **`draftSections` содержит только имена настоящих секций.** Черновики `site.json`
+  вынесены в отдельный глобал `draftSite`. Исключения «ключ `site` не помечать» больше нет.
+- **`<ключ>Note` — необязательная оговорка к кадру.** `menu.items[0].imageNote` рядом с
+  `menu.items[0].image`. В разметке **не рендерится**; генератор выносит её владельцу
+  в раздел «Confirm the photo». Обязана присутствовать в обоих словарях — паритет её ловит.
+- **`gallery.items` — 9, а не 11.** Убраны кадры, которые уже заняты карточкой меню и
+  инстаграм-плиткой: галерея не повторяет то, что гость уже видел выше.
+- **Девять `instagram.items[].href` — настоящие permalink'и**, флага `draft` на них нет.
+
+### Знак Savva — правило для тасков 04 и 05
+
+**`src/assets/images/brand/savva-logo.svg` инлайнится в разметку, а не подключается
+через `<img src>`.** Две причины, обе жёсткие:
+
+1. Внутри одна `<path fill="currentColor">` — именно это делает знак тёмным на кремовой
+   шапке и кремовым на тёмном подвале. Через `<img>` перекраска не работает.
+2. `src/assets/images/` не копируется passthrough, поэтому `<img src="assets/images/…">`
+   отдаст 404.
+
+`viewBox="0 0 581.3 242"`, 4.4 КБ, обведён с растрового оригинала и сверен растеризацией.
+Подпись для `aria-label` — в данных: `t.footer.logoAlt`. **Пути к знаку в словарях нет**
+и быть не должно: разметку пишут таски 04 и 05.
+
+`savva-logo-sage.png` (непрозрачная шалфейная плашка) — **только og-картинка**.
+В шапку и подвал не идёт никогда.
+
+### Итог по кадрам после обоих дозапросов
+
+30 файлов: `hero/` 2 · `gallery/` 14 · `menu/` 3 · `instagram/` 9 · `brand/` 2.
+В `gallery.items` словарей стоят 11 из 14 — три отброшены как кропы тех же постов,
+что уже заняты карточками меню и инстаграм-плитками. Интерьеров в галерее 6 из 11,
+в четырёх разных зонах; первый кадр галереи — **не** тот, что в первом экране.
+
+**Паритет словарей стережёт и значения, а не только ключи.** Совпадать обязаны
+`image`, `imageNote`, `id` и якорные `href` (те, что начинаются с `#`) — 53 значения.
+Законно различаются только `meta.path`, `meta.altPath`, `nav.language.otherHref`
+и `nav.language.otherLang`.

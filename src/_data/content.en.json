@@ -2,7 +2,7 @@
   "meta": {
     "title": "Savva — Specialty Coffee in Madinah",
     "description": "Specialty coffee, fresh desserts and a quiet terrace in Madinah. Saturday to Thursday from 06:30, Friday from 13:00.",
-    "ogAlt": "The interior of Savva, a specialty coffee house in Madinah",
+    "ogAlt": "The lounge at Savva, a specialty coffee house in Madinah",
     "path": "/",
     "altPath": "/ar"
   },
@@ -26,12 +26,36 @@
     "brand": "Savva",
     "brandAlt": "Savva",
     "links": [
-      { "id": "about", "href": "#about", "label": "Our Story" },
-      { "id": "menu", "href": "#menu", "label": "Menu" },
-      { "id": "gallery", "href": "#gallery", "label": "Gallery" },
-      { "id": "experience", "href": "#experience", "label": "Experience" },
-      { "id": "visit", "href": "#visit", "label": "Visit" },
-      { "id": "instagram", "href": "#instagram", "label": "Instagram" }
+      {
+        "id": "about",
+        "href": "#about",
+        "label": "Our Story"
+      },
+      {
+        "id": "menu",
+        "href": "#menu",
+        "label": "Menu"
+      },
+      {
+        "id": "gallery",
+        "href": "#gallery",
+        "label": "Gallery"
+      },
+      {
+        "id": "experience",
+        "href": "#experience",
+        "label": "Experience"
+      },
+      {
+        "id": "visit",
+        "href": "#visit",
+        "label": "Visit"
+      },
+      {
+        "id": "instagram",
+        "href": "#instagram",
+        "label": "Instagram"
+      }
     ],
     "language": {
       "current": "EN",
@@ -51,8 +75,8 @@
     "ctaMenu": "View Menu",
     "ctaDirections": "Get Directions",
     "scrollHint": "Scroll",
-    "image": "assets/images/hero/interior.jpg",
-    "imageAlt": "The main room at Savva, warm light over wooden tables"
+    "image": "assets/images/hero/interior-lounge-arches-wide.jpg",
+    "imageAlt": "The lounge at Savva: arched wooden windows, cream sofas and tall plants"
   },
   "about": {
     "eyebrow": "Our Story",
@@ -62,9 +86,10 @@
       "draft": true
     },
     "quote": "A day in savva is what you need to be savva",
-    "quoteSource": "Instagram, @savva_cafe",
-    "image": "assets/images/gallery/interior-window-seat.jpg",
-    "imageAlt": "A window seat at Savva, late afternoon light"
+    "quoteSource": "Instagram bio, @savva_cafe",
+    "quoteSourceNote": "Verbatim line from the @savva_cafe Instagram bio, captured 2026-09-14 (recorded in reference.md and spec §8). The brand's own words — not placeholder copy, do not flag as draft.",
+    "image": "assets/images/gallery/interior-sofa-tray-espresso.jpg",
+    "imageAlt": "A wooden tray with an espresso and brownie squares on a low table by a bouclé sofa"
   },
   "menu": {
     "eyebrow": "Signature Menu",
@@ -74,44 +99,63 @@
       {
         "id": "flat-white",
         "name": "Flat White",
-        "desc": { "text": "Ristretto under a thin layer of steamed milk. Balanced, quietly strong.", "draft": true },
+        "desc": {
+          "text": "Ristretto under a thin layer of steamed milk. Balanced, quietly strong.",
+          "draft": true
+        },
         "image": "assets/images/menu/flat-white.jpg",
-        "imageAlt": "A flat white in a ceramic cup"
+        "imageNote": "A milk coffee with latte art from the Google gallery — the closest match available, not a frame Savva labelled \"Flat White\". Confirm this is the drink served under that name, or send a photo of it.",
+        "imageAlt": "Milk coffee with rosetta latte art in a stone-coloured cup"
       },
       {
         "id": "spanish-latte",
         "name": "Spanish Latte",
-        "desc": { "text": "Espresso, milk and condensed milk. Sweet, and meant to be.", "draft": true },
-        "image": "assets/images/menu/spanish-latte.jpg",
-        "imageAlt": "A Spanish latte, layered over ice"
+        "desc": {
+          "text": "Espresso, milk and condensed milk. Sweet, and meant to be.",
+          "draft": true
+        },
+        "image": "",
+        "imageAlt": "The Savva monogram on a sage tile, standing in for a photograph"
       },
       {
         "id": "matcha-latte",
         "name": "Matcha Latte",
-        "desc": { "text": "Matcha whisked smooth, poured over cold milk. Grassy and calm.", "draft": true },
+        "desc": {
+          "text": "Matcha whisked smooth, poured over cold milk. Grassy and calm.",
+          "draft": true
+        },
         "image": "assets/images/menu/matcha-latte.jpg",
-        "imageAlt": "A matcha latte in a tall glass"
+        "imageAlt": "Iced matcha layered green over berry in a clear branded cup"
       },
       {
         "id": "cold-brew",
         "name": "Cold Brew",
-        "desc": { "text": "Steeped slowly overnight, served cold. Low acidity, long finish.", "draft": true },
-        "image": "assets/images/menu/cold-brew.jpg",
-        "imageAlt": "Cold brew over ice"
+        "desc": {
+          "text": "Steeped slowly overnight, served cold. Low acidity, long finish.",
+          "draft": true
+        },
+        "image": "",
+        "imageAlt": "The Savva monogram on a sage tile, standing in for a photograph"
       },
       {
         "id": "cheesecake",
         "name": "Cheesecake",
-        "desc": { "text": "The slice the reviews keep mentioning. Dense, cold, not too sweet.", "draft": true },
-        "image": "assets/images/menu/cheesecake.jpg",
-        "imageAlt": "A slice of cheesecake on a small plate"
+        "desc": {
+          "text": "The slice the reviews keep mentioning. Dense, cold, not too sweet.",
+          "draft": true
+        },
+        "image": "",
+        "imageAlt": "The Savva monogram on a sage tile, standing in for a photograph"
       },
       {
         "id": "cookies",
         "name": "Madini Cookies",
-        "desc": { "text": "Our own cookie, named for the city. Crisp at the edge, soft in the middle.", "draft": true },
+        "desc": {
+          "text": "Our own cookie, named for the city. Crisp at the edge, soft in the middle.",
+          "draft": true
+        },
         "image": "assets/images/menu/madini-cookies.jpg",
-        "imageAlt": "Madini cookies stacked on a plate"
+        "imageAlt": "Madini Cookies with black sesame and chocolate, still on the baking tray"
       }
     ]
   },
@@ -119,30 +163,80 @@
     "eyebrow": "Gallery",
     "title": "Inside Savva",
     "items": [
-      { "image": "assets/images/gallery/interior-main-room.jpg", "alt": "The main room at Savva" },
-      { "image": "assets/images/gallery/interior-window-seat.jpg", "alt": "A window seat and a low table" },
-      { "image": "assets/images/gallery/bar-counter.jpg", "alt": "The bar counter and espresso machine" },
-      { "image": "assets/images/gallery/espresso-pour.jpg", "alt": "Espresso pouring into a cup" },
-      { "image": "assets/images/gallery/outdoor-terrace.jpg", "alt": "The outdoor terrace in the evening" },
-      { "image": "assets/images/gallery/seating-corner.jpg", "alt": "A quiet corner with armchairs" },
-      { "image": "assets/images/gallery/cheesecake-slice.jpg", "alt": "A slice of cheesecake with a fork" },
-      { "image": "assets/images/gallery/madini-cookies.jpg", "alt": "Madini cookies on the counter" },
-      { "image": "assets/images/gallery/iced-drink-detail.jpg", "alt": "An iced drink close up" },
-      { "image": "assets/images/gallery/storefront-evening.jpg", "alt": "The entrance to Savva after dark" },
-      { "image": "assets/images/gallery/table-detail.jpg", "alt": "A cup and a notebook on a wooden table" },
-      { "image": "assets/images/gallery/barista-at-work.jpg", "alt": "A barista at the counter" }
+      {
+        "image": "assets/images/gallery/interior-seating-white-tables.jpg",
+        "alt": "A long beige sofa under two arched windows, white pedestal tables and round moulded chairs between potted trees"
+      },
+      {
+        "image": "assets/images/gallery/interior-entrance-string-lights.jpg",
+        "alt": "The room from the entrance: wooden chairs and round tables under string lights, the SAVVA sign over the counter at the back"
+      },
+      {
+        "image": "assets/images/gallery/bar-counter-cups-and-grinder.jpg",
+        "alt": "The bar counter: stacks of sage SAVVA cups, the grinder and espresso machine, a plant on the marble top"
+      },
+      {
+        "image": "assets/images/gallery/interior-relief-wall-table.jpg",
+        "alt": "An embossed white relief wall beside a table with a cinnamon roll and an iced coffee"
+      },
+      {
+        "image": "assets/images/gallery/interior-table-red-flowers.jpg",
+        "alt": "Red roses in a tall glass vase on a marble table, beside a ribbed ceramic jug"
+      },
+      {
+        "image": "assets/images/gallery/interior-sofa-tray-espresso.jpg",
+        "alt": "A wooden tray on a low table: brownie squares, a glass of water and an espresso"
+      },
+      {
+        "image": "assets/images/gallery/terrace-storefront-evening.jpg",
+        "alt": "The SAVVA sign above the glass front after dark, with outdoor tables and rattan chairs"
+      },
+      {
+        "image": "assets/images/gallery/storefront-daylight-plants.jpg",
+        "alt": "The lit sign under the arcade by day, olive trees in front of the entrance"
+      },
+      {
+        "image": "assets/images/gallery/terrace-tables-night.jpg",
+        "alt": "Outdoor tables along the wooden deck at night, the lit interior behind the glazing"
+      },
+      {
+        "image": "assets/images/gallery/barista-with-iced-coffee.jpg",
+        "alt": "A barista in a sand-coloured SAVVA tee holding an iced coffee outside the café"
+      },
+      {
+        "image": "assets/images/gallery/iced-drinks-on-wooden-shelf.jpg",
+        "alt": "Three branded cups in a row on a wooden ledge in hard sunlight"
+      }
     ]
   },
   "experience": {
     "eyebrow": "Experience",
     "title": "What to expect",
     "items": [
-      { "id": "specialty-coffee", "label": "Specialty Coffee" },
-      { "id": "fresh-desserts", "label": "Fresh Desserts" },
-      { "id": "cozy-interior", "label": "Cozy Interior" },
-      { "id": "free-wifi", "label": "Free Wi-Fi" },
-      { "id": "outdoor-seating", "label": "Outdoor Seating" },
-      { "id": "friendly-staff", "label": "Friendly Staff" }
+      {
+        "id": "specialty-coffee",
+        "label": "Specialty Coffee"
+      },
+      {
+        "id": "fresh-desserts",
+        "label": "Fresh Desserts"
+      },
+      {
+        "id": "cozy-interior",
+        "label": "Cozy Interior"
+      },
+      {
+        "id": "free-wifi",
+        "label": "Free Wi-Fi"
+      },
+      {
+        "id": "outdoor-seating",
+        "label": "Outdoor Seating"
+      },
+      {
+        "id": "friendly-staff",
+        "label": "Friendly Staff"
+      }
     ]
   },
   "visit": {
@@ -160,7 +254,7 @@
     "openNow": "Open now",
     "closedNow": "Closed now",
     "opensAt": "Opens at {time}",
-    "closesAt": "Closes until {time}",
+    "closesAt": "Closes at {time}",
     "days": {
       "sat": "Saturday",
       "sun": "Sunday",
@@ -177,19 +271,55 @@
     "cta": "Follow on Instagram",
     "note": "The nine most recent posts as of 14 September 2026.",
     "items": [
-      { "image": "assets/images/instagram/post-01.jpg", "alt": "Instagram post from Savva", "href": { "text": "https://www.instagram.com/savva_cafe/", "draft": true } },
-      { "image": "assets/images/instagram/post-02.jpg", "alt": "Instagram post from Savva", "href": { "text": "https://www.instagram.com/savva_cafe/", "draft": true } },
-      { "image": "assets/images/instagram/post-03.jpg", "alt": "Instagram post from Savva", "href": { "text": "https://www.instagram.com/savva_cafe/", "draft": true } },
-      { "image": "assets/images/instagram/post-04.jpg", "alt": "Instagram post from Savva", "href": { "text": "https://www.instagram.com/savva_cafe/", "draft": true } },
-      { "image": "assets/images/instagram/post-05.jpg", "alt": "Instagram post from Savva", "href": { "text": "https://www.instagram.com/savva_cafe/", "draft": true } },
-      { "image": "assets/images/instagram/post-06.jpg", "alt": "Instagram post from Savva", "href": { "text": "https://www.instagram.com/savva_cafe/", "draft": true } },
-      { "image": "assets/images/instagram/post-07.jpg", "alt": "Instagram post from Savva", "href": { "text": "https://www.instagram.com/savva_cafe/", "draft": true } },
-      { "image": "assets/images/instagram/post-08.jpg", "alt": "Instagram post from Savva", "href": { "text": "https://www.instagram.com/savva_cafe/", "draft": true } },
-      { "image": "assets/images/instagram/post-09.jpg", "alt": "Instagram post from Savva", "href": { "text": "https://www.instagram.com/savva_cafe/", "draft": true } }
+      {
+        "image": "assets/images/instagram/madini-cookies-closeup.jpg",
+        "alt": "Madini Cookies close up, black sesame and dried fruit filling the frame",
+        "href": "https://www.instagram.com/savva_cafe/p/DdPEf8uNOSa/"
+      },
+      {
+        "image": "assets/images/instagram/iced-berry-drink.jpg",
+        "alt": "A deep red iced drink in a branded SAVVA cup on a wooden table",
+        "href": "https://www.instagram.com/savva_cafe/p/DdMxDh9MvzH/"
+      },
+      {
+        "image": "assets/images/instagram/frozen-berry-drink.jpg",
+        "alt": "A frozen berry drink in a clear SAVVA Coffee cup, a red splash above it",
+        "href": "https://www.instagram.com/savva_cafe/reel/DdJ6WD4sOUq/"
+      },
+      {
+        "image": "assets/images/instagram/pouring-berry-drink.jpg",
+        "alt": "A red drink poured over ice into a branded cup",
+        "href": "https://www.instagram.com/savva_cafe/p/DdHV3QCsEbd/"
+      },
+      {
+        "image": "assets/images/instagram/espresso-into-savva-cups.jpg",
+        "alt": "Espresso pouring into stacked sage and terracotta SAVVA cups",
+        "href": "https://www.instagram.com/savva_cafe/reel/DdCGu6UM5rV/"
+      },
+      {
+        "image": "assets/images/instagram/sandwich-and-iced-coffee-window-seat.jpg",
+        "alt": "A wrapped sandwich and an iced coffee on a board beside an open laptop at the window",
+        "href": "https://www.instagram.com/savva_cafe/p/Dc_kJc2MzdV/"
+      },
+      {
+        "image": "assets/images/instagram/tray-at-car-window.jpg",
+        "alt": "A tray with an iced drink and a slice of cake handed through a car window",
+        "href": "https://www.instagram.com/savva_cafe/p/Dc8_ifwsihu/"
+      },
+      {
+        "image": "assets/images/instagram/sandwich-on-branded-plate.jpg",
+        "alt": "A halved sesame-bun sandwich on a SAVVA-monogrammed plate against greenery",
+        "href": "https://www.instagram.com/savva_cafe/p/Dc6pEniMBhh/"
+      },
+      {
+        "image": "assets/images/instagram/three-cups-on-counter.jpg",
+        "alt": "Three branded cups on the counter: berry, caramel and iced coffee",
+        "href": "https://www.instagram.com/savva_cafe/p/Dc37CqYsmCr/"
+      }
     ]
   },
   "footer": {
-    "logoAlt": "Savva",
+    "logoAlt": "The SAVVA Coffee wordmark",
     "navTitle": "Explore",
     "followTitle": "Follow",
     "findTitle": "Find us",

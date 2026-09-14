@@ -1,48 +1,15 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { resolve } from "../../scripts/content-lib.js";
 
 const DATA_DIR = path.dirname(fileURLToPath(import.meta.url));
 
 /**
- * A string the owner still has to write is authored in JSON as
- * `{ "text": "…", "draft": true }`. Templates must never see that object:
- * the value is unwrapped here and the flag survives as a sibling key
- * `<key>Draft`. `{{ t.about.body }}` therefore always prints a string, and
- * `{% if t.about.bodyDraft %}` decides whether the badge is rendered.
- *
- * Resolution happens in the data layer rather than in a Nunjucks filter
- * because `.eleventy.js` belongs to another ticket's zone.
+ * Draft strings are unwrapped here rather than in a Nunjucks filter because
+ * `.eleventy.js` belongs to another ticket's zone. Templates therefore always
+ * receive plain strings; the flag survives as a sibling `<key>Draft`.
  */
-function isDraftValue(value) {
-  return (
-    value !== null &&
-    typeof value === "object" &&
-    !Array.isArray(value) &&
-    typeof value.text === "string" &&
-    value.draft === true
-  );
-}
-
-function resolve(node, prefix, drafts) {
-  if (Array.isArray(node)) {
-    return node.map((item, i) => resolve(item, `${prefix}[${i}]`, drafts));
-  }
-  if (node === null || typeof node !== "object") return node;
-
-  const out = {};
-  for (const [key, value] of Object.entries(node)) {
-    const keyPath = prefix ? `${prefix}.${key}` : key;
-    if (isDraftValue(value)) {
-      out[key] = value.text;
-      out[`${key}Draft`] = true;
-      drafts.push(keyPath);
-    } else {
-      out[key] = resolve(value, keyPath, drafts);
-    }
-  }
-  return out;
-}
 
 /** Read fresh on every build so `--watch` never serves a cached dictionary. */
 function readJson(file) {
@@ -50,14 +17,29 @@ function readJson(file) {
 }
 
 function build(lang) {
-  const drafts = [];
-  const dictionary = resolve(readJson(`content.${lang}.json`), "", drafts);
-  const site = resolve(readJson("site.json"), "site", drafts);
-  const sections = {};
-  for (const keyPath of drafts) {
-    sections[keyPath.split(/[.[]/)[0]] = true;
+  const dictDrafts = [];
+  const siteDrafts = [];
+  const dictionary = resolve(readJson(`content.${lang}.json`), "", dictDrafts);
+  const site = resolve(readJson("site.json"), "site", siteDrafts);
+
+  // Section badges are keyed by section name only; site.json facts are separate
+  // so no template has to remember that `site` is not a section.
+  const draftSections = {};
+  for (const keyPath of dictDrafts) {
+    draftSections[keyPath.split(/[.[]/)[0]] = true;
   }
-  return { t: dictionary, site, draftPaths: drafts, draftSections: sections };
+  const draftSite = {};
+  for (const keyPath of siteDrafts) {
+    draftSite[keyPath.replace(/^site\./, "")] = true;
+  }
+
+  return {
+    t: dictionary,
+    site,
+    draftSections,
+    draftSite,
+    draftPaths: [...dictDrafts, ...siteDrafts],
+  };
 }
 
 /** Two pages per build: re-resolving is cheaper than a cache that can go stale. */
@@ -69,5 +51,6 @@ export default {
   t: (data) => forLang(data.lang).t,
   site: (data) => forLang(data.lang).site,
   draftSections: (data) => forLang(data.lang).draftSections,
+  draftSite: (data) => forLang(data.lang).draftSite,
   draftPaths: (data) => forLang(data.lang).draftPaths,
 };
