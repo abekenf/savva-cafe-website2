@@ -8,3 +8,7 @@ __pycache__/
 out/
 .vercel
 .autopilot/serve.*
+_site/
+.cache/
+_site/
+.cache/

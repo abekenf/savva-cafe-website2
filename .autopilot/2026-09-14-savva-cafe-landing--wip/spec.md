@@ -176,8 +176,11 @@ Next.js привёз бы гидратацию на ~90 КБ ради лайтб
 
 **§2. Сборка.** `npm run build` = Tailwind CLI (`@tailwindcss/cli -i src/css/main.css -o _site/assets/app.css --minify`)
 + `eleventy`. `npm run dev` — обе задачи в watch. Node ≥ 20. Выход — `_site/`.
-`vercel.json` задаёт `buildCommand`, `outputDirectory: "_site"` и заголовки кеша
-для `/assets/*`. Деплой не выполняется — проект готов к нему, аккаунт Vercel у владельца.
+`vercel.json` задаёт `buildCommand`, `outputDirectory: "_site"`, заголовки кеша
+для `/assets/*`, а также `cleanUrls: true` и `trailingSlash: false` — публичные адреса
+страниц поэтому `/` и `/ar`, без `.html`. Уточнено после таска 01: решение принято
+исполнителем, оставлено сознательно (короткие адреса для лендинга), и таск 07 строит
+`canonical` и `hreflang` именно на этих адресах, а не на именах файлов. Деплой не выполняется — проект готов к нему, аккаунт Vercel у владельца.
 
 **§3. Цвета и типографика — токенами в CSS, не в конфиге.**
 Tailwind 4 читает `@theme { --color-sage: #808366; … }` прямо из `src/css/main.css`
@@ -192,7 +195,7 @@ RTL делается логическими свойствами Tailwind (`ps-`
 а не зеркальными переопределениями — иначе каждое правило пришлось бы писать дважды.
 
 **§5. Изображения — `@11ty/eleventy-img` на этапе сборки.**
-Шорткод `{% image src, alt, sizes, eager %}` отдаёт `<picture>` с AVIF + WebP + JPEG
+Шорткод `{% image src, alt, sizes, eager, classes %}` отдаёт `<picture>` с AVIF + WebP + JPEG
 в ширинах 480/800/1200/1600, с `width`/`height` в разметке (нулевой CLS),
 `loading="lazy"` и `decoding="async"` у всего, кроме hero. Hero — `eager` + `fetchpriority="high"`.
 Кеш генерации — в `.cache/`, в git не идёт.

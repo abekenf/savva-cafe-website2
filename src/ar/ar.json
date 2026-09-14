@@ -1,0 +1,6 @@
+{
+  "lang": "ar",
+  "dir": "rtl",
+  "layout": "layouts/base.njk",
+  "permalink": "/ar/index.html"
+}

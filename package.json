@@ -1,0 +1,23 @@
+{
+  "name": "savva-cafe-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Savva Cafe landing page — Eleventy 3 + Tailwind CSS 4, bilingual EN/AR",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build:css": "tailwindcss -i src/css/main.css -o _site/assets/app.css --minify",
+    "build:html": "eleventy",
+    "build": "npm run build:css && npm run build:html",
+    "dev": "npm run build:css -- --watch & eleventy --serve",
+    "test": "node --test test/"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0",
+    "@11ty/eleventy-img": "^6.0.0",
+    "@tailwindcss/cli": "^4.0.0",
+    "tailwindcss": "^4.0.0"
+  }
+}

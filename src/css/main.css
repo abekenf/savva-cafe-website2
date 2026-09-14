@@ -1,0 +1,351 @@
+/* Savva Cafe — design tokens and component classes.
+   Owns: theme tokens (@theme) and component classes (@layer components).
+   Everything else in the project uses Tailwind utilities generated from here. */
+
+@import "tailwindcss";
+
+/* Explicit source globs: Eleventy output lives in _site/ and must not be scanned. */
+@source "../_includes/**/*.njk";
+@source "../en/**/*.njk";
+@source "../ar/**/*.njk";
+@source "../js/**/*.js";
+
+/* ---------------------------------------------------------------------------
+   Self-hosted fonts. No runtime request to fonts.googleapis.com.
+   Files live in src/assets/static/fonts/ and are copied to /assets/static/fonts/.
+   --------------------------------------------------------------------------- */
+
+@font-face {
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/assets/static/fonts/manrope-latin-ext-400.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/assets/static/fonts/manrope-latin-400.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/assets/static/fonts/manrope-latin-ext-500.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/assets/static/fonts/manrope-latin-500.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/assets/static/fonts/manrope-latin-ext-700.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/assets/static/fonts/manrope-latin-700.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "IBM Plex Sans Arabic";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/assets/static/fonts/ibm-plex-sans-arabic-arabic-400.woff2") format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+102E0-102FB, U+10E60-10E7E, U+10EC2-10EC4, U+10EFC-10EFF, U+1EE00-1EE03, U+1EE05-1EE1F, U+1EE21-1EE22, U+1EE24, U+1EE27, U+1EE29-1EE32, U+1EE34-1EE37, U+1EE39, U+1EE3B, U+1EE42, U+1EE47, U+1EE49, U+1EE4B, U+1EE4D-1EE4F, U+1EE51-1EE52, U+1EE54, U+1EE57, U+1EE59, U+1EE5B, U+1EE5D, U+1EE5F, U+1EE61-1EE62, U+1EE64, U+1EE67-1EE6A, U+1EE6C-1EE72, U+1EE74-1EE77, U+1EE79-1EE7C, U+1EE7E, U+1EE80-1EE89, U+1EE8B-1EE9B, U+1EEA1-1EEA3, U+1EEA5-1EEA9, U+1EEAB-1EEBB, U+1EEF0-1EEF1;
+}
+
+@font-face {
+  font-family: "IBM Plex Sans Arabic";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/assets/static/fonts/ibm-plex-sans-arabic-latin-400.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "IBM Plex Sans Arabic";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/assets/static/fonts/ibm-plex-sans-arabic-arabic-600.woff2") format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+102E0-102FB, U+10E60-10E7E, U+10EC2-10EC4, U+10EFC-10EFF, U+1EE00-1EE03, U+1EE05-1EE1F, U+1EE21-1EE22, U+1EE24, U+1EE27, U+1EE29-1EE32, U+1EE34-1EE37, U+1EE39, U+1EE3B, U+1EE42, U+1EE47, U+1EE49, U+1EE4B, U+1EE4D-1EE4F, U+1EE51-1EE52, U+1EE54, U+1EE57, U+1EE59, U+1EE5B, U+1EE5D, U+1EE5F, U+1EE61-1EE62, U+1EE64, U+1EE67-1EE6A, U+1EE6C-1EE72, U+1EE74-1EE77, U+1EE79-1EE7C, U+1EE7E, U+1EE80-1EE89, U+1EE8B-1EE9B, U+1EEA1-1EEA3, U+1EEA5-1EEA9, U+1EEAB-1EEBB, U+1EEF0-1EEF1;
+}
+
+@font-face {
+  font-family: "IBM Plex Sans Arabic";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/assets/static/fonts/ibm-plex-sans-arabic-latin-600.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+
+/* ---------------------------------------------------------------------------
+   Theme tokens. Tailwind 4 generates utilities from these (bg-sage, text-ink…).
+   Single place to edit the palette.
+   --------------------------------------------------------------------------- */
+
+@theme {
+  /* Brand palette — eleven tokens, taken from Savva's own logo, cups and interior. */
+  --color-sage: #808366;
+  --color-sage-deep: #656852;
+  --color-cream: #decfb8;
+  --color-paper: #faf7f0;
+  --color-sand: #ede4d4;
+  --color-terracotta: #a0623a;
+  --color-ink: #2b241b;
+  --color-ink-soft: #6b6355;
+  --color-latte: #c4a88a;
+  --color-coffee: #6f4e37;
+  --color-espresso: #3b2a1e;
+
+  /* Typography */
+  --font-sans: "Manrope", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-arabic: "IBM Plex Sans Arabic", "Manrope", ui-sans-serif, system-ui, sans-serif;
+
+  --text-eyebrow: 0.75rem;
+  --text-eyebrow--line-height: 1.2;
+  --text-eyebrow--letter-spacing: 0.18em;
+  --text-eyebrow--font-weight: 500;
+
+  --text-display: clamp(2.5rem, 6vw, 5.5rem);
+  --text-display--line-height: 0.95;
+  --text-display--letter-spacing: -0.03em;
+  --text-display--font-weight: 700;
+
+  --text-h1: clamp(2rem, 4vw, 3.25rem);
+  --text-h1--line-height: 1.05;
+  --text-h1--letter-spacing: -0.02em;
+  --text-h1--font-weight: 700;
+
+  --text-h2: clamp(1.625rem, 2.6vw, 2.25rem);
+  --text-h2--line-height: 1.15;
+  --text-h2--letter-spacing: -0.015em;
+  --text-h2--font-weight: 700;
+
+  --text-h3: clamp(1.25rem, 1.6vw, 1.5rem);
+  --text-h3--line-height: 1.25;
+  --text-h3--letter-spacing: -0.01em;
+  --text-h3--font-weight: 500;
+
+  --text-body: clamp(1.0625rem, 0.35vw + 1rem, 1.1875rem);
+  --text-body--line-height: 1.7;
+
+  --text-small: 0.9375rem;
+  --text-small--line-height: 1.6;
+
+  /* Grid: 12 columns, 1280px cap, fluid gutters. */
+  --container-page: 1280px;
+
+  /* Vertical rhythm. Base spacing step stays Tailwind's 4px. */
+  --spacing-gutter: clamp(20px, 5vw, 80px);
+  --spacing-section: clamp(96px, 12vh, 176px);
+  --spacing-measure: 62ch;
+
+  /* Two shadows, warm and soft. There is no third. */
+  --shadow-soft: 0 1px 2px rgb(43 36 27 / 0.04), 0 12px 32px rgb(43 36 27 / 0.06);
+  --shadow-lift: 0 2px 4px rgb(43 36 27 / 0.05), 0 20px 48px rgb(43 36 27 / 0.1);
+
+  --radius-tile: 24px;
+
+  --ease-brand: cubic-bezier(0.2, 0, 0, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Arabic pages get the Arabic pair; latin fallback stays inside the stack. */
+  [dir="rtl"] body {
+    font-family: var(--font-arabic);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-sage-deep);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background-color: var(--color-cream);
+    color: var(--color-ink);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* Page gutter and 1280px cap. Every section body sits inside one of these. */
+  .container-page {
+    width: 100%;
+    max-width: calc(var(--container-page) + 2 * var(--spacing-gutter));
+    margin-inline: auto;
+    padding-inline: var(--spacing-gutter);
+  }
+
+  /* Vertical rhythm between sections: emptiness is a material here. */
+  .section {
+    padding-block: var(--spacing-section);
+  }
+
+  .h-display {
+    font-size: var(--text-display);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    font-weight: 700;
+    text-wrap: balance;
+  }
+
+  .eyebrow {
+    display: inline-block;
+    font-size: var(--text-eyebrow);
+    line-height: 1.2;
+    letter-spacing: 0.18em;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: var(--color-ink-soft);
+  }
+
+  /* RTL: uppercase and wide tracking are meaningless for Arabic script. */
+  [dir="rtl"] .eyebrow {
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  .btn-primary,
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: calc(var(--spacing) * 2);
+    min-height: 48px;
+    padding-inline: calc(var(--spacing) * 7);
+    padding-block: calc(var(--spacing) * 3);
+    border-radius: 9999px;
+    font-size: var(--text-small);
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 240ms var(--ease-brand), color 240ms var(--ease-brand),
+      border-color 240ms var(--ease-brand);
+  }
+
+  .btn-primary {
+    background-color: var(--color-sage);
+    color: var(--color-paper);
+    border: 1px solid var(--color-sage);
+  }
+
+  .btn-ghost {
+    background-color: transparent;
+    color: var(--color-ink);
+    border: 1px solid var(--color-latte);
+  }
+
+  @media (hover: hover) {
+    .btn-primary:hover {
+      background-color: var(--color-sage-deep);
+      border-color: var(--color-sage-deep);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--color-ink);
+      background-color: var(--color-sand);
+    }
+  }
+
+  .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: var(--radius-tile);
+    background-color: var(--color-paper);
+    box-shadow: var(--shadow-soft);
+    transition: transform 240ms var(--ease-brand), box-shadow 240ms var(--ease-brand);
+  }
+
+  @media (hover: hover) {
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lift);
+    }
+
+    .card:hover img {
+      transform: scale(1.04);
+    }
+  }
+
+  .card img {
+    transition: transform 240ms var(--ease-brand);
+  }
+
+  /* Keyboard-only escape hatch to the main landmark. */
+  .skip-link {
+    position: absolute;
+    inset-inline-start: var(--spacing-gutter);
+    top: calc(var(--spacing) * 3);
+    z-index: 100;
+    transform: translateY(-200%);
+    background-color: var(--color-ink);
+    color: var(--color-paper);
+    padding: calc(var(--spacing) * 3) calc(var(--spacing) * 5);
+    border-radius: 9999px;
+    font-size: var(--text-small);
+    text-decoration: none;
+  }
+
+  .skip-link:focus-visible {
+    transform: translateY(0);
+  }
+}

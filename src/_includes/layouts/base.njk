@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="{{ lang }}" dir="{{ dir }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{{ t.meta.title or site.name or "Savva Cafe" }}</title>
+
+    {# SEO block — meta description, Open Graph, Twitter card, hreflang,
+       canonical, JSON-LD and favicons are added here by ticket 07. #}
+
+    {# Self-hosted fonts: preload the weight used above the fold for this script. #}
+    {% if dir == "rtl" %}
+    <link rel="preload" as="font" type="font/woff2"
+          href="/assets/static/fonts/ibm-plex-sans-arabic-arabic-400.woff2" crossorigin>
+    {% else %}
+    <link rel="preload" as="font" type="font/woff2"
+          href="/assets/static/fonts/manrope-latin-400.woff2" crossorigin>
+    {% endif %}
+
+    <link rel="stylesheet" href="/assets/app.css">
+    <script src="/js/app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{{ t.a11y.skipToContent or "Skip to content" }}</a>
+
+    {{ content | safe }}
+  </body>
+</html>

@@ -11,7 +11,7 @@ window.STATE =
   "memoryFile": "CLAUDE.md",
   "skillDir": "/Users/bek/.agents/skills/autopilot",
   "startedAt": "2026-09-14T12:12:37+05:00",
-  "updatedAt": "2026-09-14T18:36:13+05:00",
+  "updatedAt": "2026-09-14T18:47:41+05:00",
   "finishedAt": null,
   "stages": [
     {
@@ -51,11 +51,14 @@ window.STATE =
     {
       "id": "build",
       "status": "active",
-      "startedAt": "2026-09-14T18:35:09+05:00"
+      "startedAt": "2026-09-14T18:35:09+05:00",
+      "note": "1 из 7 тасков готов"
     },
     {
       "id": "review",
-      "status": "pending"
+      "status": "active",
+      "startedAt": "2026-09-14T18:47:41+05:00",
+      "note": "проверен 1 из 7"
     },
     {
       "id": "final",
@@ -109,11 +112,32 @@ window.STATE =
         "src/ar/",
         "src/_includes/sections/"
       ],
-      "status": "in-progress",
+      "status": "done",
       "retries": 0,
       "repairs": 0,
       "handoffs": 0,
-      "startedAt": "2026-09-14T18:36:13+05:00"
+      "startedAt": "2026-09-14T18:36:13+05:00",
+      "finishedAt": "2026-09-14T18:47:41+05:00",
+      "files": [
+        "package.json",
+        ".eleventy.js",
+        "vercel.json",
+        "README.md",
+        "src/css/main.css",
+        "src/_includes/layouts/base.njk",
+        "src/_includes/sections/*.njk",
+        "src/en/",
+        "src/ar/",
+        "src/js/app.js",
+        "src/assets/static/fonts/"
+      ],
+      "tests": {
+        "passed": 0,
+        "failed": 0
+      },
+      "concerns": [
+        "тестов нет намеренно — шов строит таск 07"
+      ]
     },
     {
       "id": "02",
@@ -337,10 +361,18 @@ window.STATE =
     "extra": 17,
     "action": "7 пропущенных и 6 полупокрытых закрыты в spec.md (Фиксированное содержимое, Решения §12, токены палитры, уровень исполнения); 17 «сверх брифа» — 2 помечены A01/A02, остальные перепривязаны к родительским требованиям или оставлены как ремесленные решения"
   },
-  "concerns": [],
+  "concerns": [
+    "src/assets/static/fonts — три файла Manrope побайтово идентичны, браузер тянет 24 КБ трижды (→ таск 07)",
+    "src/_includes/layouts/base.njk:14 — preload греет вес 400, первый экран рисуется весом 700 (→ таск 07)",
+    "src/en/index.njk и src/ar/index.njk совпадают побайтово — порядок секций задан дважды",
+    "src/css/main.css:240 — .h-display и .eyebrow дублируют литералами значения из токенов --text-*",
+    "src/_includes/sections/{nav,footer}.njk — заглушки без лендмарков <nav>/<footer> (→ таски 04, 05)",
+    ".eleventy.js:13 — resolveImageSource принимает три формы пути при одной задокументированной",
+    "src/css/main.css:216 — глобальный transition-duration !important под reduced-motion шире решения спецификации (→ таск 06)"
+  ],
   "reviewers": {
-    "manifestSpec": null,
-    "craft": null
+    "manifestSpec": "a3594414ddf8b0ec6",
+    "craft": "aa7276fd765675a63"
   },
   "blind": null
 }
