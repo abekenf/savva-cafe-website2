@@ -1,0 +1,45 @@
+{
+  "name": "Savva",
+  "nameAr": "سافا",
+  "legalName": "Savva Cafe",
+  "category": "Coffee shop",
+  "handle": "@savva_cafe",
+  "url": { "text": "https://savva-cafe.vercel.app", "draft": true },
+  "locale": { "en": "en_SA", "ar": "ar_SA" },
+  "phone": {
+    "display": "+966 56 437 0303",
+    "href": "tel:+966564370303"
+  },
+  "address": {
+    "full": "Zubairah Al Roumiah, Bir Uthman, Madinah 42331, Saudi Arabia",
+    "streetAddress": "Zubairah Al Roumiah, Bir Uthman",
+    "addressLocality": "Madinah",
+    "addressRegion": "Al Madinah Province",
+    "postalCode": "42331",
+    "addressCountry": "SA",
+    "plusCode": "FHVJ+3W Madinah"
+  },
+  "geo": {
+    "latitude": 24.4926931,
+    "longitude": 39.5823565
+  },
+  "hours": [
+    { "day": "sat", "dayOfWeek": "Saturday", "opens": "06:30", "closes": "02:00" },
+    { "day": "sun", "dayOfWeek": "Sunday", "opens": "06:30", "closes": "02:00" },
+    { "day": "mon", "dayOfWeek": "Monday", "opens": "06:30", "closes": "02:00" },
+    { "day": "tue", "dayOfWeek": "Tuesday", "opens": "06:30", "closes": "02:00" },
+    { "day": "wed", "dayOfWeek": "Wednesday", "opens": "06:30", "closes": "02:00" },
+    { "day": "thu", "dayOfWeek": "Thursday", "opens": "06:30", "closes": "02:00" },
+    { "day": "fri", "dayOfWeek": "Friday", "opens": "13:00", "closes": "02:00" }
+  ],
+  "rating": {
+    "value": 4.7,
+    "count": 729
+  },
+  "links": {
+    "maps": "https://www.google.com/maps/place/%D8%B3%D8%A7%D9%81%D8%A7+savva%E2%80%AD/@24.4926931,39.5823565,17z/data=!3m1!4b1!4m6!3m5!1s0x15bdbf7c00dd71e3:0x8c75251d63b13c1!8m2!3d24.4926931!4d39.5823565!16s%2Fg%2F11kj12kz9s!18m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkwOS4wIKXMDSoASAFQAw%3D%3D",
+    "mapsEmbed": "https://www.google.com/maps?q=24.4926931,39.5823565&z=17&output=embed",
+    "instagram": "https://www.instagram.com/savva_cafe/"
+  },
+  "capturedOn": "2026-09-14"
+}

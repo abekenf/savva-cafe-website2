@@ -10,7 +10,7 @@
   "scripts": {
     "build:css": "tailwindcss -i src/css/main.css -o _site/assets/app.css --minify",
     "build:html": "eleventy",
-    "build": "npm run build:css && npm run build:html",
+    "build": "node scripts/content-todo.js && npm run build:css && npm run build:html",
     "dev": "npm run build:css -- --watch & eleventy --serve",
     "test": "node --test test/"
   },

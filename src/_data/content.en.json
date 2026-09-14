@@ -1,0 +1,202 @@
+{
+  "meta": {
+    "title": "Savva — Specialty Coffee in Madinah",
+    "description": "Specialty coffee, fresh desserts and a quiet terrace in Madinah. Saturday to Thursday from 06:30, Friday from 13:00.",
+    "ogAlt": "The interior of Savva, a specialty coffee house in Madinah",
+    "path": "/",
+    "altPath": "/ar"
+  },
+  "a11y": {
+    "skipToContent": "Skip to content",
+    "primaryNav": "Primary",
+    "footerNav": "Footer",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "backToTop": "Back to top",
+    "languageSwitch": "Switch language",
+    "openLightbox": "View larger",
+    "closeLightbox": "Close viewer",
+    "previousImage": "Previous photo",
+    "nextImage": "Next photo",
+    "galleryImageCount": "Photo {n} of {total}",
+    "draftBadge": "Draft copy",
+    "draftBadgeHint": "Placeholder text — to be replaced by the owner"
+  },
+  "nav": {
+    "brand": "Savva",
+    "brandAlt": "Savva",
+    "links": [
+      { "id": "about", "href": "#about", "label": "Our Story" },
+      { "id": "menu", "href": "#menu", "label": "Menu" },
+      { "id": "gallery", "href": "#gallery", "label": "Gallery" },
+      { "id": "experience", "href": "#experience", "label": "Experience" },
+      { "id": "visit", "href": "#visit", "label": "Visit" },
+      { "id": "instagram", "href": "#instagram", "label": "Instagram" }
+    ],
+    "language": {
+      "current": "EN",
+      "other": "عربي",
+      "otherHref": "/ar",
+      "otherLang": "ar"
+    }
+  },
+  "hero": {
+    "eyebrow": "Specialty Coffee · Madinah",
+    "title": "Every Cup Has a Story",
+    "titleAlt": "Specialty Coffee in Madinah",
+    "subtitle": {
+      "text": "Specialty coffee, a quiet room and a terrace in Madinah — from early morning until two at night.",
+      "draft": true
+    },
+    "ctaMenu": "View Menu",
+    "ctaDirections": "Get Directions",
+    "scrollHint": "Scroll",
+    "image": "assets/images/hero/interior.jpg",
+    "imageAlt": "The main room at Savva, warm light over wooden tables"
+  },
+  "about": {
+    "eyebrow": "Our Story",
+    "title": "A day in Savva",
+    "body": {
+      "text": "Savva is a specialty coffee house in Madinah. The room is quiet by design: soft light, a recently refreshed interior, and a terrace for the cooler hours. The coffee of the day moves between Ethiopian and Colombian beans, and the cheesecake rarely lasts the afternoon. Doors open early and close at two.",
+      "draft": true
+    },
+    "quote": "A day in savva is what you need to be savva",
+    "quoteSource": "Instagram, @savva_cafe",
+    "image": "assets/images/gallery/interior-window-seat.jpg",
+    "imageAlt": "A window seat at Savva, late afternoon light"
+  },
+  "menu": {
+    "eyebrow": "Signature Menu",
+    "title": "What to order",
+    "photoComingSoon": "Photo coming soon",
+    "items": [
+      {
+        "id": "flat-white",
+        "name": "Flat White",
+        "desc": { "text": "Ristretto under a thin layer of steamed milk. Balanced, quietly strong.", "draft": true },
+        "image": "assets/images/menu/flat-white.jpg",
+        "imageAlt": "A flat white in a ceramic cup"
+      },
+      {
+        "id": "spanish-latte",
+        "name": "Spanish Latte",
+        "desc": { "text": "Espresso, milk and condensed milk. Sweet, and meant to be.", "draft": true },
+        "image": "assets/images/menu/spanish-latte.jpg",
+        "imageAlt": "A Spanish latte, layered over ice"
+      },
+      {
+        "id": "matcha-latte",
+        "name": "Matcha Latte",
+        "desc": { "text": "Matcha whisked smooth, poured over cold milk. Grassy and calm.", "draft": true },
+        "image": "assets/images/menu/matcha-latte.jpg",
+        "imageAlt": "A matcha latte in a tall glass"
+      },
+      {
+        "id": "cold-brew",
+        "name": "Cold Brew",
+        "desc": { "text": "Steeped slowly overnight, served cold. Low acidity, long finish.", "draft": true },
+        "image": "assets/images/menu/cold-brew.jpg",
+        "imageAlt": "Cold brew over ice"
+      },
+      {
+        "id": "cheesecake",
+        "name": "Cheesecake",
+        "desc": { "text": "The slice the reviews keep mentioning. Dense, cold, not too sweet.", "draft": true },
+        "image": "assets/images/menu/cheesecake.jpg",
+        "imageAlt": "A slice of cheesecake on a small plate"
+      },
+      {
+        "id": "cookies",
+        "name": "Madini Cookies",
+        "desc": { "text": "Our own cookie, named for the city. Crisp at the edge, soft in the middle.", "draft": true },
+        "image": "assets/images/menu/madini-cookies.jpg",
+        "imageAlt": "Madini cookies stacked on a plate"
+      }
+    ]
+  },
+  "gallery": {
+    "eyebrow": "Gallery",
+    "title": "Inside Savva",
+    "items": [
+      { "image": "assets/images/gallery/interior-main-room.jpg", "alt": "The main room at Savva" },
+      { "image": "assets/images/gallery/interior-window-seat.jpg", "alt": "A window seat and a low table" },
+      { "image": "assets/images/gallery/bar-counter.jpg", "alt": "The bar counter and espresso machine" },
+      { "image": "assets/images/gallery/espresso-pour.jpg", "alt": "Espresso pouring into a cup" },
+      { "image": "assets/images/gallery/outdoor-terrace.jpg", "alt": "The outdoor terrace in the evening" },
+      { "image": "assets/images/gallery/seating-corner.jpg", "alt": "A quiet corner with armchairs" },
+      { "image": "assets/images/gallery/cheesecake-slice.jpg", "alt": "A slice of cheesecake with a fork" },
+      { "image": "assets/images/gallery/madini-cookies.jpg", "alt": "Madini cookies on the counter" },
+      { "image": "assets/images/gallery/iced-drink-detail.jpg", "alt": "An iced drink close up" },
+      { "image": "assets/images/gallery/storefront-evening.jpg", "alt": "The entrance to Savva after dark" },
+      { "image": "assets/images/gallery/table-detail.jpg", "alt": "A cup and a notebook on a wooden table" },
+      { "image": "assets/images/gallery/barista-at-work.jpg", "alt": "A barista at the counter" }
+    ]
+  },
+  "experience": {
+    "eyebrow": "Experience",
+    "title": "What to expect",
+    "items": [
+      { "id": "specialty-coffee", "label": "Specialty Coffee" },
+      { "id": "fresh-desserts", "label": "Fresh Desserts" },
+      { "id": "cozy-interior", "label": "Cozy Interior" },
+      { "id": "free-wifi", "label": "Free Wi-Fi" },
+      { "id": "outdoor-seating", "label": "Outdoor Seating" },
+      { "id": "friendly-staff", "label": "Friendly Staff" }
+    ]
+  },
+  "visit": {
+    "eyebrow": "Visit Us",
+    "title": "Find us in Madinah",
+    "addressLabel": "Address",
+    "phoneLabel": "Phone",
+    "hoursLabel": "Opening Hours",
+    "showMap": "Show map",
+    "mapTitle": "Savva on Google Maps",
+    "mapPreviewAlt": "Map of the streets around Savva in Madinah",
+    "openInMaps": "Open in Google Maps",
+    "copyAddress": "Copy address",
+    "addressCopied": "Copied",
+    "openNow": "Open now",
+    "closedNow": "Closed now",
+    "opensAt": "Opens at {time}",
+    "closesAt": "Closes until {time}",
+    "days": {
+      "sat": "Saturday",
+      "sun": "Sunday",
+      "mon": "Monday",
+      "tue": "Tuesday",
+      "wed": "Wednesday",
+      "thu": "Thursday",
+      "fri": "Friday"
+    }
+  },
+  "instagram": {
+    "eyebrow": "Instagram",
+    "title": "@savva_cafe",
+    "cta": "Follow on Instagram",
+    "note": "The nine most recent posts as of 14 September 2026.",
+    "items": [
+      { "image": "assets/images/instagram/post-01.jpg", "alt": "Instagram post from Savva", "href": { "text": "https://www.instagram.com/savva_cafe/", "draft": true } },
+      { "image": "assets/images/instagram/post-02.jpg", "alt": "Instagram post from Savva", "href": { "text": "https://www.instagram.com/savva_cafe/", "draft": true } },
+      { "image": "assets/images/instagram/post-03.jpg", "alt": "Instagram post from Savva", "href": { "text": "https://www.instagram.com/savva_cafe/", "draft": true } },
+      { "image": "assets/images/instagram/post-04.jpg", "alt": "Instagram post from Savva", "href": { "text": "https://www.instagram.com/savva_cafe/", "draft": true } },
+      { "image": "assets/images/instagram/post-05.jpg", "alt": "Instagram post from Savva", "href": { "text": "https://www.instagram.com/savva_cafe/", "draft": true } },
+      { "image": "assets/images/instagram/post-06.jpg", "alt": "Instagram post from Savva", "href": { "text": "https://www.instagram.com/savva_cafe/", "draft": true } },
+      { "image": "assets/images/instagram/post-07.jpg", "alt": "Instagram post from Savva", "href": { "text": "https://www.instagram.com/savva_cafe/", "draft": true } },
+      { "image": "assets/images/instagram/post-08.jpg", "alt": "Instagram post from Savva", "href": { "text": "https://www.instagram.com/savva_cafe/", "draft": true } },
+      { "image": "assets/images/instagram/post-09.jpg", "alt": "Instagram post from Savva", "href": { "text": "https://www.instagram.com/savva_cafe/", "draft": true } }
+    ]
+  },
+  "footer": {
+    "logoAlt": "Savva",
+    "navTitle": "Explore",
+    "followTitle": "Follow",
+    "findTitle": "Find us",
+    "contactTitle": "Contact",
+    "instagram": "Instagram",
+    "maps": "Google Maps",
+    "copyright": "© {year} Savva. All rights reserved.",
+    "ratingNote": "4.7 on Google, from 729 reviews."
+  }
+}

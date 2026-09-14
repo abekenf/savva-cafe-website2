@@ -1,0 +1,202 @@
+{
+  "meta": {
+    "title": "سافا — قهوة مختصة في المدينة المنورة",
+    "description": "قهوة مختصة وحلويات طازجة وتراس هادئ في المدينة المنورة. من السبت إلى الخميس ابتداءً من 06:30، والجمعة من 13:00.",
+    "ogAlt": "المكان من الداخل في سافا، بيت قهوة مختصة في المدينة المنورة",
+    "path": "/ar",
+    "altPath": "/"
+  },
+  "a11y": {
+    "skipToContent": "تخطَّ إلى المحتوى",
+    "primaryNav": "التنقل الرئيسي",
+    "footerNav": "روابط التذييل",
+    "openMenu": "افتح القائمة",
+    "closeMenu": "أغلق القائمة",
+    "backToTop": "العودة إلى الأعلى",
+    "languageSwitch": "تغيير اللغة",
+    "openLightbox": "عرض بحجم أكبر",
+    "closeLightbox": "إغلاق العارض",
+    "previousImage": "الصورة السابقة",
+    "nextImage": "الصورة التالية",
+    "galleryImageCount": "الصورة {n} من {total}",
+    "draftBadge": "نص مبدئي",
+    "draftBadgeHint": "نص مؤقت — بانتظار صياغة المالك"
+  },
+  "nav": {
+    "brand": "سافا",
+    "brandAlt": "سافا",
+    "links": [
+      { "id": "about", "href": "#about", "label": "قصتنا" },
+      { "id": "menu", "href": "#menu", "label": "القائمة" },
+      { "id": "gallery", "href": "#gallery", "label": "الصور" },
+      { "id": "experience", "href": "#experience", "label": "التجربة" },
+      { "id": "visit", "href": "#visit", "label": "زورونا" },
+      { "id": "instagram", "href": "#instagram", "label": "إنستغرام" }
+    ],
+    "language": {
+      "current": "عربي",
+      "other": "EN",
+      "otherHref": "/",
+      "otherLang": "en"
+    }
+  },
+  "hero": {
+    "eyebrow": "قهوة مختصة · المدينة المنورة",
+    "title": "لكل فنجان حكاية",
+    "titleAlt": "قهوة مختصة في المدينة المنورة",
+    "subtitle": {
+      "text": "قهوة مختصة، ومكان هادئ، وتراس في المدينة المنورة — من الصباح الباكر حتى الثانية بعد منتصف الليل.",
+      "draft": true
+    },
+    "ctaMenu": "تصفح القائمة",
+    "ctaDirections": "الاتجاهات",
+    "scrollHint": "مرّر للأسفل",
+    "image": "assets/images/hero/interior.jpg",
+    "imageAlt": "الصالة الرئيسية في سافا، وضوء دافئ على الطاولات الخشبية"
+  },
+  "about": {
+    "eyebrow": "قصتنا",
+    "title": "يوم في سافا",
+    "body": {
+      "text": "سافا بيت قهوة مختصة في المدينة المنورة. المكان هادئ بطبيعته: إضاءة خافتة، وتصميم داخلي جُدّد حديثًا، وتراس لساعات المساء. قهوة اليوم تتنقل بين حبوب إثيوبية وأخرى كولومبية، وقطعة التشيز كيك نادرًا ما تبقى حتى العصر. نفتح مبكرًا ونغلق عند الثانية.",
+      "draft": true
+    },
+    "quote": "A day in savva is what you need to be savva",
+    "quoteSource": "إنستغرام، ‎@savva_cafe",
+    "image": "assets/images/gallery/interior-window-seat.jpg",
+    "imageAlt": "مقعد بجانب النافذة في سافا وضوء العصر"
+  },
+  "menu": {
+    "eyebrow": "قائمتنا المميزة",
+    "title": "ماذا تطلب",
+    "photoComingSoon": "الصورة قريبًا",
+    "items": [
+      {
+        "id": "flat-white",
+        "name": "فلات وايت",
+        "desc": { "text": "ريستريتو تحت طبقة رقيقة من الحليب المبخّر. متوازن وقوي بهدوء.", "draft": true },
+        "image": "assets/images/menu/flat-white.jpg",
+        "imageAlt": "فلات وايت في فنجان من السيراميك"
+      },
+      {
+        "id": "spanish-latte",
+        "name": "سبانيش لاتيه",
+        "desc": { "text": "إسبريسو وحليب وحليب مكثّف. حلو، وهذا هو المقصود.", "draft": true },
+        "image": "assets/images/menu/spanish-latte.jpg",
+        "imageAlt": "سبانيش لاتيه بطبقات فوق الثلج"
+      },
+      {
+        "id": "matcha-latte",
+        "name": "ماتشا لاتيه",
+        "desc": { "text": "ماتشا مخفوقة حتى النعومة فوق حليب بارد. طعم عشبي وهادئ.", "draft": true },
+        "image": "assets/images/menu/matcha-latte.jpg",
+        "imageAlt": "ماتشا لاتيه في كوب طويل"
+      },
+      {
+        "id": "cold-brew",
+        "name": "كولد برو",
+        "desc": { "text": "منقوع ببطء طوال الليل، ويُقدَّم باردًا. حموضة خفيفة ونهاية طويلة.", "draft": true },
+        "image": "assets/images/menu/cold-brew.jpg",
+        "imageAlt": "كولد برو مع الثلج"
+      },
+      {
+        "id": "cheesecake",
+        "name": "تشيز كيك",
+        "desc": { "text": "القطعة التي تتكرر في التقييمات. كثيفة وباردة وغير مفرطة الحلاوة.", "draft": true },
+        "image": "assets/images/menu/cheesecake.jpg",
+        "imageAlt": "قطعة تشيز كيك في طبق صغير"
+      },
+      {
+        "id": "cookies",
+        "name": "كوكيز مديني",
+        "desc": { "text": "كوكيز من صنعنا، باسم المدينة. مقرمش من الأطراف وطري من الوسط.", "draft": true },
+        "image": "assets/images/menu/madini-cookies.jpg",
+        "imageAlt": "كوكيز مديني مرصوص في طبق"
+      }
+    ]
+  },
+  "gallery": {
+    "eyebrow": "الصور",
+    "title": "سافا من الداخل",
+    "items": [
+      { "image": "assets/images/gallery/interior-main-room.jpg", "alt": "الصالة الرئيسية في سافا" },
+      { "image": "assets/images/gallery/interior-window-seat.jpg", "alt": "مقعد بجانب النافذة وطاولة منخفضة" },
+      { "image": "assets/images/gallery/bar-counter.jpg", "alt": "طاولة الباريستا وآلة الإسبريسو" },
+      { "image": "assets/images/gallery/espresso-pour.jpg", "alt": "إسبريسو ينسكب في الفنجان" },
+      { "image": "assets/images/gallery/outdoor-terrace.jpg", "alt": "التراس الخارجي في المساء" },
+      { "image": "assets/images/gallery/seating-corner.jpg", "alt": "ركن هادئ بكراسي وثيرة" },
+      { "image": "assets/images/gallery/cheesecake-slice.jpg", "alt": "قطعة تشيز كيك مع شوكة" },
+      { "image": "assets/images/gallery/madini-cookies.jpg", "alt": "كوكيز مديني على الطاولة" },
+      { "image": "assets/images/gallery/iced-drink-detail.jpg", "alt": "مشروب بارد عن قرب" },
+      { "image": "assets/images/gallery/storefront-evening.jpg", "alt": "مدخل سافا بعد المغيب" },
+      { "image": "assets/images/gallery/table-detail.jpg", "alt": "فنجان ودفتر على طاولة خشبية" },
+      { "image": "assets/images/gallery/barista-at-work.jpg", "alt": "باريستا خلف الطاولة" }
+    ]
+  },
+  "experience": {
+    "eyebrow": "التجربة",
+    "title": "ما الذي ينتظرك",
+    "items": [
+      { "id": "specialty-coffee", "label": "قهوة مختصة" },
+      { "id": "fresh-desserts", "label": "حلويات طازجة" },
+      { "id": "cozy-interior", "label": "أجواء دافئة" },
+      { "id": "free-wifi", "label": "واي فاي مجاني" },
+      { "id": "outdoor-seating", "label": "جلسات خارجية" },
+      { "id": "friendly-staff", "label": "طاقم ودود" }
+    ]
+  },
+  "visit": {
+    "eyebrow": "زورونا",
+    "title": "موقعنا في المدينة المنورة",
+    "addressLabel": "العنوان",
+    "phoneLabel": "الهاتف",
+    "hoursLabel": "ساعات العمل",
+    "showMap": "عرض الخريطة",
+    "mapTitle": "سافا على خرائط جوجل",
+    "mapPreviewAlt": "خريطة الشوارع المحيطة بسافا في المدينة المنورة",
+    "openInMaps": "افتح في خرائط جوجل",
+    "copyAddress": "نسخ العنوان",
+    "addressCopied": "تم النسخ",
+    "openNow": "مفتوح الآن",
+    "closedNow": "مغلق الآن",
+    "opensAt": "يفتح {time}",
+    "closesAt": "مغلق حتى {time}",
+    "days": {
+      "sat": "السبت",
+      "sun": "الأحد",
+      "mon": "الاثنين",
+      "tue": "الثلاثاء",
+      "wed": "الأربعاء",
+      "thu": "الخميس",
+      "fri": "الجمعة"
+    }
+  },
+  "instagram": {
+    "eyebrow": "إنستغرام",
+    "title": "‎@savva_cafe",
+    "cta": "تابعنا على إنستغرام",
+    "note": "أحدث تسع منشورات حتى 14 سبتمبر 2026.",
+    "items": [
+      { "image": "assets/images/instagram/post-01.jpg", "alt": "منشور من إنستغرام سافا", "href": { "text": "https://www.instagram.com/savva_cafe/", "draft": true } },
+      { "image": "assets/images/instagram/post-02.jpg", "alt": "منشور من إنستغرام سافا", "href": { "text": "https://www.instagram.com/savva_cafe/", "draft": true } },
+      { "image": "assets/images/instagram/post-03.jpg", "alt": "منشور من إنستغرام سافا", "href": { "text": "https://www.instagram.com/savva_cafe/", "draft": true } },
+      { "image": "assets/images/instagram/post-04.jpg", "alt": "منشور من إنستغرام سافا", "href": { "text": "https://www.instagram.com/savva_cafe/", "draft": true } },
+      { "image": "assets/images/instagram/post-05.jpg", "alt": "منشور من إنستغرام سافا", "href": { "text": "https://www.instagram.com/savva_cafe/", "draft": true } },
+      { "image": "assets/images/instagram/post-06.jpg", "alt": "منشور من إنستغرام سافا", "href": { "text": "https://www.instagram.com/savva_cafe/", "draft": true } },
+      { "image": "assets/images/instagram/post-07.jpg", "alt": "منشور من إنستغرام سافا", "href": { "text": "https://www.instagram.com/savva_cafe/", "draft": true } },
+      { "image": "assets/images/instagram/post-08.jpg", "alt": "منشور من إنستغرام سافا", "href": { "text": "https://www.instagram.com/savva_cafe/", "draft": true } },
+      { "image": "assets/images/instagram/post-09.jpg", "alt": "منشور من إنستغرام سافا", "href": { "text": "https://www.instagram.com/savva_cafe/", "draft": true } }
+    ]
+  },
+  "footer": {
+    "logoAlt": "سافا",
+    "navTitle": "تصفح",
+    "followTitle": "تابعنا",
+    "findTitle": "الموقع",
+    "contactTitle": "تواصل",
+    "instagram": "إنستغرام",
+    "maps": "خرائط جوجل",
+    "copyright": "© {year} سافا. جميع الحقوق محفوظة.",
+    "ratingNote": "‎4.7 على جوجل من 729 تقييمًا."
+  }
+}
