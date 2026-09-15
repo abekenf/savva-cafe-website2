@@ -4,10 +4,7 @@
   "legalName": "Savva Cafe",
   "category": "Coffee shop",
   "handle": "@savva_cafe",
-  "url": {
-    "text": "https://savva-cafe.vercel.app",
-    "draft": true
-  },
+  "url": "https://savva-cafe-website2.vercel.app",
   "locale": {
     "en": "en_SA",
     "ar": "ar_SA"
