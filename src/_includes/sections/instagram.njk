@@ -1,3 +1,34 @@
-{# section: instagram — markup filled in by ticket 05 #}
-<section id="instagram">
+{# section: instagram — the nine most recent posts as of the build date,
+   fixed in content.*.json. Each tile links to its own post. #}
+{% set instagramSizes = "(min-width: 1440px) 416px, (min-width: 640px) 30vw, 45vw" %}
+
+<section id="instagram" class="section" aria-labelledby="instagram-title" data-reveal>
+  <div class="container-page">
+    <header class="flex flex-wrap items-end justify-between gap-x-10 gap-y-8">
+      <div class="max-w-[var(--spacing-measure)]">
+        <p class="eyebrow">{{ t.instagram.eyebrow }}</p>
+        <h2 id="instagram-title" class="mt-5 text-h1 text-ink" dir="ltr">{{ t.instagram.title }}</h2>
+      </div>
+      <a class="btn-primary" href="{{ site.links.instagram }}" target="_blank" rel="noopener">
+        {{ t.instagram.cta }}
+      </a>
+    </header>
+
+    <ul class="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-3 md:mt-20">
+      {% for item in t.instagram.items %}
+      <li>
+        <a class="card aspect-square w-full" href="{{ item.href }}" target="_blank" rel="noopener noreferrer">
+          {% if item.image in media.files %}
+            {% image item.image, item.alt, instagramSizes, false, "absolute inset-0 h-full w-full object-cover" %}
+          {% else %}
+            <span class="absolute inset-0 bg-sage"></span>
+            <span class="sr-only">{{ item.alt }}</span>
+          {% endif %}
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+
+    <p class="mt-8 text-small text-ink-soft">{{ t.instagram.note }}</p>
+  </div>
 </section>

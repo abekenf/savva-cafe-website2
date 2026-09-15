@@ -1,3 +1,35 @@
-{# section: gallery — markup filled in by ticket 05 #}
-<section id="gallery">
+{# section: gallery — the room in a masonry grid, native aspect ratios, no crops.
+   Tiles are buttons carrying data-lightbox; ticket 06 opens them large.
+   Columns: 2 below 640px, 3 below 1024px, 4 above (spec §12). #}
+{% set galleryTotal = t.gallery.items.length %}
+{% set gallerySizes = "(min-width: 1440px) 308px, (min-width: 1024px) 22vw, (min-width: 640px) 30vw, 45vw" %}
+
+<section id="gallery" class="section" aria-labelledby="gallery-title" data-reveal>
+  <div class="container-page">
+    <header class="max-w-[var(--spacing-measure)]">
+      <p class="eyebrow">{{ t.gallery.eyebrow }}</p>
+      <h2 id="gallery-title" class="mt-5 text-h1 text-ink">{{ t.gallery.title }}</h2>
+    </header>
+
+    <div class="mt-14 columns-2 [column-gap:1rem] sm:columns-3 lg:columns-4 md:mt-20">
+      {% for item in t.gallery.items %}
+        {% if item.image in media.files %}
+      <button type="button"
+              class="card mb-4 block w-full cursor-zoom-in break-inside-avoid border-0 bg-sand p-0 text-start"
+              data-lightbox
+              data-lightbox-group="gallery"
+              data-lightbox-index="{{ loop.index0 }}"
+              aria-label="{{ t.a11y.openLightbox }} — {{ t.a11y.galleryImageCount | replace("{n}", loop.index) | replace("{total}", galleryTotal) }}">
+        {% image item.image, item.alt, gallerySizes, false, "block h-auto w-full" %}
+      </button>
+        {% else %}
+      {# No frame for this slot yet: a branded sage tile, never a stock photo —
+         and never a button, because there is nothing for the viewer to open. #}
+      <div class="card mb-4 flex aspect-[4/5] w-full break-inside-avoid items-center justify-center bg-sage">
+        <span class="sr-only">{{ item.alt }}</span>
+      </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
 </section>

@@ -1,3 +1,104 @@
-{# section: visit — markup filled in by ticket 05 #}
-<section id="visit">
+{# section: visit — big map, address, phone, seven rows of hours.
+   The map is NOT in the source HTML: the tile below carries data-map-src and
+   ticket 06 injects the iframe on click, so nothing third-party loads up front.
+   Address, phone and the hours table are plain markup and read without JS. #}
+
+<section id="visit" class="section" aria-labelledby="visit-title" data-reveal>
+  <div class="container-page">
+    <header class="max-w-[var(--spacing-measure)]">
+      <p class="eyebrow">{{ t.visit.eyebrow }}</p>
+      <h2 id="visit-title" class="mt-5 text-h1 text-ink">{{ t.visit.title }}</h2>
+    </header>
+
+    {# Preview tile, 40% muted, same box the iframe will occupy. #}
+    <div class="relative mt-14 min-h-[320px] overflow-hidden rounded-tile bg-sand shadow-soft md:mt-20 md:min-h-[380px] lg:min-h-[520px]"
+         data-map
+         data-map-src="{{ site.links.mapsEmbed }}"
+         data-map-title="{{ t.visit.mapTitle }}">
+      <div class="absolute inset-0" data-map-preview>
+        {# Decorative only: an abstract tile, not the streets of Madinah. It is hidden from
+           assistive tech rather than labelled, because no true label exists for it — the
+           real map arrives on press, and the "Show map" button is what announces that.
+           t.visit.mapPreviewAlt describes a map picture we do not have and is left unused. #}
+        <svg class="absolute inset-0 h-full w-full opacity-60" viewBox="0 0 1200 520"
+             preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+          <rect width="1200" height="520" fill="var(--color-sand)"/>
+          <g fill="var(--color-latte)" opacity="0.3">
+            <rect x="230" y="185" width="290" height="160" rx="6"/>
+            <rect x="605" y="185" width="255" height="160" rx="6"/>
+            <rect x="945" y="185" width="235" height="160" rx="6"/>
+            <rect x="230" y="415" width="290" height="105" rx="6"/>
+            <rect x="605" y="415" width="255" height="105" rx="6"/>
+            <rect x="20" y="20" width="115" height="95" rx="6"/>
+          </g>
+          <g stroke="var(--color-paper)" fill="none" stroke-linecap="round">
+            <path d="M-20 150h1240" stroke-width="26"/>
+            <path d="M-20 380h1240" stroke-width="18"/>
+            <path d="M180 -20v560" stroke-width="18"/>
+            <path d="M560 -20v560" stroke-width="26"/>
+            <path d="M900 -20v560" stroke-width="14"/>
+            <path d="M-20 520 420 -20" stroke-width="14"/>
+            <path d="M700 520 1220 60" stroke-width="12"/>
+          </g>
+        </svg>
+
+        <div class="absolute inset-0 flex flex-col items-center justify-center gap-7 p-6">
+          <svg class="h-11 w-11 drop-shadow-sm" viewBox="0 0 44 44" fill="none" aria-hidden="true" focusable="false">
+            <path d="M22 39c9-12.4 14-20.2 14-28a14 14 0 1 0-28 0c0 7.8 5 15.6 14 28Z" fill="var(--color-terracotta)"/>
+            <circle cx="22" cy="11.5" r="5.2" fill="var(--color-paper)"/>
+          </svg>
+          <button type="button" class="btn-primary shadow-lift" data-map-open>{{ t.visit.showMap }}</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-14 grid gap-x-10 gap-y-12 md:grid-cols-12 md:gap-y-16">
+      <div class="md:col-span-4">
+        <h3 class="eyebrow">{{ t.visit.addressLabel }}</h3>
+        <p class="mt-5 max-w-[30ch] text-body text-ink">{{ site.address.full }}</p>
+        <button type="button"
+                class="mt-4 inline-flex min-h-11 items-center gap-2 text-small text-ink-soft transition-colors duration-200 ease-brand hover:text-ink"
+                data-copy="{{ site.address.full }}"
+                data-copy-done="{{ t.visit.addressCopied }}">
+          <svg class="h-4 w-4 text-sage" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+               stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <rect x="5.5" y="5.5" width="8" height="9" rx="2"/>
+            <path d="M10.5 5.5v-2a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/>
+          </svg>
+          <span data-copy-label>{{ t.visit.copyAddress }}</span>
+        </button>
+        <p class="mt-8">
+          <a class="btn-primary" href="{{ site.links.maps }}" target="_blank" rel="noopener">{{ t.visit.openInMaps }}</a>
+        </p>
+      </div>
+
+      <div class="md:col-span-3">
+        <h3 class="eyebrow">{{ t.visit.phoneLabel }}</h3>
+        <p class="mt-5">
+          <a class="text-h3 text-ink underline-offset-8 transition-colors duration-200 ease-brand hover:text-sage-deep hover:underline"
+             href="{{ site.phone.href }}" dir="ltr">{{ site.phone.display }}</a>
+        </p>
+      </div>
+
+      <div class="md:col-span-5">
+        <h3 class="eyebrow">{{ t.visit.hoursLabel }}</h3>
+        {# Filled by ticket 06 from the rows below; stays out of the flow while empty. #}
+        <p class="mt-5 inline-flex min-h-8 items-center gap-2 text-small text-ink before:h-2 before:w-2 before:rounded-full before:bg-sage before:content-[''] empty:hidden"
+           data-hours
+           data-hours-open="{{ t.visit.openNow }}"
+           data-hours-closed="{{ t.visit.closedNow }}"
+           data-hours-opens-at="{{ t.visit.opensAt }}"
+           data-hours-closes-at="{{ t.visit.closesAt }}"></p>
+        <ul class="mt-5 max-w-[26rem] text-small">
+          {% for row in site.hours %}
+          <li class="flex items-baseline justify-between gap-8 py-1.5"
+              data-day="{{ row.day }}" data-opens="{{ row.opens }}" data-closes="{{ row.closes }}">
+            <span class="text-ink-soft">{{ t.visit.days[row.day] }}</span>
+            <span class="text-ink tabular-nums" dir="ltr">{{ row.opens }}&nbsp;&ndash;&nbsp;{{ row.closes }}</span>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
 </section>

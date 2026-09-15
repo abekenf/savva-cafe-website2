@@ -11,7 +11,7 @@ window.STATE =
   "memoryFile": "CLAUDE.md",
   "skillDir": "/Users/bek/.agents/skills/autopilot",
   "startedAt": "2026-09-14T12:12:37+05:00",
-  "updatedAt": "2026-09-15T04:33:12+05:00",
+  "updatedAt": "2026-09-15T13:07:50+05:00",
   "finishedAt": null,
   "stages": [
     {
@@ -52,7 +52,7 @@ window.STATE =
       "id": "build",
       "status": "active",
       "startedAt": "2026-09-14T18:35:09+05:00",
-      "note": "3 из 7 тасков готовы"
+      "note": "6 из 7 тасков собраны"
     },
     {
       "id": "review",
@@ -245,7 +245,7 @@ window.STATE =
         "src/_includes/sections/about.njk",
         "src/_includes/sections/menu.njk"
       ],
-      "status": "in-progress",
+      "status": "review",
       "retries": 0,
       "repairs": 0,
       "handoffs": 0,
@@ -281,9 +281,9 @@ window.STATE =
         "src/_includes/sections/instagram.njk",
         "src/_includes/sections/footer.njk"
       ],
-      "status": "in-progress",
+      "status": "repair",
       "retries": 0,
-      "repairs": 0,
+      "repairs": 1,
       "handoffs": 0,
       "startedAt": "2026-09-15T04:33:12+05:00"
     },
@@ -311,10 +311,14 @@ window.STATE =
       "zone": [
         "src/js/"
       ],
-      "status": "pending",
+      "status": "done",
       "retries": 0,
       "repairs": 0,
-      "handoffs": 0
+      "handoffs": 0,
+      "startedAt": "2026-09-15T04:49:39+05:00",
+      "finishedAt": "2026-09-15T13:07:50+05:00",
+      "commit": "be423be",
+      "note": "восемь функций, 12233 байта, читаемый код после дозапроса"
     },
     {
       "id": "07",
@@ -378,7 +382,9 @@ window.STATE =
     ".eleventy.js:13 — resolveImageSource принимает три формы пути при одной задокументированной",
     "src/css/main.css:216 — глобальный transition-duration !important под reduced-motion шире решения спецификации (→ таск 06)",
     "src/_data/content.{en,ar}.json — 61 непереводимое значение записано дважды; паритет стережёт ключи, но не значения",
-    "imageNote и quoteSourceNote — служебные строки внутри словаря, который владеет видимыми текстами; если их станет много, выносить отдельно"
+    "imageNote и quoteSourceNote — служебные строки внутри словаря, который владеет видимыми текстами; если их станет много, выносить отдельно",
+    "src/js/app.js — объявления через var при arrow-функциях рядом; бриф просил ES6 (R70), стиль смешанный",
+    "app.js занял 12233 из 12288 байт — исполнитель целится в потолок, а не пишет свободно"
   ],
   "reviewers": {
     "manifestSpec": "a3594414ddf8b0ec6",
