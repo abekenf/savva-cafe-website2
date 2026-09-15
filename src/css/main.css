@@ -207,6 +207,46 @@
 }
 
 @layer components {
+  /* Hides the sprite of `<symbol>` definitions the brand mark is drawn from
+     (src/_includes/macros/brand.njk `sprite()`, placed once in layouts/base.njk).
+     A symbol renders nothing on its own, but a bare <svg> with no explicit size
+     still claims the default 300×150 box — this keeps it out of the layout. */
+  .svg-sprite {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+  }
+
+  /* Page-wide: any section may put `.draft-badge` beside a string that came
+     back with its `<key>Draft` flag set. The badge disappears on its own when
+     the owner clears the flag in the dictionary. Solid tint on purpose: it has
+     to stay legible on paper and over a photo. */
+  .draft-badge {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+    margin-inline-start: calc(var(--spacing) * 2);
+    padding-inline: calc(var(--spacing) * 2);
+    padding-block: 2px;
+    border-radius: 9999px;
+    background-color: #f5e8cd;
+    color: #8a5a12;
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    cursor: help;
+  }
+
+  [dir="rtl"] .draft-badge {
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
   /* Page gutter and 1280px cap. Every section body sits inside one of these. */
   .container-page {
     width: 100%;
@@ -481,5 +521,626 @@
     width: 100%;
     height: 100%;
     border: 0;
+  }
+
+  /* =========================================================================
+     Section components. One block per template in src/_includes/sections/,
+     kept in build order (hero → nav → about → menu); the templates themselves
+     carry no <style> — this ships once in the cached stylesheet instead of
+     inline on every page (task 09). Global scroll-margin for anchor targets
+     lives in @layer base above; a section here never repeats it.
+     ========================================================================= */
+
+  /* ---- hero.njk ----------------------------------------------------------- */
+  .hero {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: 100vh;
+    min-height: 100svh;
+    overflow: hidden;
+    isolation: isolate;
+    background-color: var(--color-espresso);
+    color: var(--color-paper);
+  }
+
+  /* Taller than the frame so a 12% parallax shift never uncovers an edge. */
+  .hero__media {
+    position: absolute;
+    inset-block-start: -8%;
+    inset-inline: 0;
+    height: 116%;
+    z-index: -2;
+    will-change: transform;
+  }
+
+  .hero__media picture,
+  .hero__media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Warm scrim: the text sits on it, not on the photograph. */
+  .hero__scrim {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      linear-gradient(to top, rgb(43 36 27 / 0.82) 0%, rgb(43 36 27 / 0.45) 38%, rgb(43 36 27 / 0.1) 70%, rgb(43 36 27 / 0.2) 100%);
+  }
+
+  .hero__body {
+    padding-block-start: calc(var(--spacing) * 28);
+    padding-block-end: clamp(72px, 14vh, 140px);
+  }
+
+  .hero__inner {
+    max-width: 52ch;
+  }
+
+  .hero__eyebrow {
+    color: var(--color-cream);
+    margin-block-end: calc(var(--spacing) * 5);
+  }
+
+  .hero__title {
+    max-width: 13ch;
+    margin: 0;
+    color: var(--color-paper);
+    text-shadow: 0 1px 24px rgb(43 36 27 / 0.28);
+  }
+
+  .hero__subtitle {
+    max-width: 46ch;
+    margin-block: calc(var(--spacing) * 6) 0;
+    color: rgb(250 247 240 / 0.88);
+    font-size: var(--text-body);
+    line-height: 1.6;
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: calc(var(--spacing) * 3);
+    margin-block-start: calc(var(--spacing) * 9);
+  }
+
+  /* The shared ghost button is drawn for paper backgrounds; on a photograph it
+     needs its own pair of colours. */
+  .hero__cta-secondary {
+    color: var(--color-paper);
+    border-color: rgb(250 247 240 / 0.45);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  @media (hover: hover) {
+    .hero__cta-secondary:hover {
+      background-color: rgb(250 247 240 / 0.14);
+      border-color: var(--color-paper);
+    }
+  }
+
+  .hero__scroll {
+    position: absolute;
+    inset-block-end: clamp(20px, 4vh, 40px);
+    inset-inline-end: var(--spacing-gutter);
+    margin: 0;
+    display: none;
+    align-items: center;
+    gap: calc(var(--spacing) * 2);
+    color: rgb(250 247 240 / 0.7);
+    font-size: var(--text-eyebrow);
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  [dir="rtl"] .hero__scroll {
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  .hero__scroll::after {
+    content: "";
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgb(250 247 240 / 0.7), rgb(250 247 240 / 0));
+  }
+
+  @media (min-width: 1024px) {
+    .hero__scroll {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  /* ---- nav.njk -------------------------------------------------------- */
+  .nav {
+    position: fixed;
+    inset-block-start: 0;
+    inset-inline: 0;
+    z-index: 50;
+    color: var(--color-paper);
+    transition: background-color 240ms var(--ease-brand), color 240ms var(--ease-brand),
+      box-shadow 240ms var(--ease-brand);
+  }
+
+  /* Contrast scrim under the bar while it floats over the hero photograph. */
+  .nav::before {
+    content: "";
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline: 0;
+    height: 140px;
+    pointer-events: none;
+    background: linear-gradient(to bottom, rgb(43 36 27 / 0.45), rgb(43 36 27 / 0));
+    opacity: 1;
+    transition: opacity 240ms var(--ease-brand);
+  }
+
+  /* One of the two places in the project allowed to use blur (spec § story 17). */
+  .nav[data-nav-scrolled],
+  .nav[data-nav-open] {
+    background-color: rgb(250 247 240 / 0.85);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    color: var(--color-ink);
+    box-shadow: 0 1px 0 rgb(43 36 27 / 0.08);
+  }
+
+  .nav[data-nav-scrolled]::before,
+  .nav[data-nav-open]::before {
+    opacity: 0;
+  }
+
+  /* No JavaScript: nothing will ever set `data-nav-scrolled`, so the bar stays
+     solid from the first pixel rather than staying invisible over pale sections. */
+  @media (scripting: none) {
+    .nav {
+      background-color: rgb(250 247 240 / 0.92);
+      color: var(--color-ink);
+      box-shadow: 0 1px 0 rgb(43 36 27 / 0.08);
+    }
+
+    .nav::before {
+      opacity: 0;
+    }
+  }
+
+  .nav__bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: calc(var(--spacing) * 6);
+    min-height: 64px;
+  }
+
+  @media (min-width: 768px) {
+    .nav__bar {
+      min-height: 80px;
+    }
+  }
+
+  .nav__brand {
+    display: inline-flex;
+    align-items: center;
+    color: inherit;
+    text-decoration: none;
+    flex: none;
+  }
+
+  .nav__mark {
+    display: block;
+    width: auto;
+    height: 20px;
+  }
+
+  @media (min-width: 768px) {
+    .nav__mark {
+      height: 24px;
+    }
+  }
+
+  .nav__links {
+    display: none;
+    align-items: center;
+    gap: clamp(18px, 2.2vw, 36px);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  @media (min-width: 768px) {
+    .nav__links {
+      display: flex;
+    }
+  }
+
+  .nav__link {
+    position: relative;
+    display: inline-block;
+    padding-block: calc(var(--spacing) * 2);
+    color: inherit;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    opacity: 0.85;
+    transition: opacity 200ms var(--ease-brand);
+  }
+
+  /* Underline opens from the start edge — width, not transform, so RTL mirrors
+     without a second rule. */
+  .nav__link::after {
+    content: "";
+    position: absolute;
+    inset-block-end: 0;
+    inset-inline-start: 0;
+    width: 0;
+    height: 1px;
+    background-color: currentColor;
+    transition: width 200ms var(--ease-brand);
+  }
+
+  .nav__link[aria-current="true"] {
+    opacity: 1;
+  }
+
+  .nav__link[aria-current="true"]::after {
+    width: 100%;
+  }
+
+  @media (hover: hover) {
+    .nav__link:hover {
+      opacity: 1;
+    }
+
+    .nav__link:hover::after {
+      width: 100%;
+    }
+  }
+
+  .nav__end {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--spacing) * 3);
+    flex: none;
+  }
+
+  .nav__lang {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--spacing) * 2);
+    margin: 0;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+
+  .nav__lang-current {
+    color: inherit;
+  }
+
+  .nav__lang-sep {
+    opacity: 0.4;
+  }
+
+  .nav__lang-other {
+    color: inherit;
+    opacity: 0.6;
+    text-decoration: none;
+    transition: opacity 200ms var(--ease-brand);
+  }
+
+  @media (hover: hover) {
+    .nav__lang-other:hover {
+      opacity: 1;
+    }
+  }
+
+  .nav__toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    margin-inline-end: -12px;
+    border: 0;
+    border-radius: 9999px;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  @media (min-width: 768px) {
+    .nav__toggle {
+      display: none;
+    }
+  }
+
+  .nav__burger {
+    display: block;
+    position: relative;
+    width: 22px;
+    height: 10px;
+  }
+
+  .nav__burger span {
+    position: absolute;
+    inset-inline: 0;
+    height: 1.5px;
+    border-radius: 2px;
+    background-color: currentColor;
+    transition: transform 240ms var(--ease-brand), opacity 160ms var(--ease-brand);
+  }
+
+  .nav__burger span:first-child {
+    inset-block-start: 0;
+  }
+
+  .nav__burger span:last-child {
+    inset-block-end: 0;
+  }
+
+  .nav[data-nav-open] .nav__burger span:first-child {
+    transform: translateY(4px) rotate(45deg);
+  }
+
+  .nav[data-nav-open] .nav__burger span:last-child {
+    transform: translateY(-4px) rotate(-45deg);
+  }
+
+  /* ---- Mobile panel ------------------------------------------------------ */
+  .nav__panel {
+    position: absolute;
+    inset-block-start: 100%;
+    inset-inline: 0;
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    box-shadow: var(--shadow-soft);
+  }
+
+  @media (min-width: 768px) {
+    .nav__panel {
+      display: none;
+    }
+  }
+
+  .nav__panel-list {
+    margin: 0;
+    padding-block: calc(var(--spacing) * 2);
+    padding-inline: var(--spacing-gutter);
+    list-style: none;
+  }
+
+  .nav__panel-link {
+    display: flex;
+    align-items: center;
+    min-height: 52px;
+    color: var(--color-ink);
+    font-size: 1.0625rem;
+    font-weight: 500;
+    text-decoration: none;
+    border-block-end: 1px solid rgb(43 36 27 / 0.07);
+  }
+
+  .nav__panel-link[aria-current="true"] {
+    color: var(--color-sage-deep);
+  }
+
+  .nav__panel-list li:last-child .nav__panel-link {
+    border-block-end: 0;
+  }
+
+  .nav__panel-lang {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--spacing) * 3);
+    min-height: 52px;
+    padding-inline: var(--spacing-gutter);
+    padding-block-end: calc(var(--spacing) * 2);
+    margin: 0;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--color-ink-soft);
+  }
+
+  .nav__panel-lang .nav__lang-current {
+    color: var(--color-ink);
+  }
+
+  .nav__panel-lang .nav__lang-other {
+    color: var(--color-ink-soft);
+    opacity: 1;
+  }
+
+  /* ---- about.njk ------------------------------------------------------ */
+  .about {
+    background-color: var(--color-paper);
+  }
+
+  .about__grid {
+    display: grid;
+    gap: clamp(40px, 6vw, 88px);
+    align-items: start;
+  }
+
+  @media (min-width: 900px) {
+    .about__grid {
+      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+      gap: clamp(48px, 7vw, 112px);
+    }
+  }
+
+  .about__eyebrow {
+    margin-block-end: calc(var(--spacing) * 6);
+  }
+
+  .about__title {
+    max-width: 16ch;
+    margin: 0;
+  }
+
+  .about__body {
+    max-width: var(--spacing-measure);
+    margin-block: calc(var(--spacing) * 8) 0;
+    font-size: clamp(1.125rem, 0.6vw + 1rem, 1.375rem);
+    line-height: 1.65;
+    color: var(--color-ink-soft);
+  }
+
+  .about__quote {
+    max-width: 24ch;
+    margin: clamp(48px, 6vw, 80px) 0 0;
+    padding-inline-start: calc(var(--spacing) * 6);
+    border-inline-start: 2px solid var(--color-latte);
+  }
+
+  .about__quote p {
+    margin: 0;
+    font-size: var(--text-h3);
+    line-height: 1.35;
+    font-weight: 500;
+    color: var(--color-sage-deep);
+    text-wrap: balance;
+  }
+
+  .about__quote footer {
+    margin-block-start: calc(var(--spacing) * 3);
+    font-size: var(--text-small);
+    color: var(--color-ink-soft);
+  }
+
+  .about__figure {
+    margin: 0;
+  }
+
+  .about__figure picture,
+  .about__figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-tile);
+  }
+
+  /* On wide screens the photograph drops below the first text line — the page
+     breathes instead of lining everything up on one baseline. */
+  @media (min-width: 900px) {
+    .about__figure {
+      margin-block-start: calc(var(--spacing) * 10);
+    }
+  }
+
+  /* ---- menu.njk -------------------------------------------------------- */
+  .menu {
+    background-color: var(--color-sand);
+  }
+
+  .menu__head {
+    max-width: var(--spacing-measure);
+    margin-block-end: clamp(40px, 6vw, 72px);
+  }
+
+  .menu__eyebrow {
+    margin-block-end: calc(var(--spacing) * 5);
+  }
+
+  .menu__title {
+    margin: 0;
+  }
+
+  .menu__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: calc(var(--spacing) * 6);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  @media (min-width: 640px) {
+    .menu__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .menu__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: calc(var(--spacing) * 8);
+    }
+  }
+
+  .menu__frame {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background-color: var(--color-sage);
+  }
+
+  .menu__frame picture,
+  .menu__frame img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Branded stand-in (spec § story 25): the Savva "S" on sage, and a caption
+     that says plainly that the photograph is missing. */
+  .menu__tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: calc(var(--spacing) * 5);
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-sage);
+    color: var(--color-cream);
+  }
+
+  .menu__monogram {
+    width: auto;
+    height: clamp(48px, 11vw, 72px);
+    opacity: 0.9;
+  }
+
+  .menu__tile-note {
+    margin: 0;
+    font-size: var(--text-eyebrow);
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgb(222 207 184 / 0.85);
+  }
+
+  [dir="rtl"] .menu__tile-note {
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  .menu__body {
+    padding: calc(var(--spacing) * 6) calc(var(--spacing) * 6) calc(var(--spacing) * 7);
+  }
+
+  .menu__name {
+    margin: 0;
+    font-size: var(--text-h3);
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    font-weight: 500;
+  }
+
+  .menu__desc {
+    margin-block: calc(var(--spacing) * 2) 0;
+    font-size: var(--text-small);
+    line-height: 1.6;
+    color: var(--color-ink-soft);
   }
 }

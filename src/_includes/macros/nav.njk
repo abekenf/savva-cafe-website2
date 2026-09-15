@@ -1,0 +1,24 @@
+{# The six anchors and the language switch, declared once. Three call sites
+   share this file (the sticky bar, the mobile panel, the footer) instead of
+   each pasting its own copy — the bar and the panel track the active link
+   through data-nav-link/aria-current, the footer does not, and the footer's
+   language switch marks the current language with aria-current="true" where
+   the header idiom never does. Both differences are parameters, not forks. #}
+
+{# One <li><a> per link. `tracked` adds data-nav-link + aria-current="false",
+   the contract app.js reads to update the active state on scroll. #}
+{% macro navLinkItems(links, itemClass, tracked=true) -%}
+{% for link in links %}
+<li><a class="{{ itemClass }}" href="{{ link.href }}"{% if tracked %} data-nav-link="{{ link.id }}" aria-current="false"{% endif %}>{{ link.label }}</a></li>
+{% endfor %}
+{%- endmacro %}
+
+{% macro languageSwitch(t, wrapperClass, currentClass, sepClass, otherClass, markCurrent=false) -%}
+<p class="{{ wrapperClass }}">
+  <span class="{{ currentClass }}"{% if markCurrent %} aria-current="true"{% endif %}>{{ t.nav.language.current }}</span>
+  <span class="{{ sepClass }}" aria-hidden="true">/</span>
+  <a class="{{ otherClass }}" href="{{ t.nav.language.otherHref }}"
+     hreflang="{{ t.nav.language.otherLang }}" lang="{{ t.nav.language.otherLang }}"
+     aria-label="{{ t.a11y.languageSwitch }}">{{ t.nav.language.other }}</a>
+</p>
+{%- endmacro %}

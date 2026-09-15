@@ -11,7 +11,7 @@ window.STATE =
   "memoryFile": "CLAUDE.md",
   "skillDir": "/Users/bek/.agents/skills/autopilot",
   "startedAt": "2026-09-14T12:12:37+05:00",
-  "updatedAt": "2026-09-15T13:14:31+05:00",
+  "updatedAt": "2026-09-15T18:03:41+05:00",
   "finishedAt": null,
   "stages": [
     {
@@ -52,7 +52,7 @@ window.STATE =
       "id": "build",
       "status": "active",
       "startedAt": "2026-09-14T18:35:09+05:00",
-      "note": "6 из 7 тасков собраны"
+      "note": "8 из 10 тасков собраны"
     },
     {
       "id": "review",
@@ -354,15 +354,48 @@ window.STATE =
         "src/assets/static/icons/",
         "test/"
       ],
-      "status": "in-progress",
+      "status": "done",
       "retries": 0,
       "repairs": 0,
       "handoffs": 0,
-      "startedAt": "2026-09-15T13:10:35+05:00"
+      "startedAt": "2026-09-15T13:10:35+05:00",
+      "finishedAt": "2026-09-15T13:24:53+05:00",
+      "commit": "b0df854",
+      "tests": {
+        "passed": 22,
+        "failed": 0
+      }
+    },
+    {
+      "id": "08",
+      "title": "Два дефекта, которые видит гость",
+      "status": "done",
+      "wave": 6,
+      "startedAt": "2026-09-15T17:05:31+05:00",
+      "handoffs": 2,
+      "note": "сделан первым исполнителем до срыва; проверено оркестратором в браузере",
+      "finishedAt": "2026-09-15T18:03:41+05:00",
+      "commit": "2290128"
+    },
+    {
+      "id": "09",
+      "title": "Свести дубли и убрать стили из тела страницы",
+      "status": "in-progress",
+      "wave": 7,
+      "startedAt": "2026-09-15T18:03:41+05:00"
+    },
+    {
+      "id": "10",
+      "title": "Один идиом в app.js, снятый потолок, боксы по кадрам",
+      "status": "pending",
+      "wave": 8
     }
   ],
   "singlePass": null,
-  "tests": null,
+  "tests": {
+    "passed": 21,
+    "failed": 1
+  },
   "debt": {
     "placeholders": [],
     "assumptions": [],

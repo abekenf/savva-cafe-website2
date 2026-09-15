@@ -96,6 +96,8 @@
     <script src="/js/app.js" defer></script>
   </head>
   <body>
+    {% from "macros/brand.njk" import sprite %}
+    {{ sprite() }}
     <a class="skip-link" href="#main">{{ t.a11y.skipToContent }}</a>
 
     {{ content | safe }}
