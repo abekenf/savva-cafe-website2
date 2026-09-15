@@ -25,6 +25,20 @@ export default function (eleventyConfig) {
   eleventyConfig.addWatchTarget("src/css/");
 
   /**
+   * Build-time facts the templates cannot work out for themselves.
+   * `preloadFont` is the single source for the <link rel=preload> in base.njk:
+   * it must name a file that src/css/main.css also declares with @font-face,
+   * and test/build.test.js asserts exactly that.
+   */
+  eleventyConfig.addGlobalData("build", {
+    year: new Date().getFullYear(),
+    preloadFont: {
+      ltr: "/assets/static/fonts/manrope-latin.woff2",
+      rtl: "/assets/static/fonts/ibm-plex-sans-arabic-arabic-600.woff2",
+    },
+  });
+
+  /**
    * {% image src, alt, sizes, eager, classes %}
    * Renders a <picture> with AVIF + WebP + JPEG at 480/800/1200/1600,
    * intrinsic width/height (zero CLS) and lazy loading unless `eager` is true.

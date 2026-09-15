@@ -23,6 +23,21 @@ page behaviour. The build produces plain HTML5, CSS3 and ES6 in `_site/`.
 `_site/assets/app.css`) and `build:html` (Eleventy → `_site/`). Run `npm run build`
 before `npm test`: the tests parse the built pages, not the sources.
 
+## Tests
+
+`test/build.test.js` is 22 checks on `node --test`, and its only input is the
+built `_site/` — it opens `index.html` and `ar/index.html` the way a visitor
+receives them. It covers what must stay true of both pages: language and
+direction, the nine sections, a non-empty `alt` plus `width` and `height` on
+every image, seven rows of opening hours, nine Instagram permalinks, eleven
+gallery tiles, title/description/canonical/`hreflang`/Open Graph/icons, JSON-LD
+that parses and matches `src/_data/site.json` field for field, no `<iframe>` in
+the delivered HTML, no request to a third-party domain, and `app.js` under 12 KB.
+
+There are no unit tests on templates or on the behaviour script by design: the
+build output is the one seam, so a refactor that keeps the pages identical keeps
+the suite green.
+
 ## Project layout
 
 ```
@@ -46,10 +61,17 @@ Language-specific strings come from the data files, so a section is written once
 
 ## Fonts
 
-Manrope (400/500/700) and IBM Plex Sans Arabic (400/600) are committed as `.woff2`
-files in `src/assets/static/fonts/` and declared with `@font-face` in
-`src/css/main.css`. The built pages make no request to `fonts.googleapis.com`.
-To update a font, replace the file and keep the same name.
+Manrope and IBM Plex Sans Arabic (400/600) are committed as `.woff2` files in
+`src/assets/static/fonts/` and declared with `@font-face` in `src/css/main.css`.
+The built pages make no request to `fonts.googleapis.com`. To update a font,
+replace the file and keep the same name.
+
+Manrope is a variable font: one file covers the whole 400–700 range, so there is
+one `@font-face` per subset with `font-weight: 400 700` rather than one per
+weight. Each page preloads exactly one file — the weight its first screen paints
+with (Manrope for `/`, IBM Plex Sans Arabic 600 for `/ar`). That path is written
+once, in the `build.preloadFont` global of `.eleventy.js`; `npm test` fails if it
+names a file the stylesheet does not declare.
 
 ## Colours
 
@@ -71,3 +93,27 @@ needed.
 
 To deploy from a terminal instead, install the Vercel CLI and run `vercel --prod`
 in the project root.
+
+## Measured performance
+
+Lighthouse 12.8.2, headless Chrome, mobile preset, run against the built `_site/`
+served with gzip and the cache headers from `vercel.json` (Vercel compresses text
+responses automatically; a plain static server that does not will score three to
+five points lower on the same files).
+
+| Page | Performance | Accessibility | Best Practices | SEO |
+|---|---|---|---|---|
+| `/` (English) | 99 | 100 | 100 | 100 |
+| `/ar` (Arabic) | 96 | 100 | 100 | 100 |
+
+Cumulative Layout Shift is 0 on both pages and total blocking time is 0 ms: every
+image carries intrinsic `width` and `height`, and `app.js` is deferred. The
+Arabic page scores lower because its script needs four IBM Plex Sans Arabic
+subsets (97 KB) where the English page needs one Manrope file (24 KB).
+
+Re-measure after any change to the markup, the stylesheet or the fonts:
+
+```
+npm run build
+npx lighthouse http://localhost:<port>/ --only-categories=performance,accessibility,best-practices,seo
+```
