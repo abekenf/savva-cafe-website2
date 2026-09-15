@@ -163,6 +163,19 @@
     font-family: var(--font-arabic);
   }
 
+  /* Every jump destination on the page — the six nav anchors, #hero and #main —
+     clears the fixed bar. Declared once here rather than per section: a section
+     that forgets it hides its own heading under the panel. */
+  :where(section[id], main[id]) {
+    scroll-margin-block-start: 64px;
+  }
+
+  @media (min-width: 768px) {
+    :where(section[id], main[id]) {
+      scroll-margin-block-start: 80px;
+    }
+  }
+
   :focus-visible {
     outline: 2px solid var(--color-sage-deep);
     outline-offset: 3px;

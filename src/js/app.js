@@ -131,10 +131,21 @@
       index = (index + direction + group.length) % group.length;
       paint();
     }
+    // The tile's own currentSrc was picked for a ~308px box; the dialog is up to
+    // 1100px wide, so it takes the widest candidate the frame actually has.
+    function widest(img) {
+      var best = null;
+      (img.getAttribute("srcset") || "").split(",").forEach(function (part) {
+        var pair = part.trim().split(/\s+/);
+        var width = pair.length === 2 ? parseInt(pair[1], 10) : NaN;
+        if (!isNaN(width) && (!best || width > best.width)) best = { url: pair[0], width: width };
+      });
+      return best ? best.url : img.currentSrc || img.src;
+    }
     function paint() {
       var img = group[index].querySelector("img");
       if (!img) return;
-      image.src = img.currentSrc || img.src;
+      image.src = widest(img);
       caption.textContent = img.alt || "";
     }
     function build() {
