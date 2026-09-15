@@ -32,6 +32,10 @@ export default function (eleventyConfig) {
    */
   eleventyConfig.addGlobalData("build", {
     year: new Date().getFullYear(),
+    // Draft badges are for the owner, not the guest. `PREVIEW=1 npm run build`
+    // shows them; a plain build ships the page without them, while the strings
+    // stay flagged in the data and listed in CONTENT-TODO.md either way.
+    preview: process.env.PREVIEW === "1",
     preloadFont: {
       ltr: "/assets/static/fonts/manrope-latin.woff2",
       rtl: "/assets/static/fonts/ibm-plex-sans-arabic-arabic-600.woff2",

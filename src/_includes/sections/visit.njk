@@ -6,7 +6,6 @@
 <section id="visit" class="section" aria-labelledby="visit-title" data-reveal>
   <div class="container-page">
     <header class="max-w-[var(--spacing-measure)]">
-      <p class="eyebrow">{{ t.visit.eyebrow }}</p>
       <h2 id="visit-title" class="mt-5 text-h1 text-ink">{{ t.visit.title }}</h2>
     </header>
 
@@ -55,10 +54,10 @@
     <div class="mt-14 grid gap-x-10 gap-y-12 md:grid-cols-12 md:gap-y-16">
       <div class="md:col-span-4">
         <h3 class="eyebrow">{{ t.visit.addressLabel }}</h3>
-        <p class="mt-5 max-w-[30ch] text-body text-ink">{{ site.address.full }}</p>
+        <p class="mt-5 max-w-[30ch] text-body text-ink">{{ site.address.fullAr if dir == "rtl" else site.address.full }}</p>
         <button type="button"
                 class="mt-4 inline-flex min-h-11 items-center gap-2 text-small text-ink-soft transition-colors duration-200 ease-brand hover:text-ink"
-                data-copy="{{ site.address.full }}"
+                data-copy="{{ site.address.fullAr if dir == "rtl" else site.address.full }}"
                 data-copy-done="{{ t.visit.addressCopied }}">
           <svg class="h-4 w-4 text-sage" viewBox="0 0 16 16" fill="none" stroke="currentColor"
                stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">

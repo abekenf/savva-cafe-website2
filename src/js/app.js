@@ -189,7 +189,10 @@
         else if (e.key === "ArrowLeft") move(-1);
         else trapFocus(e, dialog);
       });
-      dialog.addEventListener("close", () => opener && opener.focus());
+      dialog.addEventListener("close", () => {
+        document.body.style.overflow = "";
+        if (opener) opener.focus();
+      });
       let startX = null;
       dialog.addEventListener("touchstart", e => startX = e.changedTouches[0].clientX, PASSIVE);
       dialog.addEventListener("touchend", e => {
@@ -211,8 +214,12 @@
         opener = tile;
         paint();
         dialog.showModal();
+        // showModal() alone leaves the page behind the backdrop scrollable,
+        // so a wheel over the photo moves the page instead of nothing.
+        document.body.style.overflow = "hidden";
       });
     });
+
   }
 
   // toTop — scrolls to top, appears past the first screen. Builds and owns its

@@ -65,7 +65,6 @@
     }
   },
   "hero": {
-    "eyebrow": "Specialty Coffee · Madinah",
     "title": "Every Cup Has a Story",
     "titleAlt": "Specialty Coffee in Madinah",
     "subtitle": {
@@ -79,7 +78,6 @@
     "imageAlt": "The lounge at Savva: arched wooden windows, cream sofas and tall plants"
   },
   "about": {
-    "eyebrow": "Our Story",
     "title": "A day in Savva",
     "body": {
       "text": "Savva is a specialty coffee house in Madinah. The room is quiet by design: soft light, a recently refreshed interior, and a terrace for the cooler hours. The coffee of the day moves between Ethiopian and Colombian beans, and the cheesecake rarely lasts the afternoon. Doors open early and close at two.",
@@ -92,7 +90,6 @@
     "imageAlt": "A wooden tray with an espresso and brownie squares on a low table by a bouclé sofa"
   },
   "menu": {
-    "eyebrow": "Signature Menu",
     "title": "What to order",
     "photoComingSoon": "Photo coming soon",
     "items": [
@@ -160,7 +157,6 @@
     ]
   },
   "gallery": {
-    "eyebrow": "Gallery",
     "title": "Inside Savva",
     "items": [
       {
@@ -210,7 +206,6 @@
     ]
   },
   "experience": {
-    "eyebrow": "Experience",
     "title": "What to expect",
     "items": [
       {
@@ -240,7 +235,6 @@
     ]
   },
   "visit": {
-    "eyebrow": "Visit Us",
     "title": "Find us in Madinah",
     "addressLabel": "Address",
     "phoneLabel": "Phone",
@@ -265,7 +259,6 @@
     }
   },
   "instagram": {
-    "eyebrow": "Instagram",
     "title": "@savva_cafe",
     "cta": "Follow on Instagram",
     "note": "The nine most recent posts as of 14 September 2026.",

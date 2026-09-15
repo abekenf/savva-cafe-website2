@@ -4,7 +4,7 @@
    fill="currentColor", which is what makes it cream on the espresso ground. #}
 {% from "macros/brand.njk" import mark %}
 {% from "macros/nav.njk" import navLinkItems, languageSwitch %}
-{% set footerLink = "relative inline-flex min-h-8 items-center text-small text-latte transition-colors duration-200 ease-brand hover:text-cream after:absolute after:bottom-1 after:start-0 after:h-px after:w-0 after:bg-current after:transition-[width] after:duration-200 after:ease-brand hover:after:w-full" %}
+{% set footerLink = "relative inline-flex min-h-11 items-center text-small text-latte transition-colors duration-200 ease-brand hover:text-cream after:absolute after:bottom-1 after:start-0 after:h-px after:w-0 after:bg-current after:transition-[width] after:duration-200 after:ease-brand hover:after:w-full" %}
 
 <footer class="bg-espresso text-cream" data-reveal>
   <div class="container-page py-24 md:py-32">
@@ -45,7 +45,7 @@
       <div class="md:col-span-2">
         <h2 class="eyebrow text-latte">{{ t.footer.contactTitle }}</h2>
         <address class="mt-5 text-small not-italic text-latte">
-          <span class="block text-cream">{{ site.address.full }}</span>
+          <span class="block text-cream">{{ site.address.fullAr if dir == "rtl" else site.address.full }}</span>
           <a class="{{ footerLink }} mt-2" href="{{ site.phone.href }}" dir="ltr">{{ site.phone.display }}</a>
           {# The condensed lines are derived from the same seven rows Visit Us prints, by
              folding runs of days that share opens/closes. No second source of truth: split

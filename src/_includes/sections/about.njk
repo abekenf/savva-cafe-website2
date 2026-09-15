@@ -5,9 +5,8 @@
 <section id="about" class="section about" aria-labelledby="about-title">
   <div class="container-page about__grid">
     <div class="about__text">
-      <p class="eyebrow about__eyebrow" data-reveal>{{ t.about.eyebrow }}</p>
       <h2 id="about-title" class="about__title text-h1 text-balance" data-reveal data-reveal-delay="60">{{ t.about.title }}</h2>
-      <p class="about__body" data-reveal data-reveal-delay="120">{{ t.about.body }}{% if t.about.bodyDraft %} <span class="draft-badge" title="{{ t.a11y.draftBadgeHint }}">{{ t.a11y.draftBadge }}</span>{% endif %}</p>
+      <p class="about__body" data-reveal data-reveal-delay="120">{{ t.about.body }}{% if t.about.bodyDraft and build.preview %} <span class="draft-badge" title="{{ t.a11y.draftBadgeHint }}">{{ t.a11y.draftBadge }}</span>{% endif %}</p>
 
       <blockquote class="about__quote" data-reveal data-reveal-delay="180">
         <p>{{ t.about.quote }}</p>

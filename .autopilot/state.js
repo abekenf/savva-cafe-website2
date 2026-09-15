@@ -11,8 +11,8 @@ window.STATE =
   "memoryFile": "CLAUDE.md",
   "skillDir": "/Users/bek/.agents/skills/autopilot",
   "startedAt": "2026-09-14T12:12:37+05:00",
-  "updatedAt": "2026-09-15T18:52:29+05:00",
-  "finishedAt": null,
+  "updatedAt": "2026-09-15T18:52:36+05:00",
+  "finishedAt": "2026-09-15T18:52:36+05:00",
   "stages": [
     {
       "id": "preflight",
@@ -64,8 +64,9 @@ window.STATE =
     },
     {
       "id": "final",
-      "status": "active",
-      "startedAt": "2026-09-15T18:45:56+05:00"
+      "status": "done",
+      "startedAt": "2026-09-15T18:45:56+05:00",
+      "finishedAt": "2026-09-15T18:52:36+05:00"
     }
   ],
   "requirements": {

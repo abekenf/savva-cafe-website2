@@ -11,12 +11,11 @@
 
   <div class="container-page hero__body">
     <div class="hero__inner">
-      <p class="eyebrow hero__eyebrow" data-reveal>{{ t.hero.eyebrow }}</p>
       <h1 id="hero-title" class="h-display hero__title" data-reveal data-reveal-delay="60">{{ t.hero.title }}</h1>
-      <p class="hero__subtitle" data-reveal data-reveal-delay="120">{{ t.hero.subtitle }}{% if t.hero.subtitleDraft %} <span class="draft-badge" title="{{ t.a11y.draftBadgeHint }}">{{ t.a11y.draftBadge }}</span>{% endif %}</p>
+      <p class="hero__subtitle" data-reveal data-reveal-delay="120">{{ t.hero.subtitle }}{% if t.hero.subtitleDraft and build.preview %} <span class="draft-badge" title="{{ t.a11y.draftBadgeHint }}">{{ t.a11y.draftBadge }}</span>{% endif %}</p>
       <div class="hero__actions" data-reveal data-reveal-delay="180">
-        <a class="btn-primary" href="#menu">{{ t.hero.ctaMenu }}</a>
-        <a class="btn-ghost hero__cta-secondary" href="{{ site.links.maps }}" target="_blank" rel="noopener">{{ t.hero.ctaDirections }}</a>
+        <a class="btn-primary" href="{{ site.links.maps }}" target="_blank" rel="noopener">{{ t.hero.ctaDirections }}</a>
+        <a class="btn-ghost hero__cta-secondary" href="#menu">{{ t.hero.ctaMenu }}</a>
       </div>
     </div>
   </div>
