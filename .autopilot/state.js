@@ -11,7 +11,7 @@ window.STATE =
   "memoryFile": "CLAUDE.md",
   "skillDir": "/Users/bek/.agents/skills/autopilot",
   "startedAt": "2026-09-14T12:12:37+05:00",
-  "updatedAt": "2026-09-15T18:03:41+05:00",
+  "updatedAt": "2026-09-15T18:31:07+05:00",
   "finishedAt": null,
   "stages": [
     {
@@ -52,7 +52,7 @@ window.STATE =
       "id": "build",
       "status": "active",
       "startedAt": "2026-09-14T18:35:09+05:00",
-      "note": "8 из 10 тасков собраны"
+      "note": "9 из 10 тасков собраны"
     },
     {
       "id": "review",
@@ -380,15 +380,19 @@ window.STATE =
     {
       "id": "09",
       "title": "Свести дубли и убрать стили из тела страницы",
-      "status": "in-progress",
+      "status": "done",
       "wave": 7,
-      "startedAt": "2026-09-15T18:03:41+05:00"
+      "startedAt": "2026-09-15T18:03:41+05:00",
+      "finishedAt": "2026-09-15T18:31:07+05:00",
+      "commit": "95af45a",
+      "note": "инлайновый CSS 14709→0 байт; HTML 83→62 КБ; Lighthouse 100/98 проверен оркестратором"
     },
     {
       "id": "10",
       "title": "Один идиом в app.js, снятый потолок, боксы по кадрам",
-      "status": "pending",
-      "wave": 8
+      "status": "in-progress",
+      "wave": 8,
+      "startedAt": "2026-09-15T18:31:07+05:00"
     }
   ],
   "singlePass": null,

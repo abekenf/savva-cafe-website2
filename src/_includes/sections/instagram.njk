@@ -1,6 +1,9 @@
 {# section: instagram — the nine most recent posts as of the build date,
-   fixed in content.*.json. Each tile links to its own post. #}
-{% set instagramSizes = "(min-width: 1440px) 416px, (min-width: 640px) 30vw, 45vw" %}
+   fixed in content.*.json. Each tile links to its own post. Tiles cap at
+   360px and centre in their grid cell: Instagram's public grid tops out at
+   640px tall crops, and the narrowest of the nine frames is only 360px wide,
+   so a wider tile would upscale it past 1x. #}
+{% set instagramSizes = "(min-width: 640px) min(360px, 30vw), 45vw" %}
 
 <section id="instagram" class="section" aria-labelledby="instagram-title" data-reveal>
   <div class="container-page">
@@ -17,7 +20,7 @@
     <ul class="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-3 md:mt-20">
       {% for item in t.instagram.items %}
       <li>
-        <a class="card aspect-square w-full" href="{{ item.href }}" target="_blank" rel="noopener noreferrer">
+        <a class="card aspect-square w-full max-w-[360px] mx-auto" href="{{ item.href }}" target="_blank" rel="noopener noreferrer">
           {% if item.image in media.files %}
             {% image item.image, item.alt, instagramSizes, false, "absolute inset-0 h-full w-full object-cover" %}
           {% else %}

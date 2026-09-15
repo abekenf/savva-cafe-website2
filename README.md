@@ -103,13 +103,14 @@ five points lower on the same files).
 
 | Page | Performance | Accessibility | Best Practices | SEO |
 |---|---|---|---|---|
-| `/` (English) | 99 | 100 | 100 | 100 |
-| `/ar` (Arabic) | 96 | 100 | 100 | 100 |
+| `/` (English) | 100 | 100 | 100 | 100 |
+| `/ar` (Arabic) | 98 | 100 | 100 | 100 |
 
-Cumulative Layout Shift is 0 on both pages and total blocking time is 0 ms: every
-image carries intrinsic `width` and `height`, and `app.js` is deferred. The
-Arabic page scores lower because its script needs four IBM Plex Sans Arabic
-subsets (97 KB) where the English page needs one Manrope file (24 KB).
+Cumulative Layout Shift is 0 and total blocking time is 0 ms on both pages: every
+image carries intrinsic `width` and `height`, and `app.js` is deferred. Largest
+Contentful Paint is 1.8s on English and 2.3s on Arabic; the Arabic page is
+slower because its script needs four IBM Plex Sans Arabic subsets (97 KB) where
+the English page needs one Manrope file (24 KB).
 
 Re-measure after any change to the markup, the stylesheet or the fonts:
 

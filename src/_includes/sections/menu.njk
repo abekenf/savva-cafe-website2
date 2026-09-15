@@ -2,7 +2,9 @@
    An item whose `image` is an empty string, or whose file is not on disk yet,
    gets the branded sage tile instead of someone else's photograph.
    Styling lives in src/css/main.css so it ships in the cached stylesheet instead
-   of once per page. #}
+   of once per page. Cards cap at 360px and centre in their grid cell: the
+   narrowest real photo (matcha-latte.jpg) is only 360px wide, so a wider box
+   would upscale it past 1x. #}
 {% from "macros/brand.njk" import monogram %}
 
 <section id="menu" class="section menu" aria-labelledby="menu-title">
@@ -15,10 +17,10 @@
     <ul class="menu__grid">
       {% for item in t.menu.items %}
       <li>
-        <article class="card menu__card" data-menu-item="{{ item.id }}" data-reveal data-reveal-delay="{{ loop.index0 * 60 }}">
+        <article class="card menu__card mx-auto w-full max-w-[360px]" data-menu-item="{{ item.id }}" data-reveal data-reveal-delay="{{ loop.index0 * 60 }}">
           <div class="menu__frame">
             {% if item.image and item.image in media.files %}
-              {% image item.image, item.imageAlt, "(min-width: 1440px) 420px, (min-width: 1024px) 29vw, (min-width: 640px) 44vw, 90vw" %}
+              {% image item.image, item.imageAlt, "(min-width: 1024px) min(360px, 29vw), (min-width: 640px) min(360px, 44vw), 90vw" %}
             {% else %}
               <div class="menu__tile" role="img" aria-label="{{ item.imageAlt }}">
                 {{ monogram("menu__monogram") }}

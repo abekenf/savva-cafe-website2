@@ -285,12 +285,21 @@ test("nothing on the page is fetched from another domain", () => {
   }
 });
 
-test("the behaviour script stays under 12 KB and is deferred", () => {
-  const bytes = fs.statSync(path.join(site, "js/app.js")).size;
-  assert.ok(bytes <= 12 * 1024, `app.js is ${bytes} bytes`);
+test("the behaviour script has zero dependencies, ships as one file, and is deferred", () => {
+  const jsDir = path.join(site, "js");
+  const jsFiles = fs.readdirSync(jsDir).filter((name) => name.endsWith(".js"));
+  assert.deepEqual(jsFiles, ["app.js"], "exactly one behaviour file ships");
+
+  const source = fs.readFileSync(path.join(jsDir, "app.js"), "utf8");
+  assert.ok(!/\bimport\b/.test(source), "app.js must not import a module");
+  assert.ok(!/\brequire\s*\(/.test(source), "app.js must not require a module");
+
   for (const page of pages) {
-    const script = tags(page.doc, "script").find((t) => attr(t, "src") === "/js/app.js");
-    assert.ok(script && /\bdefer\b/.test(script), `${page.lang}: app.js must be deferred`);
+    const scripts = tags(page.doc, "script").filter((t) => attr(t, "src"));
+    assert.equal(scripts.length, 1, `${page.lang}: exactly one script tag with a src`);
+    assert.equal(attr(scripts[0], "src"), "/js/app.js", `${page.lang}: the one script is app.js`);
+    assert.ok(!/^https?:\/\//.test(attr(scripts[0], "src")), `${page.lang}: app.js must not load from another domain`);
+    assert.match(scripts[0], /\bdefer\b/, `${page.lang}: app.js must be deferred`);
   }
 });
 
