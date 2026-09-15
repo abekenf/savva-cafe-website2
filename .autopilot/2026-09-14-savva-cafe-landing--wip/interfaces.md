@@ -221,3 +221,30 @@ Maps — в «limited view». Это записано в §7 специфика�
 `image`, `imageNote`, `id` и якорные `href` (те, что начинаются с `#`) — 53 значения.
 Законно различаются только `meta.path`, `meta.altPath`, `nav.language.otherHref`
 и `nav.language.otherLang`.
+
+### Шов «секции ↔ поведение» — что именно едет через `data-`
+
+Из таска 04 (`nav`, `hero`, `about`, `menu`):
+`[data-nav]` (таск 06 ставит и снимает `data-nav-scrolled` после 40px и `data-nav-open`) ·
+`[data-nav-toggle]` с `aria-expanded`, `aria-controls="nav-panel"`, `data-label-open`,
+`data-label-close` · `#nav-panel` отдан с атрибутом `hidden`, **атрибутом владеет таск 06** ·
+`[data-nav-link="<id>"]` на двенадцати ссылках, у каждой `aria-current="false"` ·
+`[data-parallax]` на `.hero__media` (слой высотой 116%, сдвиг ровно 12%) ·
+`[data-reveal]` и `[data-reveal-delay="<мс>"]`.
+
+Из таска 05 (`gallery`, `experience`, `visit`, `instagram`, `footer`):
+`button[data-lightbox][data-lightbox-group="gallery"][data-lightbox-index=0…10]` ·
+`div[data-map][data-map-src][data-map-title]` с `div[data-map-preview]` и
+`button[data-map-open]` внутри · `li[data-day][data-opens][data-closes]` — семь строк,
+источник правды для «сейчас открыто» · `p[data-hours]` с `data-hours-open`, `-closed`,
+`-opens-at`, `-closes-at` (в строках `{time}` не раскрыт), элемент `empty:hidden` ·
+`button[data-copy][data-copy-done]` со `span[data-copy-label]` внутри.
+
+**Подпись к кадру в лайтбоксе контрактом не едет.** Группа, индекс и счётчик — атрибутами,
+а текст подписи таск 06 берёт из `alt` картинки внутри `<picture>`. Зависимость записана
+здесь намеренно: дублировать alt во второй атрибут — значит завести второй источник правды
+для одной и той же строки, и они разъедутся. **`alt` — это и есть подпись.**
+
+**Стартовое скрытое состояние для `reveal` ставит JS, никогда CSS.** Иначе страница
+без JavaScript останется пустой.
+

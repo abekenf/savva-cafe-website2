@@ -208,17 +208,21 @@
     color: var(--color-ink);
   }
 
+  /* Scoped to what the spec actually turns off (§9): block reveal and the hero
+     parallax layer. A blanket `*` kill also muted card/button hover, which was
+     never decided — narrowed here to just those two behaviours' own transitions. */
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
     }
 
-    *,
-    *::before,
-    *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
+    [data-reveal] {
+      transition: none !important;
+      animation: none !important;
+    }
+
+    [data-parallax] {
+      transition: none !important;
     }
   }
 }
@@ -280,10 +284,13 @@
       border-color 240ms var(--ease-brand);
   }
 
+  /* --color-sage on --color-paper is 3.7:1 at this weight — under AA's 4.5:1.
+     --color-sage-deep clears it (~5.4:1); the button appears across the whole
+     page, so the fix lives here rather than per-instance. */
   .btn-primary {
-    background-color: var(--color-sage);
+    background-color: var(--color-sage-deep);
     color: var(--color-paper);
-    border: 1px solid var(--color-sage);
+    border: 1px solid var(--color-sage-deep);
   }
 
   .btn-ghost {
@@ -294,8 +301,8 @@
 
   @media (hover: hover) {
     .btn-primary:hover {
-      background-color: var(--color-sage-deep);
-      border-color: var(--color-sage-deep);
+      background-color: color-mix(in srgb, var(--color-sage-deep) 86%, black);
+      border-color: color-mix(in srgb, var(--color-sage-deep) 86%, black);
     }
 
     .btn-ghost:hover {
@@ -347,5 +354,153 @@
 
   .skip-link:focus-visible {
     transform: translateY(0);
+  }
+
+  /* ---- Reveal on scroll --------------------------------------------------
+     The hidden state is a class JS adds at runtime, never a bare attribute
+     selector: without JavaScript no element ever gets `.is-reveal`, so the
+     page stays fully visible (task 04's condition). */
+  [data-reveal].is-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 600ms var(--ease-brand), transform 600ms var(--ease-brand);
+  }
+
+  [data-reveal].is-reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ---- Lightbox ------------------------------------------------------
+     Built once by JS on first open; no blur here — glass is reserved for
+     the nav bar and Back to Top (spec §17, "почти не замечаешь"). */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    width: min(92vw, 1100px);
+    max-height: 90vh;
+    padding: 0;
+    border: 0;
+    border-radius: var(--radius-tile);
+    background-color: var(--color-espresso);
+    color: var(--color-paper);
+    overflow: hidden;
+  }
+
+  .lightbox::backdrop {
+    background-color: rgb(43 36 27 / 0.86);
+  }
+
+  .lightbox__figure {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    max-height: 90vh;
+  }
+
+  .lightbox__image {
+    display: block;
+    width: 100%;
+    max-height: 78vh;
+    object-fit: contain;
+    background-color: var(--color-ink);
+  }
+
+  .lightbox__caption {
+    padding: calc(var(--spacing) * 4) calc(var(--spacing) * 6);
+    font-size: var(--text-small);
+    color: var(--color-cream);
+    text-align: center;
+  }
+
+  .lightbox__close,
+  .lightbox__nav {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: 9999px;
+    background-color: rgb(43 36 27 / 0.55);
+    color: var(--color-paper);
+    cursor: pointer;
+    transition: background-color 200ms var(--ease-brand);
+  }
+
+  .lightbox__close {
+    inset-block-start: calc(var(--spacing) * 4);
+    inset-inline-end: calc(var(--spacing) * 4);
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+
+  .lightbox__nav {
+    inset-block-start: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    font-size: 1.75rem;
+  }
+
+  /* Logical insets: in RTL these swap sides on their own, while `move()` in
+     app.js keeps advancing the same way through the frame order either way. */
+  .lightbox__nav--prev {
+    inset-inline-start: calc(var(--spacing) * 4);
+  }
+
+  .lightbox__nav--next {
+    inset-inline-end: calc(var(--spacing) * 4);
+  }
+
+  @media (hover: hover) {
+    .lightbox__close:hover,
+    .lightbox__nav:hover {
+      background-color: rgb(43 36 27 / 0.8);
+    }
+  }
+
+  /* ---- Back to top --------------------------------------------------
+     The second and last permitted glassmorphism (spec §17, blur ≤ 12px). */
+  .to-top {
+    position: fixed;
+    inset-block-end: calc(var(--spacing) * 6);
+    inset-inline-end: var(--spacing-gutter);
+    z-index: 40;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border: 1px solid rgb(250 247 240 / 0.35);
+    border-radius: 9999px;
+    background-color: rgb(43 36 27 / 0.55);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    color: var(--color-paper);
+    font-size: 1.125rem;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: var(--shadow-soft);
+    transition: background-color 200ms var(--ease-brand), transform 200ms var(--ease-brand);
+  }
+
+  @media (hover: hover) {
+    .to-top:hover {
+      background-color: rgb(43 36 27 / 0.75);
+      transform: translateY(-2px);
+    }
+  }
+
+  /* ---- Map frame -------------------------------------------------------
+     Fills the preview tile's box exactly; app.js only sets the class. */
+  .map-frame {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
   }
 }

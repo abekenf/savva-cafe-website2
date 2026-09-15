@@ -12,3 +12,4 @@ _site/
 .cache/
 _site/
 .cache/
+.claude/
