@@ -1,0 +1,27 @@
+{# Opening hours folded into runs of days that share opens/closes, declared once.
+   Two call sites print it — the info strip under the hero and the footer — and
+   both fold the same seven rows Visit Us lists in full. Split any weekday in
+   site.json and every summary grows a line instead of lying.
+
+   `lineClass` wraps each run; `sep`, when given, is printed between runs on one
+   line (the hero strip) instead of stacking them (the footer). #}
+{% macro hourRuns(site, t, lineClass="", sep="") -%}
+{%- set runs = [] -%}
+{%- for row in site.hours -%}
+  {%- set previous = runs[runs.length - 1] if runs.length else null -%}
+  {%- if previous and previous.opens == row.opens and previous.closes == row.closes -%}
+    {%- set ignored = previous.days.push(row.day) -%}
+  {%- else -%}
+    {%- set ignored = runs.push({ opens: row.opens, closes: row.closes, days: [row.day] }) -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- for run in runs -%}
+<span class="{{ lineClass }}">
+  {%- if run.days.length > 1 -%}
+    {{ t.visit.days[run.days[0]] }}&ndash;{{ t.visit.days[run.days[run.days.length - 1]] }}
+  {%- else -%}
+    {{ t.visit.days[run.days[0]] }}
+  {%- endif %} <span dir="ltr" class="whitespace-nowrap tabular-nums">{{ run.opens }}&ndash;{{ run.closes }}</span></span>
+{%- if sep and not loop.last %}<span aria-hidden="true">{{ sep }}</span>{% endif -%}
+{%- endfor -%}
+{%- endmacro %}

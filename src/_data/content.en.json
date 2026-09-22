@@ -65,15 +65,12 @@
     }
   },
   "hero": {
-    "title": "Every Cup Has a Story",
-    "titleAlt": "Specialty Coffee in Madinah",
-    "subtitle": {
-      "text": "Specialty coffee, a quiet room and a terrace in Madinah — from early morning until two at night.",
-      "draft": true
-    },
+    "badge": "Specialty coffee · Madinah",
+    "ratingLabel": "Rated {value} out of 5 on Google",
+    "heading": "Savva — specialty coffee in Madinah",
+    "infoLabel": "Address, opening hours and phone",
     "ctaMenu": "View Menu",
     "ctaDirections": "Get Directions",
-    "scrollHint": "Scroll",
     "image": "assets/images/hero/interior-lounge-arches-wide.jpg",
     "imageAlt": "The lounge at Savva: arched wooden windows, cream sofas and tall plants"
   },

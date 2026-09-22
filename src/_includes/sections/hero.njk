@@ -1,24 +1,69 @@
-{# section: hero — full-screen photograph, one headline, two actions.
-   The parallax layer only declares `data-parallax`; ticket 06 moves it.
-   Styling lives in src/css/main.css so it ships in the cached stylesheet instead
-   of once per page. #}
+{# section: hero — composed after REF-028 (SYBAGA): everything on one centred axis
+   over a full-bleed photograph under a warm veil. Badge (what · where · rating),
+   the Savva mark as the one big object, the Arabic name set in a spaced antiqua,
+   an ornament rule, the brand's own line, two framed actions, and a strip with
+   address, hours and phone along the bottom.
+
+   The reference sets its name in a plain bold grotesk; Savva has its own retro
+   wordmark, so the mark stands where the letters would. The parallax layer only
+   declares `data-parallax`; app.js moves it. #}
+{% from "macros/brand.njk" import mark %}
+{% from "macros/hours.njk" import hourRuns %}
 
 <section id="hero" class="hero" aria-labelledby="hero-title">
   <div class="hero__media" data-parallax>
     {% image t.hero.image, t.hero.imageAlt, "100vw", true %}
   </div>
-  <div class="hero__scrim" aria-hidden="true"></div>
+  <div class="hero__veil" aria-hidden="true"></div>
 
-  <div class="container-page hero__body">
-    <div class="hero__inner">
-      <h1 id="hero-title" class="h-display hero__title" data-reveal data-reveal-delay="60">{{ t.hero.title }}</h1>
-      <p class="hero__subtitle" data-reveal data-reveal-delay="120">{{ t.hero.subtitle }}{% if t.hero.subtitleDraft and build.preview %} <span class="draft-badge" title="{{ t.a11y.draftBadgeHint }}">{{ t.a11y.draftBadge }}</span>{% endif %}</p>
-      <div class="hero__actions" data-reveal data-reveal-delay="180">
-        <a class="btn-primary" href="{{ site.links.maps }}" target="_blank" rel="noopener">{{ t.hero.ctaDirections }}</a>
-        <a class="btn-ghost hero__cta-secondary" href="#menu">{{ t.hero.ctaMenu }}</a>
-      </div>
+  <div class="hero__stage">
+    <p class="hero__badge" data-reveal>
+      <span class="hero__badge-dot" aria-hidden="true"></span>
+      <span>{{ t.hero.badge }}</span>
+      <span class="hero__badge-rating">
+        <span aria-hidden="true">★ {{ site.rating.value }}</span>
+        <span class="sr-only">{{ t.hero.ratingLabel | replace('{value}', site.rating.value) }}</span>
+      </span>
+    </p>
+
+    {# The mark is the headline; its accessible name says what the page is. #}
+    <h1 id="hero-title" class="hero__title" data-reveal data-reveal-delay="60">
+      {{ mark("hero__mark") }}
+      <span class="sr-only">{{ t.hero.heading }}</span>
+    </h1>
+
+    <p class="hero__name" lang="ar" dir="rtl" aria-hidden="true" data-reveal data-reveal-delay="120">{{ site.nameAr }}</p>
+
+    <div class="hero__ornament" aria-hidden="true" data-reveal data-reveal-delay="160">
+      <span></span>
+      <svg viewBox="0 0 24 10" focusable="false"><path d="M1 5h6M17 5h6M12 1.5 15.5 5 12 8.5 8.5 5Z" fill="none" stroke="currentColor" stroke-width="1"/></svg>
+      <span></span>
+    </div>
+
+    {# The brand's own line, verbatim from its Instagram bio; one source with About. #}
+    <p class="hero__line" lang="en" dir="ltr" data-reveal data-reveal-delay="200">{{ t.about.quote }}</p>
+
+    <div class="hero__actions" data-reveal data-reveal-delay="240">
+      <a class="btn-frame btn-frame--solid" href="{{ site.links.maps }}" target="_blank" rel="noopener">{{ t.hero.ctaDirections }}</a>
+      <a class="btn-frame" href="#menu">{{ t.hero.ctaMenu }}</a>
     </div>
   </div>
 
-  <p class="hero__scroll" aria-hidden="true">{{ t.hero.scrollHint }}</p>
+  <div class="hero__info-wrap">
+    <ul class="container-page hero__info" aria-label="{{ t.hero.infoLabel }}">
+      <li>
+        <svg class="hero__info-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0C18.5 15.4 12 21 12 21Z"/><circle cx="12" cy="10" r="2.3"/></svg>
+        <span>{{ site.address.streetAddressAr if dir == "rtl" else site.address.streetAddress }}</span>
+      </li>
+      <li>
+        <svg class="hero__info-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>
+        <span class="hero__hours">{{ hourRuns(site, t, "", " · ") }}</span>
+      </li>
+      <li>
+        <svg class="hero__info-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6.6 3.5h2.6l1.3 4.1-1.9 1.3a11 11 0 0 0 6.5 6.5l1.3-1.9 4.1 1.3v2.6a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2Z"/></svg>
+        <a href="{{ site.phone.href }}" dir="ltr">{{ site.phone.display }}</a>
+      </li>
+    </ul>
+  </div>
+
 </section>

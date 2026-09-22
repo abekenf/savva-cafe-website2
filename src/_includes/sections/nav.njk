@@ -21,6 +21,11 @@
     <div class="nav__end">
       {{ languageSwitch(t, "nav__lang", "nav__lang-current", "nav__lang-sep", "nav__lang-other") }}
 
+      {# The reference keeps its main act in a frame at the end of the bar; here it
+         is the same act the hero leads with. Hidden below 1024px, where the
+         burger panel takes over. #}
+      <a class="btn-frame nav__cta" href="{{ site.links.maps }}" target="_blank" rel="noopener">{{ t.hero.ctaDirections }}</a>
+
       <button class="nav__toggle" type="button" data-nav-toggle aria-expanded="false"
               aria-controls="nav-panel" aria-label="{{ t.a11y.openMenu }}"
               data-label-open="{{ t.a11y.openMenu }}" data-label-close="{{ t.a11y.closeMenu }}">

@@ -4,6 +4,7 @@
    fill="currentColor", which is what makes it cream on the espresso ground. #}
 {% from "macros/brand.njk" import mark %}
 {% from "macros/nav.njk" import navLinkItems, languageSwitch %}
+{% from "macros/hours.njk" import hourRuns %}
 {% set footerLink = "relative inline-flex min-h-11 items-center text-small text-latte transition-colors duration-200 ease-brand hover:text-cream after:absolute after:bottom-1 after:start-0 after:h-px after:w-0 after:bg-current after:transition-[width] after:duration-200 after:ease-brand hover:after:w-full" %}
 
 <footer class="bg-espresso text-cream" data-reveal>
@@ -47,28 +48,7 @@
         <address class="mt-5 text-small not-italic text-latte">
           <span class="block text-cream">{{ site.address.fullAr if dir == "rtl" else site.address.full }}</span>
           <a class="{{ footerLink }} mt-2" href="{{ site.phone.href }}" dir="ltr">{{ site.phone.display }}</a>
-          {# The condensed lines are derived from the same seven rows Visit Us prints, by
-             folding runs of days that share opens/closes. No second source of truth: split
-             any weekday in site.json and this grows a line instead of lying. #}
-          {% set hourRuns = [] %}
-          {% for row in site.hours %}
-            {% set previous = hourRuns[hourRuns.length - 1] if hourRuns.length else null %}
-            {% if previous and previous.opens == row.opens and previous.closes == row.closes %}
-              {% set ignored = previous.days.push(row.day) %}
-            {% else %}
-              {% set ignored = hourRuns.push({ opens: row.opens, closes: row.closes, days: [row.day] }) %}
-            {% endif %}
-          {% endfor %}
-          {% for run in hourRuns %}
-          <span class="mt-2 block">
-            {%- if run.days.length > 1 -%}
-              {{ t.visit.days[run.days[0]] }}&ndash;{{ t.visit.days[run.days[run.days.length - 1]] }}
-            {%- else -%}
-              {{ t.visit.days[run.days[0]] }}
-            {%- endif %}
-            <span dir="ltr" class="whitespace-nowrap tabular-nums">{{ run.opens }}&ndash;{{ run.closes }}</span>
-          </span>
-          {% endfor %}
+          {{ hourRuns(site, t, "mt-2 block") }}
         </address>
       </div>
     </div>
