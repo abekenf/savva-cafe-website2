@@ -1,0 +1,25 @@
+{# The ornament rule and the section heading that carries it, declared once.
+
+   The rule is the motif REF-028 puts under its name: two hairlines and a small
+   lozenge. The hero uses it under the Arabic name; every section heading uses it
+   under the title, so one mark ties the page together instead of the old
+   eyebrow above each heading. Always decorative. #}
+
+{% macro ornament(classes="") -%}
+<div class="ornament {{ classes }}" aria-hidden="true">
+  <span></span>
+  <svg viewBox="0 0 24 10" focusable="false"><path d="M1 5h6M17 5h6M12 1.5 15.5 5 12 8.5 8.5 5Z" fill="none" stroke="currentColor" stroke-width="1"/></svg>
+  <span></span>
+</div>
+{%- endmacro %}
+
+{# A section heading set in the antiqua with the rule under it. Centred by
+   default; `start` aligns it to the reading edge for a heading that lives in a
+   column beside a photograph. `dirAttr` pins direction for a title that is not
+   in the page's language (the Instagram handle). #}
+{% macro sectionHead(id, title, start=false, dirAttr="") -%}
+<header class="section-head{% if start %} section-head--start{% endif %}" data-reveal>
+  <h2 id="{{ id }}" class="section-title"{% if dirAttr %} dir="{{ dirAttr }}"{% endif %}>{{ title }}</h2>
+  {{ ornament("section-head__ornament") }}
+</header>
+{%- endmacro %}

@@ -322,8 +322,23 @@
     });
   }
 
+  // lateFonts — switches on the fonts nothing on the first screen draws with, once
+  // the page has loaded and painted. Today that is Amiri for the Arabic section headings: 42 KB
+  // that, requested at parse time, sat in front of the first paint on a slow
+  // connection. CSS keys it off `html.fonts-late`; without JavaScript the headings
+  // simply stay in IBM Plex Sans Arabic.
+  function lateFonts() {
+    const root = document.documentElement;
+    // After load *and* after a frame has been painted: on a fast connection the
+    // load event can fire before the first paint, and a font requested then
+    // still competes with it.
+    const enable = () => requestAnimationFrame(() => requestAnimationFrame(() => root.classList.add("fonts-late")));
+    if (document.readyState === "complete") enable();
+    else window.addEventListener("load", enable, { once: true });
+  }
+
   function init() {
-    reveal(); nav(); parallax(); lightbox(); toTop(); map(); hours(); copy();
+    reveal(); nav(); parallax(); lightbox(); toTop(); map(); hours(); copy(); lateFonts();
   }
 
   if (document.readyState === "loading") {

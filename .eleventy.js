@@ -36,9 +36,14 @@ export default function (eleventyConfig) {
     // shows them; a plain build ships the page without them, while the strings
     // stay flagged in the data and listed in CONTENT-TODO.md either way.
     preview: process.env.PREVIEW === "1",
+    // One preload per page: the face the first screen can least afford to swap.
+    // English: Manrope, which sets the bar, the badge, the buttons and the strip
+    //   — swapping it late shifted all four.
+    // Arabic: the Latin-only Cormorant cut, which sets the brand line under the
+    //   mark — the page's largest paint.
     preloadFont: {
       ltr: "/assets/static/fonts/manrope-latin.woff2",
-      rtl: "/assets/static/fonts/ibm-plex-sans-arabic-arabic-600.woff2",
+      rtl: "/assets/static/fonts/cormorant-garamond-line.woff2",
     },
   });
 

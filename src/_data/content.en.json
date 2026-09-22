@@ -68,6 +68,8 @@
     "badge": "Specialty coffee · Madinah",
     "ratingLabel": "Rated {value} out of 5 on Google",
     "heading": "Savva — specialty coffee in Madinah",
+    "line": "A day in savva is what you need to be savva",
+    "lineNote": "Verbatim line from the @savva_cafe Instagram bio, captured 2026-09-14 (recorded in reference.md and spec §8). The brand's own words — not placeholder copy; shown once, under the mark in the hero, do not flag as draft.",
     "infoLabel": "Address, opening hours and phone",
     "ctaMenu": "View Menu",
     "ctaDirections": "Get Directions",
@@ -80,9 +82,6 @@
       "text": "Savva is a specialty coffee house in Madinah. The room is quiet by design: soft light, a recently refreshed interior, and a terrace for the cooler hours. The coffee of the day moves between Ethiopian and Colombian beans, and the cheesecake rarely lasts the afternoon. Doors open early and close at two.",
       "draft": true
     },
-    "quote": "A day in savva is what you need to be savva",
-    "quoteSource": "Instagram bio, @savva_cafe",
-    "quoteSourceNote": "Verbatim line from the @savva_cafe Instagram bio, captured 2026-09-14 (recorded in reference.md and spec §8). The brand's own words — not placeholder copy, do not flag as draft.",
     "image": "assets/images/gallery/interior-sofa-tray-espresso.jpg",
     "imageAlt": "A wooden tray with an espresso and brownie squares on a low table by a bouclé sofa"
   },

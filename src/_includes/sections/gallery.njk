@@ -4,11 +4,11 @@
 {% set galleryTotal = t.gallery.items.length %}
 {% set gallerySizes = "(min-width: 1440px) 308px, (min-width: 1024px) 22vw, (min-width: 640px) 30vw, 45vw" %}
 
+{% from "macros/ornament.njk" import sectionHead %}
+
 <section id="gallery" class="section" aria-labelledby="gallery-title" data-reveal>
   <div class="container-page">
-    <header class="max-w-[var(--spacing-measure)]">
-      <h2 id="gallery-title" class="mt-5 text-h1 text-ink">{{ t.gallery.title }}</h2>
-    </header>
+    {{ sectionHead("gallery-title", t.gallery.title) }}
 
     <div class="mt-14 columns-2 [column-gap:1rem] sm:columns-3 lg:columns-4 md:mt-20">
       {% for item in t.gallery.items %}

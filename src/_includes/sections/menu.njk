@@ -7,11 +7,11 @@
    would upscale it past 1x. #}
 {% from "macros/brand.njk" import monogram %}
 
+{% from "macros/ornament.njk" import sectionHead %}
+
 <section id="menu" class="section menu" aria-labelledby="menu-title">
   <div class="container-page">
-    <div class="menu__head">
-      <h2 id="menu-title" class="menu__title text-h1 text-balance" data-reveal data-reveal-delay="60">{{ t.menu.title }}</h2>
-    </div>
+    {{ sectionHead("menu-title", t.menu.title) }}
 
     <ul class="menu__grid">
       {% for item in t.menu.items %}

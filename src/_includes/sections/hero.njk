@@ -6,9 +6,12 @@
 
    The reference sets its name in a plain bold grotesk; Savva has its own retro
    wordmark, so the mark stands where the letters would. The parallax layer only
-   declares `data-parallax`; app.js moves it. #}
+   declares `data-parallax`; app.js moves it. Nothing here fades in: this is
+   what the guest sees first, and the brand line is the page's largest paint —
+   an entrance animation would only make them wait for it. #}
 {% from "macros/brand.njk" import mark %}
 {% from "macros/hours.njk" import hourRuns %}
+{% from "macros/ornament.njk" import ornament %}
 
 <section id="hero" class="hero" aria-labelledby="hero-title">
   <div class="hero__media" data-parallax>
@@ -17,7 +20,7 @@
   <div class="hero__veil" aria-hidden="true"></div>
 
   <div class="hero__stage">
-    <p class="hero__badge" data-reveal>
+    <p class="hero__badge">
       <span class="hero__badge-dot" aria-hidden="true"></span>
       <span>{{ t.hero.badge }}</span>
       <span class="hero__badge-rating">
@@ -27,23 +30,19 @@
     </p>
 
     {# The mark is the headline; its accessible name says what the page is. #}
-    <h1 id="hero-title" class="hero__title" data-reveal data-reveal-delay="60">
+    <h1 id="hero-title" class="hero__title">
       {{ mark("hero__mark") }}
       <span class="sr-only">{{ t.hero.heading }}</span>
     </h1>
 
-    <p class="hero__name" lang="ar" dir="rtl" aria-hidden="true" data-reveal data-reveal-delay="120">{{ site.nameAr }}</p>
+    <p class="hero__name" lang="ar" dir="rtl" aria-hidden="true">{{ site.nameAr }}</p>
 
-    <div class="hero__ornament" aria-hidden="true" data-reveal data-reveal-delay="160">
-      <span></span>
-      <svg viewBox="0 0 24 10" focusable="false"><path d="M1 5h6M17 5h6M12 1.5 15.5 5 12 8.5 8.5 5Z" fill="none" stroke="currentColor" stroke-width="1"/></svg>
-      <span></span>
-    </div>
+    <div>{{ ornament("hero__ornament") }}</div>
 
-    {# The brand's own line, verbatim from its Instagram bio; one source with About. #}
-    <p class="hero__line" lang="en" dir="ltr" data-reveal data-reveal-delay="200">{{ t.about.quote }}</p>
+    {# The brand's own line, verbatim from its Instagram bio (see hero.lineNote). #}
+    <p class="hero__line" lang="en" dir="ltr">{{ t.hero.line }}</p>
 
-    <div class="hero__actions" data-reveal data-reveal-delay="240">
+    <div class="hero__actions">
       <a class="btn-frame btn-frame--solid" href="{{ site.links.maps }}" target="_blank" rel="noopener">{{ t.hero.ctaDirections }}</a>
       <a class="btn-frame" href="#menu">{{ t.hero.ctaMenu }}</a>
     </div>

@@ -1,24 +1,28 @@
 {# section: footer — six blocks: mark, navigation, Instagram, Google Maps,
-   contacts, copyright. Instagram and Google Maps are two separate lines, not
+   contacts, copyright. The mark opens it on the centred axis the hero uses —
+   mark, Arabic name, ornament — so the page closes the way it opened. Instagram and Google Maps are two separate lines, not
    one "social" row. The Savva mark is inlined, not <img>: its single path uses
    fill="currentColor", which is what makes it cream on the espresso ground. #}
 {% from "macros/brand.njk" import mark %}
 {% from "macros/nav.njk" import navLinkItems, languageSwitch %}
 {% from "macros/hours.njk" import hourRuns %}
+{% from "macros/ornament.njk" import ornament %}
 {% set footerLink = "relative inline-flex min-h-11 items-center text-small text-latte transition-colors duration-200 ease-brand hover:text-cream after:absolute after:bottom-1 after:start-0 after:h-px after:w-0 after:bg-current after:transition-[width] after:duration-200 after:ease-brand hover:after:w-full" %}
 
 <footer class="bg-espresso text-cream" data-reveal>
   <div class="container-page py-24 md:py-32">
-    <div class="grid gap-x-10 gap-y-14 md:grid-cols-12">
+    {# 1 — the mark, on the hero's axis #}
+    <div class="flex flex-col items-center text-center">
+      {{ mark("h-20 w-auto text-cream md:h-24", t.footer.logoAlt) }}
+      <p class="footer__name" lang="ar" dir="rtl" aria-hidden="true">{{ site.nameAr }}</p>
+      {{ ornament("mt-6 text-latte") }}
+      <p class="mt-6 max-w-[36ch] text-small text-latte">{{ t.footer.ratingNote }}</p>
+    </div>
 
-      {# 1 — the mark #}
-      <div class="md:col-span-3">
-        {{ mark("h-12 w-auto text-cream md:h-14", t.footer.logoAlt) }}
-        <p class="mt-6 max-w-[24ch] text-small text-latte">{{ t.footer.ratingNote }}</p>
-      </div>
+    <div class="mt-20 grid gap-x-10 gap-y-14 border-t border-cream/15 pt-16 sm:grid-cols-2 md:mt-24 lg:grid-cols-12">
 
       {# 2 — navigation, the same six anchors as the header #}
-      <nav class="md:col-span-3" aria-label="{{ t.a11y.footerNav }}">
+      <nav class="lg:col-span-4" aria-label="{{ t.a11y.footerNav }}">
         <h2 class="eyebrow text-latte">{{ t.footer.navTitle }}</h2>
         {# Three rows, column flow: reading down a column keeps the header's order. #}
         <ul class="mt-5 grid grid-rows-3 grid-flow-col gap-x-6 gap-y-1">
@@ -27,7 +31,7 @@
       </nav>
 
       {# 3 — Instagram, its own line #}
-      <div class="md:col-span-2">
+      <div class="lg:col-span-2">
         <h2 class="eyebrow text-latte">{{ t.footer.followTitle }}</h2>
         <p class="mt-5">
           <a class="{{ footerLink }}" href="{{ site.links.instagram }}" target="_blank" rel="noopener">{{ t.footer.instagram }}</a>
@@ -35,7 +39,7 @@
       </div>
 
       {# 4 — Google Maps, its own line, the same canonical link as Visit Us #}
-      <div class="md:col-span-2">
+      <div class="lg:col-span-2">
         <h2 class="eyebrow text-latte">{{ t.footer.findTitle }}</h2>
         <p class="mt-5">
           <a class="{{ footerLink }}" href="{{ site.links.maps }}" target="_blank" rel="noopener">{{ t.footer.maps }}</a>
@@ -43,7 +47,7 @@
       </div>
 
       {# 5 — contacts in one group #}
-      <div class="md:col-span-2">
+      <div class="lg:col-span-4">
         <h2 class="eyebrow text-latte">{{ t.footer.contactTitle }}</h2>
         <address class="mt-5 text-small not-italic text-latte">
           <span class="block text-cream">{{ site.address.fullAr if dir == "rtl" else site.address.full }}</span>

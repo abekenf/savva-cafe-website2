@@ -33,15 +33,15 @@
 </svg>
 {% endmacro %}
 
+{% from "macros/ornament.njk" import sectionHead %}
+
 <section id="experience" class="section bg-sand" aria-labelledby="experience-title" data-reveal>
   <div class="container-page">
-    <header class="max-w-[var(--spacing-measure)]">
-      <h2 id="experience-title" class="mt-5 text-h1 text-ink">{{ t.experience.title }}</h2>
-    </header>
+    {{ sectionHead("experience-title", t.experience.title) }}
 
     <ul class="mt-14 grid grid-cols-2 gap-x-8 gap-y-12 md:mt-20 md:grid-cols-3 md:gap-x-12 md:gap-y-16">
       {% for item in t.experience.items %}
-      <li class="flex flex-col items-start gap-4" data-reveal data-reveal-delay="{{ loop.index0 * 60 }}">
+      <li class="flex flex-col items-center gap-4 text-center" data-reveal data-reveal-delay="{{ loop.index0 * 60 }}">
         {{ experienceIcon(item.id) }}
         <span class="text-h3 text-ink">{{ item.label }}</span>
       </li>

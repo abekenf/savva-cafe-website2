@@ -68,6 +68,8 @@
     "badge": "قهوة مختصة · المدينة المنورة",
     "ratingLabel": "التقييم {value} من 5 على Google",
     "heading": "سافا — قهوة مختصة في المدينة المنورة",
+    "line": "A day in savva is what you need to be savva",
+    "lineNote": "Verbatim line from the @savva_cafe Instagram bio, captured 2026-09-14 (recorded in reference.md and spec §8). The brand's own words — not placeholder copy; shown once, under the mark in the hero, do not flag as draft. Left in English on purpose: the quote itself is not translated.",
     "infoLabel": "العنوان وساعات العمل والهاتف",
     "ctaMenu": "تصفح القائمة",
     "ctaDirections": "الاتجاهات",
@@ -80,9 +82,6 @@
       "text": "سافا بيت قهوة مختصة في المدينة المنورة. المكان هادئ بطبيعته: إضاءة خافتة، وتصميم داخلي جُدّد حديثًا، وتراس لساعات المساء. قهوة اليوم تتنقل بين حبوب إثيوبية وأخرى كولومبية، وقطعة التشيز كيك نادرًا ما تبقى حتى العصر. نفتح مبكرًا ونغلق عند الثانية.",
       "draft": true
     },
-    "quote": "A day in savva is what you need to be savva",
-    "quoteSource": "نبذة إنستغرام، ‎@savva_cafe",
-    "quoteSourceNote": "Verbatim line from the @savva_cafe Instagram bio, captured 2026-09-14 (recorded in reference.md and spec §8). The brand's own words — not placeholder copy, do not flag as draft. Left in English on purpose: the quote itself is not translated.",
     "image": "assets/images/gallery/interior-sofa-tray-espresso.jpg",
     "imageAlt": "صينية خشبية عليها إسبريسو وقطع براوني على طاولة منخفضة بجانب أريكة"
   },

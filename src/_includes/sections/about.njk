@@ -1,17 +1,15 @@
-{# section: about — one short story, one photograph, one line from the brand.
+{# section: about — one short story beside one photograph. The brand's own line
+   used to repeat here as a pull-quote; it now lives once, in the hero.
    Styling lives in src/css/main.css so it ships in the cached stylesheet instead
    of once per page. #}
+
+{% from "macros/ornament.njk" import sectionHead %}
 
 <section id="about" class="section about" aria-labelledby="about-title">
   <div class="container-page about__grid">
     <div class="about__text">
-      <h2 id="about-title" class="about__title text-h1 text-balance" data-reveal data-reveal-delay="60">{{ t.about.title }}</h2>
+      {{ sectionHead("about-title", t.about.title, true) }}
       <p class="about__body" data-reveal data-reveal-delay="120">{{ t.about.body }}{% if t.about.bodyDraft and build.preview %} <span class="draft-badge" title="{{ t.a11y.draftBadgeHint }}">{{ t.a11y.draftBadge }}</span>{% endif %}</p>
-
-      <blockquote class="about__quote" data-reveal data-reveal-delay="180">
-        <p>{{ t.about.quote }}</p>
-        <footer>{{ t.about.quoteSource }}</footer>
-      </blockquote>
     </div>
 
     {% if t.about.image in media.files %}
