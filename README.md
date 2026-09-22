@@ -96,21 +96,22 @@ in the project root.
 
 ## Measured performance
 
-Lighthouse 12.8.2, headless Chrome, mobile preset, run against the built `_site/`
-served with gzip and the cache headers from `vercel.json` (Vercel compresses text
-responses automatically; a plain static server that does not will score three to
-five points lower on the same files).
+Lighthouse 12, headless Chrome, mobile preset, against the live production site
+`https://savva-cafe-website2.vercel.app` on 2026-09-22, after the REF-028
+redesign. Two runs per page; a live measurement goes through the real network,
+so it moves by a couple of points between runs.
 
 | Page | Performance | Accessibility | Best Practices | SEO |
 |---|---|---|---|---|
-| `/` (English) | 100 | 100 | 100 | 100 |
-| `/ar` (Arabic) | 98 | 100 | 100 | 100 |
+| `/` (English) | 96–97 | 100 | 100 | 100 |
+| `/ar` (Arabic) | 96–98 | 100 | 100 | 100 |
 
-Cumulative Layout Shift is 0 and total blocking time is 0 ms on both pages: every
-image carries intrinsic `width` and `height`, and `app.js` is deferred. Largest
-Contentful Paint is 1.8s on English and 2.3s on Arabic; the Arabic page is
-slower because its script needs four IBM Plex Sans Arabic subsets (97 KB) where
-the English page needs one Manrope file (24 KB).
+Cumulative Layout Shift is 0 on both pages; Largest Contentful Paint is 1.8–2.0s.
+The largest paint is the brand line under the mark, not the photograph, so the
+font it sets in decides the score. Each page preloads exactly one face — Manrope
+on English, a 12 KB Latin cut of Cormorant on Arabic — and the Arabic heading
+face (Amiri) switches on only after the first paint. Requesting it at parse time
+held the Arabic page at 95.
 
 Re-measure after any change to the markup, the stylesheet or the fonts:
 
