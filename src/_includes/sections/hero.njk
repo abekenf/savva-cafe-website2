@@ -1,68 +1,45 @@
-{# section: hero — composed after REF-028 (SYBAGA): everything on one centred axis
-   over a full-bleed photograph under a warm veil. Badge (what · where · rating),
-   the Savva mark as the one big object, the Arabic name set in a spaced antiqua,
-   an ornament rule, the brand's own line, two framed actions, and a strip with
-   address, hours and phone along the bottom.
-
-   The reference sets its name in a plain bold grotesk; Savva has its own retro
-   wordmark, so the mark stands where the letters would. The parallax layer only
-   declares `data-parallax`; app.js moves it. Nothing here fades in: this is
-   what the guest sees first, and the brand line is the page's largest paint —
-   an entrance animation would only make them wait for it. #}
-{% from "macros/brand.njk" import mark %}
+{# section: hero — light. Text on the left, one photograph in a rounded card on
+   the right; no full-bleed image and no veil. The headline is the brand's own
+   line from its Instagram bio (see hero.titleNote), so the largest type on the
+   page is Savva's own words. #}
 {% from "macros/hours.njk" import hourRuns %}
-{% from "macros/ornament.njk" import ornament %}
 
 <section id="hero" class="hero" aria-labelledby="hero-title">
-  <div class="hero__media" data-parallax>
-    {% image t.hero.image, t.hero.imageAlt, "100vw", true %}
-  </div>
-  <div class="hero__veil" aria-hidden="true"></div>
-
-  <div class="hero__stage">
-    <p class="hero__badge">
-      <span class="hero__badge-dot" aria-hidden="true"></span>
-      <span>{{ t.hero.badge }}</span>
-      <span class="hero__badge-rating">
+  <div class="container-page hero__grid">
+    <div class="hero__text">
+      <p class="rating">
         <span aria-hidden="true">★ {{ site.rating.value }}</span>
-        <span class="sr-only">{{ t.hero.ratingLabel | replace('{value}', site.rating.value) }}</span>
-      </span>
-    </p>
+        <span aria-hidden="true" class="rating__count">{{ site.rating.count }}</span>
+        <span class="sr-only">{{ t.hero.ratingLabel | replace('{value}', site.rating.value) | replace('{count}', site.rating.count) }}</span>
+      </p>
 
-    {# The mark is the headline; its accessible name says what the page is. #}
-    <h1 id="hero-title" class="hero__title">
-      {{ mark("hero__mark") }}
-      <span class="sr-only">{{ t.hero.heading }}</span>
-    </h1>
+      {# English page: the brand's own line, verbatim. Arabic page: a proposed
+         wording of it, flagged draft until the owner approves — an English
+         headline on an Arabic page serves no one. #}
+      <h1 id="hero-title" class="hero__title"{% if dir != "rtl" %} lang="en" dir="ltr"{% endif %}>{{ t.hero.title }}{% if t.hero.titleDraft and build.preview %} <span class="draft-badge" title="{{ t.a11y.draftBadgeHint }}">{{ t.a11y.draftBadge }}</span>{% endif %}</h1>
 
-    <p class="hero__name" lang="ar" dir="rtl" aria-hidden="true">{{ site.nameAr }}</p>
+      <p class="hero__subtitle">{{ t.hero.subtitle }}{% if t.hero.subtitleDraft and build.preview %} <span class="draft-badge" title="{{ t.a11y.draftBadgeHint }}">{{ t.a11y.draftBadge }}</span>{% endif %}</p>
 
-    <div>{{ ornament("hero__ornament") }}</div>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="#menu">{{ t.hero.ctaMenu }}</a>
+        <a class="btn btn--quiet" href="{{ site.links.maps }}" target="_blank" rel="noopener">{{ t.hero.ctaDirections }}</a>
+      </div>
 
-    {# The brand's own line, verbatim from its Instagram bio (see hero.lineNote). #}
-    <p class="hero__line" lang="en" dir="ltr">{{ t.hero.line }}</p>
-
-    <div class="hero__actions">
-      <a class="btn-frame btn-frame--solid" href="{{ site.links.maps }}" target="_blank" rel="noopener">{{ t.hero.ctaDirections }}</a>
-      <a class="btn-frame" href="#menu">{{ t.hero.ctaMenu }}</a>
+      <ul class="hero__facts" aria-label="{{ t.hero.infoLabel }}">
+        <li>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0C18.5 15.4 12 21 12 21Z"/><circle cx="12" cy="10" r="2.3"/></svg>
+          <span>{{ site.address.streetAddressAr if dir == "rtl" else site.address.streetAddress }}</span>
+        </li>
+        <li>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>
+          {# Folded from the same seven rows Visit prints in full — never retyped. #}
+          <span class="hero__hours">{{ hourRuns(site, t, "", " · ") }}</span>
+        </li>
+      </ul>
     </div>
-  </div>
 
-  <div class="hero__info-wrap">
-    <ul class="container-page hero__info" aria-label="{{ t.hero.infoLabel }}">
-      <li>
-        <svg class="hero__info-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0C18.5 15.4 12 21 12 21Z"/><circle cx="12" cy="10" r="2.3"/></svg>
-        <span>{{ site.address.streetAddressAr if dir == "rtl" else site.address.streetAddress }}</span>
-      </li>
-      <li>
-        <svg class="hero__info-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>
-        <span class="hero__hours">{{ hourRuns(site, t, "", " · ") }}</span>
-      </li>
-      <li>
-        <svg class="hero__info-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6.6 3.5h2.6l1.3 4.1-1.9 1.3a11 11 0 0 0 6.5 6.5l1.3-1.9 4.1 1.3v2.6a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2Z"/></svg>
-        <a href="{{ site.phone.href }}" dir="ltr">{{ site.phone.display }}</a>
-      </li>
-    </ul>
+    <figure class="hero__figure">
+      {% image t.hero.image, t.hero.imageAlt, "(min-width: 1024px) 46vw, 92vw", true %}
+    </figure>
   </div>
-
 </section>

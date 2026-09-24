@@ -1,6 +1,10 @@
 /* Savva Cafe — design tokens and component classes.
    Owns: theme tokens (@theme) and component classes (@layer components).
-   Everything else in the project uses Tailwind utilities generated from here. */
+   Everything else in the project uses Tailwind utilities generated from here.
+
+   Visual language: the Bean & Co. app reference — a light cream page, soft
+   rounded cards, one warm brown for every act, bold grotesk headings. No
+   serif, no ornament, no full-bleed veiled photography. */
 
 @import "tailwindcss";
 
@@ -12,15 +16,14 @@
 
 /* ---------------------------------------------------------------------------
    Self-hosted fonts. No runtime request to fonts.googleapis.com.
-   Files live in src/assets/static/fonts/ and are copied to /assets/static/fonts/.
+   Two families and nothing else: Manrope sets the page, IBM Plex Sans Arabic
+   sets the Arabic one. Both ship as variable files, one per subset.
    --------------------------------------------------------------------------- */
 
-/* Manrope ships as one variable file: 400, 500 and 700 were byte-identical
-   copies of it, so one declaration per subset covers the whole range. */
 @font-face {
   font-family: "Manrope";
   font-style: normal;
-  font-weight: 400 700;
+  font-weight: 400 800;
   font-display: swap;
   src: url("/assets/static/fonts/manrope-latin-ext.woff2") format("woff2");
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
@@ -29,7 +32,7 @@
 @font-face {
   font-family: "Manrope";
   font-style: normal;
-  font-weight: 400 700;
+  font-weight: 400 800;
   font-display: swap;
   src: url("/assets/static/fonts/manrope-latin.woff2") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
@@ -71,126 +74,61 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-/* Cormorant Garamond — the spaced antiqua of the reference (REF-028) for the
-   brand line. One variable file covers every weight the page asks for. */
-@font-face {
-  font-family: "Cormorant Garamond";
-  font-style: normal;
-  font-weight: 300 700;
-  font-display: swap;
-  src: url("/assets/static/fonts/cormorant-garamond-latin.woff2") format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-/* The same antiqua cut to basic Latin (12 KB instead of 37): on the Arabic
-   page it sets exactly one thing, the brand's English line under the mark, and
-   that line is the first screen's largest paint. Any English sentence still
-   sets in it if the line is ever reworded; accented letters would fall back. */
-@font-face {
-  font-family: "Cormorant Line";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("/assets/static/fonts/cormorant-garamond-line.woff2") format("woff2");
-  unicode-range: U+20-21, U+26-29, U+2c-2e, U+30-3b, U+3f, U+41-5a, U+61-7a, U+2013-2014, U+2018-2019, U+201c-201d;
-}
-
-/* Amiri for Arabic section headings: the whole basic alphabet, hamza forms,
-   Arabic punctuation and digits — 42 KB instead of the 108 KB full file, and
-   complete enough that an edited heading never falls back mid-word. Only the
-   Arabic page draws with it, so the English page never downloads it. */
-@font-face {
-  font-family: "Amiri";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("/assets/static/fonts/amiri-arabic.woff2") format("woff2");
-  unicode-range: U+60c, U+61f, U+621-64a, U+653-655, U+660-669;
-}
-
-/* Amiri cut down to the three letters of سافا (ا س ف): the Arabic name under
-   the mark needs a naskh, not a 108 KB file. Anything else in Arabic keeps
-   IBM Plex Sans Arabic. */
-@font-face {
-  font-family: "Savva Arabic";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("/assets/static/fonts/amiri-savva.woff2") format("woff2");
-  unicode-range: U+0627, U+0633, U+0641;
-}
-
-
 /* ---------------------------------------------------------------------------
-   Theme tokens. Tailwind 4 generates utilities from these (bg-sage, text-ink…).
+   Theme tokens. Tailwind generates utilities from these (bg-cream, text-ink…).
    Single place to edit the palette.
    --------------------------------------------------------------------------- */
 
 @theme {
-  /* Brand palette — eleven tokens, taken from Savva's own logo, cups and interior. */
-  --color-sage: #808366;
-  --color-sage-deep: #656852;
-  --color-cream: #decfb8;
-  --color-paper: #faf7f0;
-  --color-sand: #ede4d4;
-  --color-terracotta: #a0623a;
-  --color-ink: #2b241b;
-  --color-ink-soft: #6b6355;
-  --color-latte: #c4a88a;
-  --color-coffee: #6f4e37;
-  --color-espresso: #3b2a1e;
+  /* Palette, read off the reference: a cream page, near-white cards, one warm
+     brown that carries every action, dark chocolate for the two dark surfaces. */
+  --color-cream: #f7f1e9;
+  --color-card: #fffdfa;
+  --color-sand: #efe5d8;
+  --color-latte: #cdb79f;
+  --color-brand: #8a5a34;
+  --color-brand-deep: #6e4526;
+  --color-ink: #2a1c14;
+  --color-ink-soft: #726052;  /* 4.8:1 on the sand band, the palest ground it sits on */
+  --color-espresso: #241812;
 
-  /* Typography */
+  /* Typography: one grotesk, bold where it matters. */
   --font-sans: "Manrope", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-arabic: "IBM Plex Sans Arabic", "Manrope", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
-  --font-arabic-name: "Savva Arabic", "IBM Plex Sans Arabic", serif;
-  --font-serif-arabic: "Amiri", "IBM Plex Sans Arabic", serif;
 
-  --text-eyebrow: 0.75rem;
-  --text-eyebrow--line-height: 1.2;
-  --text-eyebrow--letter-spacing: 0.18em;
-  --text-eyebrow--font-weight: 500;
-
-  --text-display: clamp(2.5rem, 6vw, 5.5rem);
-  --text-display--line-height: 0.95;
+  --text-display: clamp(2.5rem, 5.4vw, 4.25rem);
+  --text-display--line-height: 1.04;
   --text-display--letter-spacing: -0.03em;
-  --text-display--font-weight: 700;
+  --text-display--font-weight: 800;
 
-  --text-h1: clamp(2rem, 4vw, 3.25rem);
-  --text-h1--line-height: 1.05;
-  --text-h1--letter-spacing: -0.02em;
-  --text-h1--font-weight: 700;
+  --text-h2: clamp(1.875rem, 3.2vw, 2.75rem);
+  --text-h2--line-height: 1.1;
+  --text-h2--letter-spacing: -0.022em;
+  --text-h2--font-weight: 800;
 
-  --text-h2: clamp(1.625rem, 2.6vw, 2.25rem);
-  --text-h2--line-height: 1.15;
-  --text-h2--letter-spacing: -0.015em;
-  --text-h2--font-weight: 700;
-
-  --text-h3: clamp(1.25rem, 1.6vw, 1.5rem);
-  --text-h3--line-height: 1.25;
+  --text-h3: clamp(1.125rem, 1.2vw, 1.3125rem);
+  --text-h3--line-height: 1.3;
   --text-h3--letter-spacing: -0.01em;
-  --text-h3--font-weight: 500;
+  --text-h3--font-weight: 700;
 
-  --text-body: clamp(1.0625rem, 0.35vw + 1rem, 1.1875rem);
-  --text-body--line-height: 1.7;
+  --text-body: clamp(1.0625rem, 0.3vw + 1rem, 1.125rem);
+  --text-body--line-height: 1.65;
 
   --text-small: 0.9375rem;
-  --text-small--line-height: 1.6;
+  --text-small--line-height: 1.55;
 
-  /* Grid: 12 columns, 1280px cap, fluid gutters. */
-  --container-page: 1280px;
+  /* Grid and rhythm. */
+  --container-page: 1200px;
+  --spacing-gutter: clamp(20px, 5vw, 64px);
+  --spacing-section: clamp(72px, 9vh, 128px);
+  --spacing-measure: 60ch;
 
-  /* Vertical rhythm. Base spacing step stays Tailwind's 4px. */
-  --spacing-gutter: clamp(20px, 5vw, 80px);
-  --spacing-section: clamp(96px, 12vh, 176px);
-  --spacing-measure: 62ch;
+  /* Soft, warm, low: the reference has no hard edges and no heavy shadows. */
+  --shadow-card: 0 1px 2px rgb(42 28 20 / 0.03), 0 14px 34px rgb(42 28 20 / 0.06);
+  --shadow-lift: 0 2px 4px rgb(42 28 20 / 0.05), 0 22px 48px rgb(42 28 20 / 0.1);
 
-  /* Two shadows, warm and soft. There is no third. */
-  --shadow-soft: 0 1px 2px rgb(43 36 27 / 0.04), 0 12px 32px rgb(43 36 27 / 0.06);
-  --shadow-lift: 0 2px 4px rgb(43 36 27 / 0.05), 0 20px 48px rgb(43 36 27 / 0.1);
-
-  --radius-tile: 24px;
+  --radius-card: 24px;
+  --radius-btn: 14px;
 
   --ease-brand: cubic-bezier(0.2, 0, 0, 1);
 }
@@ -202,97 +140,64 @@
   }
 
   body {
-    background-color: var(--color-paper);
+    background-color: var(--color-cream);
     color: var(--color-ink);
     font-family: var(--font-sans);
     font-size: var(--text-body);
-    line-height: 1.7;
+    line-height: 1.65;
     -webkit-font-smoothing: antialiased;
   }
 
-  /* Arabic pages get the Arabic pair; latin fallback stays inside the stack. */
+  /* Arabic pages get the Arabic pair; the latin fallback stays in the stack. */
   [dir="rtl"] body {
     font-family: var(--font-arabic);
   }
 
-  /* Every jump destination on the page — the six nav anchors, #hero and #main —
-     clears the fixed bar. Declared once here rather than per section: a section
+  /* Arabic is a connected script: the negative tracking that tightens a Latin
+     display line crushes the joins, and it needs more leading, not less. */
+  [dir="rtl"] h1,
+  [dir="rtl"] h2,
+  [dir="rtl"] h3 {
+    letter-spacing: 0;
+    line-height: 1.32;
+  }
+
+  /* Every jump destination clears the fixed bar. Declared once here: a section
      that forgets it hides its own heading under the panel. */
-  /* Paper grain (F6): a tiled SVG noise, warm brown at a few percent alpha, on
-     the paper ground and the sand bands — not over photographs. Rasterised
-     once per tile; no request, no blend mode, nothing fixed to the viewport. */
-  :root {
-    --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .23 0 0 0 0 .16 0 0 0 0 .1 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
-  }
-
-  body,
-  .bg-sand,
-  .menu,
-  .about {
-    background-image: var(--grain);
-  }
-
   :where(section[id], main[id]) {
-    scroll-margin-block-start: 64px;
+    scroll-margin-block-start: 72px;
   }
 
   @media (min-width: 768px) {
     :where(section[id], main[id]) {
-      scroll-margin-block-start: 80px;
+      scroll-margin-block-start: 88px;
     }
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-sage-deep);
+    outline: 2px solid var(--color-brand);
     outline-offset: 3px;
-    border-radius: 2px;
+    border-radius: 4px;
   }
 
-  /* One sage ring disappears against the hero photo, the espresso footer and
-     the lightbox backdrop. On those grounds the ring goes light instead. */
-  .hero :focus-visible,
-  .lightbox :focus-visible,
+  /* The dark surfaces need a light ring; the brown one disappears on them. */
+  .promo__card :focus-visible,
   footer :focus-visible {
-    outline-color: var(--color-paper);
+    outline-color: var(--color-cream);
   }
 
   ::selection {
-    background-color: var(--color-cream);
+    background-color: var(--color-latte);
     color: var(--color-ink);
   }
 
-  /* The browser surfaces we did not draw still ship with this page. */
   :root {
-    caret-color: var(--color-sage-deep);
+    caret-color: var(--color-brand);
     scrollbar-color: var(--color-latte) var(--color-sand);
   }
 
-  /* Arabic is a connected script: the negative tracking that tightens a Latin
-     display line crushes the joins, and 0.95 leading that suits Manrope is too
-     tight for ascenders and descenders that overlap. Headings were missed when
-     the eyebrow and the scroll hint were corrected. Weight 600 is the heaviest
-     Arabic face that actually ships, so asking for 700 only bought synthetic
-     bold and a preload nothing painted with. */
-  [dir="rtl"] h1,
-  [dir="rtl"] h2,
-  [dir="rtl"] h3,
-  [dir="rtl"] .h-display {
-    letter-spacing: 0;
-    font-weight: 600;
-  }
-
-  [dir="rtl"] .h-display {
-    line-height: 1.16;
-  }
-
-  [dir="rtl"] h2,
-  [dir="rtl"] h3 {
-    line-height: 1.3;
-  }
-
-  /* Scoped to what the spec actually turns off (§9): block reveal and the hero
-     parallax layer. A blanket `*` kill also muted card/button hover, which was
-     never decided — narrowed here to just those two behaviours' own transitions. */
+  /* Scoped to what it is for: the reveal on scroll. Hover and press feedback
+     stay — muting those was never the decision. */
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
@@ -302,18 +207,36 @@
       transition: none !important;
       animation: none !important;
     }
-
-    [data-parallax] {
-      transition: none !important;
-    }
   }
 }
 
 @layer components {
-  /* Hides the sprite of `<symbol>` definitions the brand mark is drawn from
-     (src/_includes/macros/brand.njk `sprite()`, placed once in layouts/base.njk).
-     A symbol renders nothing on its own, but a bare <svg> with no explicit size
-     still claims the default 300×150 box — this keeps it out of the layout. */
+  .container-page {
+    width: 100%;
+    max-width: var(--container-page);
+    margin-inline: auto;
+    padding-inline: var(--spacing-gutter);
+  }
+
+  .section {
+    padding-block: var(--spacing-section);
+  }
+
+  .skip-link {
+    position: absolute;
+    inset-inline-start: -9999px;
+    z-index: 100;
+  }
+
+  .skip-link:focus {
+    inset-inline-start: var(--spacing-gutter);
+    inset-block-start: 12px;
+    padding: 12px 20px;
+    border-radius: var(--radius-btn);
+    background-color: var(--color-ink);
+    color: var(--color-cream);
+  }
+
   .svg-sprite {
     position: absolute;
     width: 0;
@@ -321,10 +244,122 @@
     overflow: hidden;
   }
 
-  /* Page-wide: any section may put `.draft-badge` beside a string that came
-     back with its `<key>Draft` flag set. The badge disappears on its own when
-     the owner clears the flag in the dictionary. Solid tint on purpose: it has
-     to stay legible on paper and over a photo. */
+  /* ---- type ------------------------------------------------------------ */
+
+  .section-head {
+    max-width: 46rem;
+  }
+
+  .section-title {
+    margin: 0;
+    font-size: var(--text-h2);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.022em;
+    color: var(--color-ink);
+    text-wrap: balance;
+  }
+
+  .section-lead {
+    max-width: 46ch;
+    margin: calc(var(--spacing) * 4) 0 0;
+    color: var(--color-ink-soft);
+  }
+
+  .field-label {
+    margin: 0;
+    font-size: var(--text-small);
+    font-weight: 600;
+    color: var(--color-ink-soft);
+  }
+
+  .icon {
+    flex: none;
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: var(--color-brand);
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* ---- buttons --------------------------------------------------------- */
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: calc(var(--spacing) * 2);
+    min-height: 52px;
+    padding-inline: calc(var(--spacing) * 7);
+    border: 1px solid transparent;
+    border-radius: var(--radius-btn);
+    font-size: var(--text-small);
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 200ms var(--ease-brand), color 200ms var(--ease-brand),
+      border-color 200ms var(--ease-brand), transform 200ms var(--ease-brand);
+  }
+
+  .btn:active {
+    transform: translateY(1px);
+  }
+
+  /* --color-brand on cream is 5.1:1 for this text; the deeper one is the hover
+     so the contrast only ever goes up. */
+  .btn--primary {
+    background-color: var(--color-brand);
+    border-color: var(--color-brand);
+    color: var(--color-card);
+  }
+
+  .btn--quiet {
+    background-color: transparent;
+    border-color: color-mix(in oklab, var(--color-ink) 22%, transparent);
+    color: var(--color-ink);
+  }
+
+  .btn--cream {
+    background-color: var(--color-cream);
+    border-color: var(--color-cream);
+    color: var(--color-ink);
+  }
+
+  @media (hover: hover) {
+    .btn--primary:hover {
+      background-color: var(--color-brand-deep);
+      border-color: var(--color-brand-deep);
+    }
+
+    .btn--quiet:hover {
+      border-color: var(--color-ink);
+      background-color: color-mix(in oklab, var(--color-ink) 5%, transparent);
+    }
+
+    .btn--cream:hover {
+      background-color: var(--color-card);
+      border-color: var(--color-card);
+    }
+  }
+
+  /* ---- cards ----------------------------------------------------------- */
+
+  .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: var(--radius-card);
+    background-color: var(--color-card);
+    box-shadow: var(--shadow-card);
+  }
+
+  .rounded-card {
+    border-radius: var(--radius-card);
+  }
+
   .draft-badge {
     display: inline-flex;
     align-items: center;
@@ -333,678 +368,77 @@
     padding-inline: calc(var(--spacing) * 2);
     padding-block: 2px;
     border-radius: 9999px;
-    background-color: #f5e8cd;
-    color: #8a5a12;
-    font-family: var(--font-sans);
+    background-color: color-mix(in oklab, var(--color-brand) 16%, var(--color-cream));
+    color: var(--color-brand-deep);
     font-size: 0.6875rem;
-    font-weight: 500;
+    font-weight: 700;
     line-height: 1.4;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
-    white-space: nowrap;
-    cursor: help;
   }
 
   [dir="rtl"] .draft-badge {
+    letter-spacing: 0;
     text-transform: none;
-    letter-spacing: 0;
   }
 
-  /* Page gutter and 1280px cap. Every section body sits inside one of these. */
-  .container-page {
-    width: 100%;
-    max-width: calc(var(--container-page) + 2 * var(--spacing-gutter));
-    margin-inline: auto;
-    padding-inline: var(--spacing-gutter);
-  }
-
-  /* Vertical rhythm between sections: emptiness is a material here. */
-  .section {
-    padding-block: var(--spacing-section);
-  }
-
-  .h-display {
-    font-size: var(--text-display);
-    line-height: 0.95;
-    letter-spacing: -0.03em;
-    font-weight: 700;
-    text-wrap: balance;
-  }
-
-  .eyebrow {
-    display: inline-block;
-    font-size: var(--text-eyebrow);
-    line-height: 1.2;
-    letter-spacing: 0.18em;
-    font-weight: 500;
-    text-transform: uppercase;
-    color: var(--color-ink-soft);
-  }
-
-  /* RTL: uppercase and wide tracking are meaningless for Arabic script. */
-  [dir="rtl"] .eyebrow {
-    text-transform: none;
-    letter-spacing: 0;
-  }
-
-  /* ---- Shared F6 pieces (REF-028): the ornament rule, the antiqua section
-     heading that carries it, and the framed button. ---------------------- */
-  .ornament {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: calc(var(--spacing) * 3.5);
-    color: var(--color-terracotta);
-  }
-
-  .ornament span {
-    width: 56px;
-    height: 1px;
-    background-color: currentColor;
-    opacity: 0.7;
-  }
-
-  .ornament svg {
-    width: 24px;
-    height: 10px;
-  }
-
-  .section-head {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: calc(var(--spacing) * 5);
-    text-align: center;
-  }
-
-  .section-head--start {
-    align-items: flex-start;
-    text-align: start;
-  }
-
-  .section-head--start .ornament {
-    justify-content: flex-start;
-  }
-
-  /* The antiqua does the work a heavier grotesk used to: the voice that the
-     single-face page was missing. */
-  .section-title {
-    max-width: 18ch;
-    margin: 0;
-    font-family: var(--font-serif);
-    font-size: clamp(2.375rem, 4.6vw, 4rem);
-    font-weight: 500;
-    line-height: 1.04;
-    letter-spacing: -0.005em;
-    color: var(--color-ink);
-    text-wrap: balance;
-  }
-
-  /* Arabic takes a naskh at its one shipped weight, with the leading a
-     connected script with deep descenders needs. The naskh (Amiri) switches on
-     only after load — see lateFonts() in app.js — because every heading it sets
-     is below the first screen; until then, and without JavaScript, the headings
-     stay in IBM Plex Sans Arabic at the same size and leading. */
-  [dir="rtl"] .section-title {
-    font-family: var(--font-arabic);
-    font-size: clamp(2.125rem, 4vw, 3.5rem);
-    font-weight: 400;
-    line-height: 1.4;
-    letter-spacing: 0;
-  }
-
-  html[dir="rtl"].fonts-late .section-title {
-    font-family: var(--font-serif-arabic);
-  }
-
-  /* Framed buttons, square-cornered like the reference. Cream by default, for
-     the photograph; `--ink` for the paper and sand sections. The solid one is
-     the act that section exists for. */
-  .btn-frame {
+  /* The rating chip: the one number worth carrying at the top of the page. */
+  .rating {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
     gap: calc(var(--spacing) * 2);
-    min-height: 52px;
-    padding-inline: calc(var(--spacing) * 8);
-    border: 1px solid color-mix(in oklab, var(--color-cream) 72%, transparent);
-    border-radius: 2px;
-    background-color: transparent;
-    color: var(--color-cream);
-    font-size: 0.8125rem;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background-color 240ms var(--ease-brand), color 240ms var(--ease-brand),
-      border-color 240ms var(--ease-brand);
-  }
-
-  .btn-frame--solid {
-    background-color: var(--color-cream);
-    border-color: var(--color-cream);
-    color: var(--color-ink);
-  }
-
-  .btn-frame--ink {
-    border-color: color-mix(in oklab, var(--color-ink) 70%, transparent);
-    color: var(--color-ink);
-  }
-
-  .btn-frame--ink.btn-frame--solid {
-    background-color: var(--color-ink);
-    border-color: var(--color-ink);
-    color: var(--color-paper);
-  }
-
-  @media (hover: hover) {
-    .btn-frame:hover {
-      background-color: color-mix(in oklab, var(--color-cream) 14%, transparent);
-      border-color: var(--color-cream);
-    }
-
-    .btn-frame--solid:hover {
-      background-color: var(--color-paper);
-      border-color: var(--color-paper);
-    }
-
-    .btn-frame--ink:hover {
-      background-color: color-mix(in oklab, var(--color-ink) 6%, transparent);
-      border-color: var(--color-ink);
-    }
-
-    .btn-frame--ink.btn-frame--solid:hover {
-      background-color: var(--color-espresso);
-      border-color: var(--color-espresso);
-    }
-  }
-
-  [dir="rtl"] .btn-frame {
-    letter-spacing: 0;
-    text-transform: none;
-    font-size: 0.9375rem;
-  }
-
-  .card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    border-radius: var(--radius-tile);
-    background-color: var(--color-paper);
-    box-shadow: var(--shadow-soft);
-    transition: transform 240ms var(--ease-brand), box-shadow 240ms var(--ease-brand);
-  }
-
-  @media (hover: hover) {
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-lift);
-    }
-
-    .card:hover img {
-      transform: scale(1.04);
-    }
-  }
-
-  .card img {
-    transition: transform 240ms var(--ease-brand);
-  }
-
-  /* Keyboard-only escape hatch to the main landmark. */
-  .skip-link {
-    position: absolute;
-    inset-inline-start: var(--spacing-gutter);
-    top: calc(var(--spacing) * 3);
-    z-index: 100;
-    transform: translateY(-200%);
-    background-color: var(--color-ink);
-    color: var(--color-paper);
-    padding: calc(var(--spacing) * 3) calc(var(--spacing) * 5);
+    margin: 0;
+    padding: calc(var(--spacing) * 1.5) calc(var(--spacing) * 3.5);
     border-radius: 9999px;
+    background-color: var(--color-card);
+    box-shadow: var(--shadow-card);
     font-size: var(--text-small);
-    text-decoration: none;
+    font-weight: 700;
+    color: var(--color-brand);
   }
 
-  .skip-link:focus-visible {
-    transform: translateY(0);
+  .rating__count {
+    color: var(--color-ink-soft);
+    font-weight: 500;
   }
 
-  /* ---- Reveal on scroll --------------------------------------------------
-     The hidden state is a class JS adds at runtime, never a bare attribute
-     selector: without JavaScript no element ever gets `.is-reveal`, so the
-     page stays fully visible (task 04's condition). */
-  [data-reveal].is-reveal {
+  .rating__count::before {
+    content: "·";
+    margin-inline-end: calc(var(--spacing) * 2);
+  }
+
+  /* ---- reveal ---------------------------------------------------------- */
+
+  /* The hidden start state is added by app.js, never here: without JavaScript
+     the page has to stay readable. */
+  .is-reveal {
     opacity: 0;
-    transform: translateY(24px);
+    transform: translateY(14px);
     transition: opacity 600ms var(--ease-brand), transform 600ms var(--ease-brand);
   }
 
-  [data-reveal].is-reveal.is-visible {
+  .is-reveal.is-visible {
     opacity: 1;
     transform: none;
   }
 
-  /* ---- Lightbox ------------------------------------------------------
-     Built once by JS on first open; no blur here — glass is reserved for
-     the nav bar and Back to Top (spec §17, "почти не замечаешь"). */
-  .lightbox {
-    position: fixed;
-    inset: 0;
-    margin: auto;
-    width: min(92vw, 1100px);
-    max-height: 90vh;
-    padding: 0;
-    border: 0;
-    border-radius: var(--radius-tile);
-    background-color: var(--color-espresso);
-    color: var(--color-paper);
-    overflow: hidden;
-  }
+  /* ---- nav ------------------------------------------------------------- */
 
-  .lightbox::backdrop {
-    background-color: rgb(43 36 27 / 0.86);
-  }
-
-  .lightbox__figure {
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    max-height: 90vh;
-  }
-
-  .lightbox__image {
-    display: block;
-    width: 100%;
-    max-height: 78vh;
-    object-fit: contain;
-    background-color: var(--color-ink);
-  }
-
-  .lightbox__caption {
-    padding: calc(var(--spacing) * 4) calc(var(--spacing) * 6);
-    font-size: var(--text-small);
-    color: var(--color-cream);
-    text-align: center;
-  }
-
-  .lightbox__close,
-  .lightbox__nav {
-    position: absolute;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border: 0;
-    border-radius: 9999px;
-    background-color: rgb(43 36 27 / 0.55);
-    color: var(--color-paper);
-    cursor: pointer;
-    transition: background-color 200ms var(--ease-brand);
-  }
-
-  .lightbox__close {
-    inset-block-start: calc(var(--spacing) * 4);
-    inset-inline-end: calc(var(--spacing) * 4);
-    width: 44px;
-    height: 44px;
-    font-size: 1.5rem;
-    line-height: 1;
-  }
-
-  .lightbox__nav {
-    inset-block-start: 50%;
-    transform: translateY(-50%);
-    width: 48px;
-    height: 48px;
-    font-size: 1.75rem;
-  }
-
-  /* Logical insets: in RTL these swap sides on their own, while `move()` in
-     app.js keeps advancing the same way through the frame order either way. */
-  .lightbox__nav--prev {
-    inset-inline-start: calc(var(--spacing) * 4);
-  }
-
-  .lightbox__nav--next {
-    inset-inline-end: calc(var(--spacing) * 4);
-  }
-
-  @media (hover: hover) {
-    .lightbox__close:hover,
-    .lightbox__nav:hover {
-      background-color: rgb(43 36 27 / 0.8);
-    }
-  }
-
-  /* ---- Back to top --------------------------------------------------
-     The second and last permitted glassmorphism (spec §17, blur ≤ 12px). */
-  .to-top {
-    position: fixed;
-    inset-block-end: calc(var(--spacing) * 6);
-    inset-inline-end: var(--spacing-gutter);
-    z-index: 40;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 48px;
-    height: 48px;
-    border: 1px solid rgb(250 247 240 / 0.35);
-    border-radius: 9999px;
-    background-color: rgb(43 36 27 / 0.55);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-    color: var(--color-paper);
-    font-size: 1.125rem;
-    line-height: 1;
-    cursor: pointer;
-    box-shadow: var(--shadow-soft);
-    transition: background-color 200ms var(--ease-brand), transform 200ms var(--ease-brand);
-  }
-
-  @media (hover: hover) {
-    .to-top:hover {
-      background-color: rgb(43 36 27 / 0.75);
-      transform: translateY(-2px);
-    }
-  }
-
-  /* ---- Map frame -------------------------------------------------------
-     Fills the preview tile's box exactly; app.js only sets the class. */
-  .map-frame {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
-  }
-
-  /* =========================================================================
-     Section components. One block per template in src/_includes/sections/,
-     kept in build order (hero → nav → about → menu); the templates themselves
-     carry no <style> — this ships once in the cached stylesheet instead of
-     inline on every page (task 09). Global scroll-margin for anchor targets
-     lives in @layer base above; a section here never repeats it.
-     ========================================================================= */
-
-  /* ---- hero.njk -----------------------------------------------------------
-     After REF-028: one centred axis over a veiled photograph, a strip of facts
-     along the bottom. Every translucent colour is mixed from a palette token,
-     so changing the token changes the veil with it. */
-  .hero {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    min-height: 100svh;
-    overflow: hidden;
-    isolation: isolate;
-    background-color: var(--color-espresso);
-    color: var(--color-cream);
-    text-align: center;
-  }
-
-  /* Taller than the frame so a 12% parallax shift never uncovers an edge. */
-  .hero__media {
-    position: absolute;
-    inset-block-start: -8%;
-    inset-inline: 0;
-    height: 116%;
-    z-index: -2;
-  }
-
-  .hero__media picture,
-  .hero__media img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  /* An even warm veil so a centred line reads anywhere on the photograph, a
-     little deeper at the foot where the strip of facts sits. */
-  .hero__veil {
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background:
-      linear-gradient(to top, color-mix(in oklab, var(--color-espresso) 55%, transparent), transparent 42%),
-      color-mix(in oklab, var(--color-espresso) 66%, transparent);
-  }
-
-  .hero__stage {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: calc(var(--spacing) * 28) var(--spacing-gutter) calc(var(--spacing) * 14);
-  }
-
-  .hero__badge {
-    display: inline-flex;
-    align-items: center;
-    gap: calc(var(--spacing) * 3);
-    margin: 0;
-    padding: calc(var(--spacing) * 2.5) calc(var(--spacing) * 5);
-    border: 1px solid color-mix(in oklab, var(--color-cream) 32%, transparent);
-    background-color: color-mix(in oklab, var(--color-espresso) 40%, transparent);
-    font-size: 0.8125rem;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-  }
-
-  .hero__badge-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 9999px;
-    background-color: var(--color-terracotta);
-    box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-terracotta) 28%, transparent);
-  }
-
-  .hero__badge-rating {
-    color: var(--color-latte);
-    letter-spacing: 0.06em;
-  }
-
-  .hero__title {
-    margin: calc(var(--spacing) * 9) 0 0;
-    line-height: 0;
-  }
-
-  .hero__mark {
-    width: clamp(240px, 46vw, 640px);
-    height: auto;
-    color: var(--color-cream);
-    filter: drop-shadow(0 2px 28px color-mix(in oklab, var(--color-ink) 35%, transparent));
-  }
-
-  /* The reference spaces its local-script name wide. Arabic letters join, so
-     tracking would break the word apart; the name keeps its joins and gets
-     presence from the naskh and the size instead. */
-  .hero__name {
-    margin: calc(var(--spacing) * 5) 0 0;
-    font-family: var(--font-arabic-name);
-    font-size: clamp(1.625rem, 2.6vw, 2.25rem);
-    line-height: 1.2;
-    color: color-mix(in oklab, var(--color-cream) 82%, transparent);
-  }
-
-  .hero__ornament {
-    margin-block-start: calc(var(--spacing) * 6);
-    color: var(--color-latte);
-  }
-
-  .hero__line {
-    max-width: 24ch;
-    margin: calc(var(--spacing) * 6) 0 0;
-    font-family: var(--font-serif);
-    font-size: clamp(1.5rem, 2.4vw, 2.125rem);
-    font-weight: 400;
-    line-height: 1.3;
-    letter-spacing: 0.005em;
-    color: var(--color-cream);
-    text-wrap: balance;
-    text-shadow: 0 1px 18px color-mix(in oklab, var(--color-espresso) 70%, transparent);
-  }
-
-  [dir="rtl"] .hero__line {
-    font-family: "Cormorant Line", "Iowan Old Style", Georgia, serif;
-  }
-
-  .hero__actions {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: calc(var(--spacing) * 4);
-    margin-block-start: calc(var(--spacing) * 11);
-  }
-
-  /* The strip of facts: in the flow at the foot of the hero, not laid over it,
-     so on a short phone screen it pushes down instead of covering the buttons. */
-  .hero__info-wrap {
-    border-block-start: 1px solid color-mix(in oklab, var(--color-cream) 16%, transparent);
-  }
-
-  .hero__info {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: calc(var(--spacing) * 3) calc(var(--spacing) * 10);
-    margin: 0 auto;
-    padding-block: calc(var(--spacing) * 5);
-    list-style: none;
-    font-size: 0.9375rem;
-    color: color-mix(in oklab, var(--color-cream) 88%, transparent);
-  }
-
-  .hero__info li {
-    display: inline-flex;
-    align-items: center;
-    gap: calc(var(--spacing) * 2.5);
-  }
-
-  .hero__info a {
-    color: inherit;
-    text-decoration: none;
-    min-height: 44px;
-    display: inline-flex;
-    align-items: center;
-  }
-
-  @media (hover: hover) {
-    .hero__info a:hover {
-      color: var(--color-paper);
-    }
-  }
-
-  .hero__info-icon {
-    flex: none;
-    width: 18px;
-    height: 18px;
-    fill: none;
-    stroke: var(--color-latte);
-    stroke-width: 1.25;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
-
-  .hero__hours > span[aria-hidden] {
-    opacity: 0.55;
-  }
-
-  @media (max-width: 767px) {
-    .hero__stage {
-      padding-block: calc(var(--spacing) * 24) calc(var(--spacing) * 10);
-    }
-
-    .hero__badge {
-      letter-spacing: 0.14em;
-      font-size: 0.75rem;
-    }
-
-    /* A column of short rows, each icon beside its own text, the rows centred. */
-    .hero__info {
-      flex-direction: column;
-      align-items: center;
-      gap: calc(var(--spacing) * 1);
-      padding-block: calc(var(--spacing) * 4);
-      font-size: 0.875rem;
-    }
-
-    .hero__info li {
-      text-align: start;
-    }
-
-    /* The day runs stack instead of joining on one line with a dot. */
-    .hero__hours {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .hero__hours > span[aria-hidden] {
-      display: none;
-    }
-  }
-
-  [dir="rtl"] .hero__badge,
-  [dir="rtl"] .hero__badge-rating {
-    letter-spacing: 0;
-    text-transform: none;
-  }
-
-  /* ---- nav.njk -------------------------------------------------------- */
   .nav {
     position: fixed;
     inset-block-start: 0;
     inset-inline: 0;
     z-index: 50;
-    color: var(--color-paper);
-    transition: background-color 240ms var(--ease-brand), color 240ms var(--ease-brand),
-      box-shadow 240ms var(--ease-brand);
-  }
-
-  /* Contrast scrim under the bar while it floats over the hero photograph. */
-  .nav::before {
-    content: "";
-    position: absolute;
-    inset-block-start: 0;
-    inset-inline: 0;
-    height: 140px;
-    pointer-events: none;
-    background: linear-gradient(to bottom, rgb(43 36 27 / 0.45), rgb(43 36 27 / 0));
-    opacity: 1;
-    transition: opacity 240ms var(--ease-brand);
-  }
-
-  /* One of the two places in the project allowed to use blur (spec § story 17). */
-  .nav[data-nav-scrolled],
-  .nav[data-nav-open] {
-    background-color: rgb(250 247 240 / 0.85);
+    background-color: color-mix(in oklab, var(--color-cream) 88%, transparent);
     -webkit-backdrop-filter: blur(12px);
     backdrop-filter: blur(12px);
-    color: var(--color-ink);
-    box-shadow: 0 1px 0 rgb(43 36 27 / 0.08);
+    transition: box-shadow 240ms var(--ease-brand), background-color 240ms var(--ease-brand);
   }
 
-  .nav[data-nav-scrolled]::before,
-  .nav[data-nav-open]::before {
-    opacity: 0;
-  }
-
-  /* No JavaScript: nothing will ever set `data-nav-scrolled`, so the bar stays
-     solid from the first pixel rather than staying invisible over pale sections. */
-  @media (scripting: none) {
-    .nav {
-      background-color: rgb(250 247 240 / 0.92);
-      color: var(--color-ink);
-      box-shadow: 0 1px 0 rgb(43 36 27 / 0.08);
-    }
-
-    .nav::before {
-      opacity: 0;
-    }
+  .nav[data-nav-scrolled],
+  .nav[data-nav-open] {
+    background-color: color-mix(in oklab, var(--color-cream) 96%, transparent);
+    box-shadow: 0 1px 0 color-mix(in oklab, var(--color-ink) 8%, transparent);
   }
 
   .nav__bar {
@@ -1012,19 +446,19 @@
     align-items: center;
     justify-content: space-between;
     gap: calc(var(--spacing) * 6);
-    min-height: 64px;
+    min-height: 72px;
   }
 
   @media (min-width: 768px) {
     .nav__bar {
-      min-height: 80px;
+      min-height: 88px;
     }
   }
 
   .nav__brand {
     display: inline-flex;
     align-items: center;
-    color: inherit;
+    color: var(--color-ink);
     text-decoration: none;
     flex: none;
   }
@@ -1032,19 +466,19 @@
   .nav__mark {
     display: block;
     width: auto;
-    height: 20px;
+    height: 22px;
   }
 
   @media (min-width: 768px) {
     .nav__mark {
-      height: 24px;
+      height: 26px;
     }
   }
 
   .nav__links {
     display: none;
     align-items: center;
-    gap: clamp(18px, 2.2vw, 36px);
+    gap: clamp(20px, 2.4vw, 40px);
     margin: 0;
     padding: 0;
     list-style: none;
@@ -1060,44 +494,20 @@
     position: relative;
     display: inline-block;
     padding-block: calc(var(--spacing) * 2);
-    color: inherit;
-    font-size: 0.8125rem;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+    color: var(--color-ink-soft);
+    font-size: var(--text-small);
+    font-weight: 600;
     text-decoration: none;
-    opacity: 0.85;
-    transition: opacity 200ms var(--ease-brand);
-  }
-
-  /* Underline opens from the start edge — width, not transform, so RTL mirrors
-     without a second rule. */
-  .nav__link::after {
-    content: "";
-    position: absolute;
-    inset-block-end: 0;
-    inset-inline-start: 0;
-    width: 0;
-    height: 1px;
-    background-color: currentColor;
-    transition: width 200ms var(--ease-brand);
+    transition: color 200ms var(--ease-brand);
   }
 
   .nav__link[aria-current="true"] {
-    opacity: 1;
-  }
-
-  .nav__link[aria-current="true"]::after {
-    width: 100%;
+    color: var(--color-ink);
   }
 
   @media (hover: hover) {
     .nav__link:hover {
-      opacity: 1;
-    }
-
-    .nav__link:hover::after {
-      width: 100%;
+      color: var(--color-ink);
     }
   }
 
@@ -1108,41 +518,51 @@
     flex: none;
   }
 
-  /* The language pair sits in a thin frame, as in the reference. */
   .nav__lang {
     display: flex;
     align-items: center;
-    gap: calc(var(--spacing) * 2.5);
+    gap: calc(var(--spacing) * 2);
     margin: 0;
-    padding-inline: calc(var(--spacing) * 3.5);
-    min-height: 40px;
-    border: 1px solid color-mix(in oklab, currentColor 32%, transparent);
-    border-radius: 2px;
-    font-size: 0.8125rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
+    padding-inline: calc(var(--spacing) * 3);
+    min-height: 44px;
+    border-radius: 9999px;
+    background-color: var(--color-card);
+    font-size: var(--text-small);
+    font-weight: 600;
+  }
+
+  /* Both halves fill the pill, so the tap area is the pill, not the glyphs. */
+  .nav__lang-current,
+  .nav__lang-other {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
   }
 
   .nav__lang-current {
-    color: inherit;
-    font-weight: 700;
+    color: var(--color-ink);
   }
 
-  [dir="rtl"] .nav__link,
-  [dir="rtl"] .nav__lang {
-    letter-spacing: 0;
-    text-transform: none;
-    font-size: 0.9375rem;
+  .nav__lang-sep {
+    color: var(--color-ink-soft);
+    opacity: 0.5;
   }
 
-  /* The framed act in the bar follows the bar's own colour: cream over the
-     photograph, ink once the bar turns solid. */
+  .nav__lang-other {
+    color: var(--color-ink-soft);
+    text-decoration: none;
+  }
+
+  @media (hover: hover) {
+    .nav__lang-other:hover {
+      color: var(--color-brand);
+    }
+  }
+
   .nav__cta {
     display: none;
     min-height: 44px;
     padding-inline: calc(var(--spacing) * 5);
-    color: inherit;
-    border-color: color-mix(in oklab, currentColor 60%, transparent);
   }
 
   @media (min-width: 1024px) {
@@ -1151,42 +571,17 @@
     }
   }
 
-  @media (hover: hover) {
-    .nav__cta:hover {
-      background-color: color-mix(in oklab, currentColor 10%, transparent);
-      border-color: currentColor;
-    }
-  }
-
-
-  .nav__lang-sep {
-    opacity: 0.4;
-  }
-
-  .nav__lang-other {
-    color: inherit;
-    opacity: 0.6;
-    text-decoration: none;
-    transition: opacity 200ms var(--ease-brand);
-  }
-
-  @media (hover: hover) {
-    .nav__lang-other:hover {
-      opacity: 1;
-    }
-  }
-
   .nav__toggle {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 48px;
-    height: 48px;
-    margin-inline-end: -12px;
+    width: 44px;
+    height: 44px;
+    margin-inline-end: -10px;
     border: 0;
     border-radius: 9999px;
     background: transparent;
-    color: inherit;
+    color: var(--color-ink);
     cursor: pointer;
   }
 
@@ -1197,57 +592,25 @@
   }
 
   .nav__burger {
-    display: block;
-    position: relative;
-    width: 22px;
-    height: 10px;
+    display: grid;
+    gap: 5px;
+    width: 20px;
   }
 
   .nav__burger span {
-    position: absolute;
-    inset-inline: 0;
-    height: 1.5px;
+    display: block;
+    height: 2px;
     border-radius: 2px;
     background-color: currentColor;
-    transition: transform 240ms var(--ease-brand), opacity 160ms var(--ease-brand);
   }
 
-  .nav__burger span:first-child {
-    inset-block-start: 0;
-  }
-
-  .nav__burger span:last-child {
-    inset-block-end: 0;
-  }
-
-  .nav[data-nav-open] .nav__burger span:first-child {
-    transform: translateY(4px) rotate(45deg);
-  }
-
-  .nav[data-nav-open] .nav__burger span:last-child {
-    transform: translateY(-4px) rotate(-45deg);
-  }
-
-  /* ---- Mobile panel ------------------------------------------------------ */
   .nav__panel {
-    position: absolute;
-    inset-block-start: 100%;
-    inset-inline: 0;
-    background-color: var(--color-paper);
-    color: var(--color-ink);
-    box-shadow: var(--shadow-soft);
-  }
-
-  @media (min-width: 768px) {
-    .nav__panel {
-      display: none;
-    }
+    padding: calc(var(--spacing) * 2) var(--spacing-gutter) calc(var(--spacing) * 6);
   }
 
   .nav__panel-list {
     margin: 0;
-    padding-block: calc(var(--spacing) * 2);
-    padding-inline: var(--spacing-gutter);
+    padding: 0;
     list-style: none;
   }
 
@@ -1257,98 +620,107 @@
     min-height: 52px;
     color: var(--color-ink);
     font-size: 1.0625rem;
-    font-weight: 500;
+    font-weight: 600;
     text-decoration: none;
-    border-block-end: 1px solid rgb(43 36 27 / 0.07);
-  }
-
-  .nav__panel-link[aria-current="true"] {
-    color: var(--color-sage-deep);
-  }
-
-  .nav__panel-list li:last-child .nav__panel-link {
-    border-block-end: 0;
+    border-block-end: 1px solid color-mix(in oklab, var(--color-ink) 8%, transparent);
   }
 
   .nav__panel-lang {
     display: flex;
     align-items: center;
-    gap: calc(var(--spacing) * 3);
-    min-height: 52px;
-    padding-inline: var(--spacing-gutter);
-    padding-block-end: calc(var(--spacing) * 2);
-    margin: 0;
-    font-size: 0.9375rem;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    color: var(--color-ink-soft);
+    gap: calc(var(--spacing) * 2);
+    margin-block-start: calc(var(--spacing) * 5);
+    font-size: var(--text-small);
+    font-weight: 600;
   }
 
-  .nav__panel-lang .nav__lang-current {
-    color: var(--color-ink);
+  /* ---- hero ------------------------------------------------------------ */
+
+  .hero {
+    padding-block: calc(var(--spacing) * 28) var(--spacing-section);
   }
 
-  .nav__panel-lang .nav__lang-other {
-    color: var(--color-ink-soft);
-    opacity: 1;
-  }
-
-  /* ---- footer.njk: the Arabic name under the mark, as in the hero ---- */
-  .footer__name {
-    margin: calc(var(--spacing) * 4) 0 0;
-    font-family: var(--font-arabic-name);
-    font-size: 1.75rem;
-    line-height: 1.2;
-    color: color-mix(in oklab, var(--color-cream) 78%, transparent);
-  }
-
-  /* ---- about.njk ------------------------------------------------------ */
-  .about {
-    background-color: var(--color-paper);
-  }
-
-  .about__grid {
+  .hero__grid {
     display: grid;
-    gap: clamp(40px, 6vw, 88px);
-    align-items: start;
+    gap: clamp(32px, 5vw, 64px);
+    align-items: center;
   }
 
-  @media (min-width: 900px) {
-    .about__grid {
-      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-      gap: clamp(48px, 7vw, 112px);
+  @media (min-width: 1024px) {
+    .hero__grid {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: clamp(48px, 6vw, 88px);
     }
   }
 
-  .about__body {
-    max-width: var(--spacing-measure);
-    margin-block: calc(var(--spacing) * 8) 0;
-    font-size: clamp(1.125rem, 0.6vw + 1rem, 1.375rem);
-    line-height: 1.65;
+  .hero__title {
+    margin: calc(var(--spacing) * 6) 0 0;
+    font-size: var(--text-display);
+    font-weight: 800;
+    line-height: 1.04;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+  }
+
+  .hero__subtitle {
+    max-width: 44ch;
+    margin: calc(var(--spacing) * 5) 0 0;
     color: var(--color-ink-soft);
   }
 
-  .about__figure {
-    margin: 0;
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: calc(var(--spacing) * 3);
+    margin-block-start: calc(var(--spacing) * 8);
   }
 
-  .about__figure picture,
-  .about__figure img {
+  .hero__facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: calc(var(--spacing) * 2) calc(var(--spacing) * 8);
+    margin: calc(var(--spacing) * 9) 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: var(--text-small);
+    color: var(--color-ink-soft);
+  }
+
+  .hero__facts li {
+    display: inline-flex;
+    align-items: center;
+    gap: calc(var(--spacing) * 2.5);
+  }
+
+  .hero__hours > span[aria-hidden] {
+    opacity: 0.5;
+  }
+
+  .hero__figure {
+    margin: 0;
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    box-shadow: var(--shadow-lift);
+  }
+
+  .hero__figure picture,
+  .hero__figure img {
     display: block;
     width: 100%;
-    height: auto;
-    border-radius: var(--radius-tile);
+    height: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
   }
 
-  /* On wide screens the photograph drops below the first text line — the page
-     breathes instead of lining everything up on one baseline. */
-  @media (min-width: 900px) {
-    .about__figure {
-      margin-block-start: calc(var(--spacing) * 10);
+  @media (min-width: 1024px) {
+    .hero__figure picture,
+    .hero__figure img {
+      aspect-ratio: 5 / 6;
     }
   }
 
-  /* ---- menu.njk -------------------------------------------------------- */
+  /* ---- menu ------------------------------------------------------------ */
+
   .menu {
     background-color: var(--color-sand);
   }
@@ -1356,8 +728,8 @@
   .menu__grid {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    gap: calc(var(--spacing) * 6);
-    margin: clamp(48px, 6vw, 80px) 0 0;
+    gap: calc(var(--spacing) * 5);
+    margin: clamp(40px, 5vw, 64px) 0 0;
     padding: 0;
     list-style: none;
   }
@@ -1371,75 +743,278 @@
   @media (min-width: 1024px) {
     .menu__grid {
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: calc(var(--spacing) * 8);
     }
   }
 
+  /* The narrowest real frame is 360px wide; a wider box would upscale it. */
+  .menu__card {
+    max-width: 360px;
+    width: 100%;
+    margin-inline: auto;
+  }
+
   .menu__frame {
-    position: relative;
     aspect-ratio: 4 / 5;
     overflow: hidden;
-    background-color: var(--color-sage);
   }
 
   .menu__frame picture,
-  .menu__frame img {
+  .menu__photo {
     display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
 
-  /* Branded stand-in (spec § story 25): the Savva "S" on sage, and a caption
-     that says plainly that the photograph is missing. */
   .menu__tile {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: calc(var(--spacing) * 5);
+    gap: calc(var(--spacing) * 4);
     width: 100%;
     height: 100%;
-    background-color: var(--color-sage-deep);
-    color: var(--color-paper);
+    background-color: var(--color-brand);
+    color: var(--color-card);
   }
 
   .menu__monogram {
     width: auto;
-    height: clamp(48px, 11vw, 72px);
+    height: clamp(44px, 10vw, 64px);
     opacity: 0.9;
   }
 
   .menu__tile-note {
     margin: 0;
-    font-size: var(--text-eyebrow);
-    font-weight: 500;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--color-paper);
-  }
-
-  [dir="rtl"] .menu__tile-note {
-    letter-spacing: 0;
-    text-transform: none;
+    font-size: var(--text-small);
+    font-weight: 600;
+    color: var(--color-card);
   }
 
   .menu__body {
-    padding: calc(var(--spacing) * 6) calc(var(--spacing) * 6) calc(var(--spacing) * 7);
+    padding: calc(var(--spacing) * 5) calc(var(--spacing) * 5) calc(var(--spacing) * 6);
   }
 
   .menu__name {
     margin: 0;
     font-size: var(--text-h3);
-    line-height: 1.25;
-    letter-spacing: -0.01em;
-    font-weight: 500;
+    font-weight: 700;
   }
 
   .menu__desc {
-    margin-block: calc(var(--spacing) * 2) 0;
+    margin: calc(var(--spacing) * 2) 0 0;
     font-size: var(--text-small);
-    line-height: 1.6;
     color: var(--color-ink-soft);
+  }
+
+  /* ---- promo ----------------------------------------------------------- */
+
+  .promo__card {
+    display: grid;
+    gap: clamp(32px, 4vw, 56px);
+    padding: clamp(32px, 5vw, 64px);
+    border-radius: var(--radius-card);
+    background-color: var(--color-espresso);
+    color: var(--color-cream);
+  }
+
+  @media (min-width: 900px) {
+    .promo__card {
+      grid-template-columns: minmax(0, 5fr) minmax(0, 4fr);
+      align-items: center;
+    }
+  }
+
+  .promo__soon {
+    display: inline-flex;
+    align-self: flex-start;
+    margin: 0;
+    padding: calc(var(--spacing) * 1.5) calc(var(--spacing) * 3.5);
+    border-radius: 9999px;
+    background-color: color-mix(in oklab, var(--color-cream) 16%, transparent);
+    font-size: var(--text-small);
+    font-weight: 700;
+  }
+
+  .promo__title {
+    margin-block-start: calc(var(--spacing) * 5);
+    color: var(--color-cream);
+  }
+
+  .promo__lead {
+    max-width: 42ch;
+    margin: calc(var(--spacing) * 4) 0 calc(var(--spacing) * 8);
+    color: color-mix(in oklab, var(--color-cream) 82%, transparent);
+  }
+
+  .promo__steps {
+    display: grid;
+    gap: calc(var(--spacing) * 4);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: step;
+  }
+
+  .promo__step {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--spacing) * 4);
+    padding: calc(var(--spacing) * 4) calc(var(--spacing) * 5);
+    border-radius: var(--radius-btn);
+    background-color: color-mix(in oklab, var(--color-cream) 10%, transparent);
+    font-size: var(--text-small);
+  }
+
+  .promo__num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 9999px;
+    background-color: var(--color-brand);
+    color: var(--color-card);
+    font-weight: 700;
+  }
+
+  /* ---- place ----------------------------------------------------------- */
+
+  .place__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: calc(var(--spacing) * 5);
+    margin: clamp(40px, 5vw, 64px) 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  @media (min-width: 768px) {
+    .place__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .place__frame {
+    overflow: hidden;
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+  }
+
+  .place__frame picture,
+  .place__photo {
+    display: block;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+  }
+
+  /* ---- tab bar (phones) ------------------------------------------------ */
+
+  .tabs {
+    position: fixed;
+    inset-block-end: 0;
+    inset-inline: 0;
+    z-index: 60;
+    padding: 8px 12px calc(8px + env(safe-area-inset-bottom));
+    background-color: color-mix(in oklab, var(--color-cream) 94%, transparent);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border-block-start: 1px solid color-mix(in oklab, var(--color-ink) 8%, transparent);
+  }
+
+  @media (min-width: 768px) {
+    .tabs {
+      display: none;
+    }
+  }
+
+  .tabs__list {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .tabs__link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    min-height: 52px;
+    color: var(--color-ink-soft);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .tabs__link[aria-current="true"] {
+    color: var(--color-brand);
+  }
+
+  .tabs__icon {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* The bar floats over the page; the footer needs room to clear it. */
+  @media (max-width: 767px) {
+    footer {
+      padding-block-end: 84px;
+    }
+  }
+
+  /* ---- back to top ----------------------------------------------------- */
+
+  .to-top {
+    position: fixed;
+    inset-block-end: clamp(20px, 4vh, 40px);
+    inset-inline-end: var(--spacing-gutter);
+    z-index: 40;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border: 1px solid color-mix(in oklab, var(--color-ink) 10%, transparent);
+    border-radius: 9999px;
+    background-color: var(--color-card);
+    box-shadow: var(--shadow-card);
+    color: var(--color-ink);
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 240ms var(--ease-brand), visibility 240ms var(--ease-brand);
+  }
+
+  .to-top[data-visible] {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* On a phone the tab bar owns the bottom edge. */
+  @media (max-width: 767px) {
+    .to-top {
+      inset-block-end: 88px;
+    }
+  }
+
+  /* ---- map frame ------------------------------------------------------- */
+
+  .map-frame {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
   }
 }

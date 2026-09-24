@@ -1,0 +1,22 @@
+{# section: place — what the room is like, in three photographs and a short
+   paragraph. It replaces the separate About and Gallery sections: the same
+   frames, shown where they answer a question the guest is actually asking. #}
+
+<section id="place" class="section place" aria-labelledby="place-title">
+  <div class="container-page">
+    <header class="section-head">
+      <h2 id="place-title" class="section-title">{{ t.place.title }}</h2>
+      <p class="section-lead">{{ t.place.body }}{% if t.place.bodyDraft and build.preview %} <span class="draft-badge" title="{{ t.a11y.draftBadgeHint }}">{{ t.a11y.draftBadge }}</span>{% endif %}</p>
+    </header>
+
+    <ul class="place__grid">
+      {% for item in t.place.items %}
+      <li class="place__frame" data-reveal data-reveal-delay="{{ loop.index0 * 80 }}">
+        {% if item.image in media.files %}
+          {% image item.image, item.alt, "(min-width: 1024px) 32vw, 88vw", false, "place__photo" %}
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>

@@ -14,47 +14,33 @@
     "closeMenu": "أغلق القائمة",
     "backToTop": "العودة إلى الأعلى",
     "languageSwitch": "تغيير اللغة",
-    "openLightbox": "عرض بحجم أكبر",
-    "closeLightbox": "إغلاق العارض",
-    "previousImage": "الصورة السابقة",
-    "nextImage": "الصورة التالية",
-    "galleryImageCount": "الصورة {n} من {total}",
     "draftBadge": "نص مبدئي",
-    "draftBadgeHint": "نص مؤقت — بانتظار صياغة المالك"
+    "draftBadgeHint": "نص مؤقت — بانتظار صياغة المالك",
+    "tabBar": "تنقّل سريع"
   },
   "nav": {
     "brand": "سافا",
     "brandAlt": "سافا",
     "links": [
       {
-        "id": "about",
-        "href": "#about",
-        "label": "قصتنا"
-      },
-      {
         "id": "menu",
         "href": "#menu",
         "label": "القائمة"
       },
       {
-        "id": "gallery",
-        "href": "#gallery",
-        "label": "الصور"
+        "id": "promo",
+        "href": "#promo",
+        "label": "المكافآت"
       },
       {
-        "id": "experience",
-        "href": "#experience",
-        "label": "التجربة"
+        "id": "place",
+        "href": "#place",
+        "label": "المكان"
       },
       {
         "id": "visit",
         "href": "#visit",
         "label": "زورونا"
-      },
-      {
-        "id": "instagram",
-        "href": "#instagram",
-        "label": "إنستغرام"
       }
     ],
     "language": {
@@ -65,29 +51,29 @@
     }
   },
   "hero": {
-    "badge": "قهوة مختصة · المدينة المنورة",
-    "ratingLabel": "التقييم {value} من 5 على Google",
-    "heading": "سافا — قهوة مختصة في المدينة المنورة",
-    "line": "A day in savva is what you need to be savva",
-    "lineNote": "Verbatim line from the @savva_cafe Instagram bio, captured 2026-09-14 (recorded in reference.md and spec §8). The brand's own words — not placeholder copy; shown once, under the mark in the hero, do not flag as draft. Left in English on purpose: the quote itself is not translated.",
-    "infoLabel": "العنوان وساعات العمل والهاتف",
-    "ctaMenu": "تصفح القائمة",
-    "ctaDirections": "الاتجاهات",
-    "image": "assets/images/hero/interior-lounge-arches-wide.jpg",
-    "imageAlt": "صالة سافا: نوافذ بعقود خشبية وأرائك كريمية ونباتات طويلة"
-  },
-  "about": {
-    "title": "يوم في سافا",
-    "body": {
-      "text": "سافا بيت قهوة مختصة في المدينة المنورة. المكان هادئ بطبيعته: إضاءة خافتة، وتصميم داخلي جُدّد حديثًا، وتراس لساعات المساء. قهوة اليوم تتنقل بين حبوب إثيوبية وأخرى كولومبية، وقطعة التشيز كيك نادرًا ما تبقى حتى العصر. نفتح مبكرًا ونغلق عند الثانية.",
+    "title": {
+      "text": "يوم في سافا هو ما تحتاجه",
       "draft": true
     },
-    "image": "assets/images/gallery/interior-sofa-tray-espresso.jpg",
-    "imageAlt": "صينية خشبية عليها إسبريسو وقطع براوني على طاولة منخفضة بجانب أريكة"
+    "titleNote": "النص الإنجليزي «A day in savva is what you need to be savva» مأخوذ حرفيًا من نبذة إنستغرام. هذه صياغة عربية مقترحة بمعناه — على المالك اعتمادها أو تغييرها.",
+    "subtitle": {
+      "text": "قهوة مختصة، ومكان هادئ، وتراس في المدينة المنورة — من الصباح الباكر حتى الثانية بعد منتصف الليل.",
+      "draft": true
+    },
+    "ctaMenu": "تصفح القائمة",
+    "ctaDirections": "الاتجاهات",
+    "ratingLabel": "التقييم {value} من 5 على Google، من {count} مراجعة",
+    "image": "assets/images/hero/interior-lounge-arches-wide.jpg",
+    "imageAlt": "صالة سافا: نوافذ خشبية مقوّسة، وكنب بلون كريمي، ونباتات طويلة"
   },
   "menu": {
     "title": "ماذا تطلب",
+    "lead": {
+      "text": "ستة أصناف هي الأكثر طلبًا، وهي ما نقدّمه لضيف يزورنا لأول مرة.",
+      "draft": true
+    },
     "photoComingSoon": "الصورة قريبًا",
+    "cta": "افتح في خرائط Google",
     "items": [
       {
         "id": "flat-white",
@@ -152,13 +138,40 @@
       }
     ]
   },
-  "gallery": {
-    "title": "سافا من الداخل",
-    "items": [
+  "promo": {
+    "title": "المكافآت",
+    "soon": "قريبًا",
+    "lead": {
+      "text": "امسح رمز QR في فاتورتك واجمع نقاطًا تقودك إلى فنجان مجاني. بلا استمارات وبلا بطاقات.",
+      "draft": true
+    },
+    "steps": [
       {
-        "image": "assets/images/gallery/interior-seating-white-tables.jpg",
-        "alt": "أريكة بيج طويلة تحت نافذتين بعقود، وطاولات بيضاء بقاعدة مركزية وكراسٍ دائرية بين أصص النباتات"
+        "id": "scan",
+        "label": "امسح رمز QR في الفاتورة"
       },
+      {
+        "id": "collect",
+        "label": "تُضاف النقاط إلى حسابك"
+      },
+      {
+        "id": "redeem",
+        "label": "استبدلها بمشروب"
+      }
+    ],
+    "note": {
+      "text": "يبدأ البرنامج لاحقًا هذا الموسم.",
+      "draft": true
+    },
+    "cta": "تابعنا للإعلان"
+  },
+  "place": {
+    "title": "المكان",
+    "body": {
+      "text": "سافا بيت قهوة مختصة في المدينة المنورة. المكان هادئ بطبيعته: إضاءة خافتة، وتصميم داخلي جُدّد حديثًا، وتراس لساعات المساء. نفتح مبكرًا ونغلق عند الثانية.",
+      "draft": true
+    },
+    "items": [
       {
         "image": "assets/images/gallery/interior-entrance-string-lights.jpg",
         "alt": "المكان من المدخل: كراسٍ خشبية وطاولات دائرية تحت أضواء معلّقة، ولوحة سافا فوق الطاولة في العمق"
@@ -168,80 +181,24 @@
         "alt": "طاولة الإعداد: أكواب سافا بلون المريمية مرصوصة، ومطحنة وآلة إسبريسو، ونبتة على سطح الرخام"
       },
       {
-        "image": "assets/images/gallery/interior-relief-wall-table.jpg",
-        "alt": "جدار أبيض بنقش بارز بجانب طاولة عليها سينامون رول وقهوة مثلجة"
-      },
-      {
-        "image": "assets/images/gallery/interior-table-red-flowers.jpg",
-        "alt": "ورد أحمر في مزهرية زجاجية طويلة على طاولة رخامية بجانب إبريق سيراميك مضلّع"
-      },
-      {
-        "image": "assets/images/gallery/interior-sofa-tray-espresso.jpg",
-        "alt": "صينية خشبية على طاولة منخفضة: قطع براوني وكوب ماء وفنجان إسبريسو"
-      },
-      {
-        "image": "assets/images/gallery/terrace-storefront-evening.jpg",
-        "alt": "لوحة سافا فوق الواجهة الزجاجية بعد المغيب، وطاولات خارجية وكراسي من الخيزران"
-      },
-      {
-        "image": "assets/images/gallery/storefront-daylight-plants.jpg",
-        "alt": "اللوحة المضاءة تحت الرواق نهارًا، وأشجار زيتون أمام المدخل"
-      },
-      {
-        "image": "assets/images/gallery/terrace-tables-night.jpg",
-        "alt": "طاولات خارجية على الممشى الخشبي ليلًا، والداخل مضاء خلف الزجاج"
-      },
-      {
-        "image": "assets/images/gallery/barista-with-iced-coffee.jpg",
-        "alt": "باريستا بقميص سافا الرملي يحمل قهوة مثلجة خارج المقهى"
-      },
-      {
-        "image": "assets/images/gallery/iced-drinks-on-wooden-shelf.jpg",
-        "alt": "ثلاثة أكواب تحمل شعار سافا على رفّ خشبي في ضوء الشمس"
-      }
-    ]
-  },
-  "experience": {
-    "title": "ما الذي ينتظرك",
-    "items": [
-      {
-        "id": "specialty-coffee",
-        "label": "قهوة مختصة"
-      },
-      {
-        "id": "fresh-desserts",
-        "label": "حلويات طازجة"
-      },
-      {
-        "id": "cozy-interior",
-        "label": "أجواء دافئة"
-      },
-      {
-        "id": "free-wifi",
-        "label": "واي فاي مجاني"
-      },
-      {
-        "id": "outdoor-seating",
-        "label": "جلسات خارجية"
-      },
-      {
-        "id": "friendly-staff",
-        "label": "طاقم ودود"
+        "image": "assets/images/gallery/interior-seating-white-tables.jpg",
+        "alt": "أريكة بيج طويلة تحت نافذتين بعقود، وطاولات بيضاء بقاعدة مركزية وكراسٍ دائرية بين أصص النباتات"
       }
     ]
   },
   "visit": {
-    "title": "موقعنا في المدينة المنورة",
+    "title": "كيف تصل إلينا",
     "addressLabel": "العنوان",
     "phoneLabel": "الهاتف",
     "hoursLabel": "ساعات العمل",
     "showMap": "عرض الخريطة",
-    "mapTitle": "سافا على خرائط جوجل",
-    "openInMaps": "افتح في خرائط جوجل",
+    "mapTitle": "سافا على خرائط Google",
+    "mapPreviewAlt": "صورة زخرفية مؤقتة؛ تُحمّل الخريطة عند الضغط على عرض الخريطة",
+    "openInMaps": "افتح في خرائط Google",
     "copyAddress": "نسخ العنوان",
     "addressCopied": "تم النسخ",
     "openNow": "مفتوح الآن",
-    "closedNow": "مغلق الآن",
+    "closedNow": "مغلق",
     "opensAt": "يفتح في {time}",
     "closesAt": "يغلق في {time}",
     "days": {
@@ -254,67 +211,21 @@
       "fri": "الجمعة"
     }
   },
-  "instagram": {
-    "title": "‎@savva_cafe",
-    "cta": "تابعنا على إنستغرام",
-    "note": "أحدث تسع منشورات حتى 14 سبتمبر 2026.",
-    "items": [
-      {
-        "image": "assets/images/instagram/madini-cookies-closeup.jpg",
-        "alt": "كوكيز مديني عن قرب، بالسمسم الأسود والفواكه المجففة يملأ الإطار",
-        "href": "https://www.instagram.com/savva_cafe/p/DdPEf8uNOSa/"
-      },
-      {
-        "image": "assets/images/instagram/iced-berry-drink.jpg",
-        "alt": "مشروب مثلج أحمر داكن في كوب سافا على طاولة خشبية",
-        "href": "https://www.instagram.com/savva_cafe/p/DdMxDh9MvzH/"
-      },
-      {
-        "image": "assets/images/instagram/frozen-berry-drink.jpg",
-        "alt": "مشروب توت مثلج في كوب سافا الشفاف مع رشّة حمراء فوقه",
-        "href": "https://www.instagram.com/savva_cafe/reel/DdJ6WD4sOUq/"
-      },
-      {
-        "image": "assets/images/instagram/pouring-berry-drink.jpg",
-        "alt": "مشروب أحمر يُسكب فوق الثلج في كوب بشعار سافا",
-        "href": "https://www.instagram.com/savva_cafe/p/DdHV3QCsEbd/"
-      },
-      {
-        "image": "assets/images/instagram/espresso-into-savva-cups.jpg",
-        "alt": "إسبريسو يُسكب في أكواب سافا الخضراء والطينية المرصوصة",
-        "href": "https://www.instagram.com/savva_cafe/reel/DdCGu6UM5rV/"
-      },
-      {
-        "image": "assets/images/instagram/sandwich-and-iced-coffee-window-seat.jpg",
-        "alt": "ساندويتش مغلّف وقهوة مثلجة على لوح خشبي بجانب حاسوب مفتوح عند النافذة",
-        "href": "https://www.instagram.com/savva_cafe/p/Dc_kJc2MzdV/"
-      },
-      {
-        "image": "assets/images/instagram/tray-at-car-window.jpg",
-        "alt": "صينية بمشروب مثلج وقطعة كيك تُناوَل عبر نافذة السيارة",
-        "href": "https://www.instagram.com/savva_cafe/p/Dc8_ifwsihu/"
-      },
-      {
-        "image": "assets/images/instagram/sandwich-on-branded-plate.jpg",
-        "alt": "نصفا ساندويتش بخبز السمسم في طبق يحمل شعار سافا أمام نباتات خضراء",
-        "href": "https://www.instagram.com/savva_cafe/p/Dc6pEniMBhh/"
-      },
-      {
-        "image": "assets/images/instagram/three-cups-on-counter.jpg",
-        "alt": "ثلاثة أكواب بشعار سافا على الطاولة: توت وكراميل وقهوة مثلجة",
-        "href": "https://www.instagram.com/savva_cafe/p/Dc37CqYsmCr/"
-      }
-    ]
-  },
   "footer": {
     "logoAlt": "شعار سافا كوفي",
-    "navTitle": "تصفح",
+    "navTitle": "تصفّح",
     "followTitle": "تابعنا",
-    "findTitle": "الموقع",
-    "contactTitle": "تواصل",
+    "findTitle": "موقعنا",
+    "contactTitle": "اتصل بنا",
     "instagram": "إنستغرام",
-    "maps": "خرائط جوجل",
-    "copyright": "© {year} سافا. جميع الحقوق محفوظة.",
-    "ratingNote": "‎4.7 على جوجل من 729 تقييمًا."
+    "maps": "خرائط Google",
+    "copyright": "© {year} سافا كوفي",
+    "ratingNote": "{value} على Google، من {count} مراجعة"
+  },
+  "tabs": {
+    "home": "الرئيسية",
+    "menu": "القائمة",
+    "promo": "المكافآت",
+    "visit": "زورونا"
   }
 }

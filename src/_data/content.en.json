@@ -14,47 +14,33 @@
     "closeMenu": "Close menu",
     "backToTop": "Back to top",
     "languageSwitch": "Switch language",
-    "openLightbox": "View larger",
-    "closeLightbox": "Close viewer",
-    "previousImage": "Previous photo",
-    "nextImage": "Next photo",
-    "galleryImageCount": "Photo {n} of {total}",
     "draftBadge": "Draft copy",
-    "draftBadgeHint": "Placeholder text — to be replaced by the owner"
+    "draftBadgeHint": "Placeholder text — to be replaced by the owner",
+    "tabBar": "Quick navigation"
   },
   "nav": {
     "brand": "Savva",
     "brandAlt": "Savva",
     "links": [
       {
-        "id": "about",
-        "href": "#about",
-        "label": "Our Story"
-      },
-      {
         "id": "menu",
         "href": "#menu",
         "label": "Menu"
       },
       {
-        "id": "gallery",
-        "href": "#gallery",
-        "label": "Gallery"
+        "id": "promo",
+        "href": "#promo",
+        "label": "Rewards"
       },
       {
-        "id": "experience",
-        "href": "#experience",
-        "label": "Experience"
+        "id": "place",
+        "href": "#place",
+        "label": "The place"
       },
       {
         "id": "visit",
         "href": "#visit",
         "label": "Visit"
-      },
-      {
-        "id": "instagram",
-        "href": "#instagram",
-        "label": "Instagram"
       }
     ],
     "language": {
@@ -65,29 +51,26 @@
     }
   },
   "hero": {
-    "badge": "Specialty coffee · Madinah",
-    "ratingLabel": "Rated {value} out of 5 on Google",
-    "heading": "Savva — specialty coffee in Madinah",
-    "line": "A day in savva is what you need to be savva",
-    "lineNote": "Verbatim line from the @savva_cafe Instagram bio, captured 2026-09-14 (recorded in reference.md and spec §8). The brand's own words — not placeholder copy; shown once, under the mark in the hero, do not flag as draft.",
-    "infoLabel": "Address, opening hours and phone",
-    "ctaMenu": "View Menu",
-    "ctaDirections": "Get Directions",
+    "title": "A day in savva is what you need to be savva",
+    "titleNote": "Verbatim from the @savva_cafe Instagram bio, captured 2026-09-14. The brand's own words — not placeholder copy.",
+    "subtitle": {
+      "text": "Specialty coffee, a quiet room and a terrace in Madinah — open from early morning until two at night.",
+      "draft": true
+    },
+    "ctaMenu": "See the menu",
+    "ctaDirections": "Get directions",
+    "ratingLabel": "Rated {value} out of 5 on Google, from {count} reviews",
     "image": "assets/images/hero/interior-lounge-arches-wide.jpg",
     "imageAlt": "The lounge at Savva: arched wooden windows, cream sofas and tall plants"
   },
-  "about": {
-    "title": "A day in Savva",
-    "body": {
-      "text": "Savva is a specialty coffee house in Madinah. The room is quiet by design: soft light, a recently refreshed interior, and a terrace for the cooler hours. The coffee of the day moves between Ethiopian and Colombian beans, and the cheesecake rarely lasts the afternoon. Doors open early and close at two.",
-      "draft": true
-    },
-    "image": "assets/images/gallery/interior-sofa-tray-espresso.jpg",
-    "imageAlt": "A wooden tray with an espresso and brownie squares on a low table by a bouclé sofa"
-  },
   "menu": {
     "title": "What to order",
+    "lead": {
+      "text": "Six things the room orders most, and the ones we would put in front of a first-time guest.",
+      "draft": true
+    },
     "photoComingSoon": "Photo coming soon",
+    "cta": "Open in Google Maps",
     "items": [
       {
         "id": "flat-white",
@@ -152,13 +135,40 @@
       }
     ]
   },
-  "gallery": {
-    "title": "Inside Savva",
-    "items": [
+  "promo": {
+    "title": "Rewards",
+    "soon": "Coming soon",
+    "lead": {
+      "text": "Scan the QR on your receipt and collect points towards a free cup. Nothing to fill in, nothing to carry.",
+      "draft": true
+    },
+    "steps": [
       {
-        "image": "assets/images/gallery/interior-seating-white-tables.jpg",
-        "alt": "A long beige sofa under two arched windows, white pedestal tables and round moulded chairs between potted trees"
+        "id": "scan",
+        "label": "Scan the QR on your receipt"
       },
+      {
+        "id": "collect",
+        "label": "Points land in your account"
+      },
+      {
+        "id": "redeem",
+        "label": "Trade them for a drink"
+      }
+    ],
+    "note": {
+      "text": "The programme opens later this season.",
+      "draft": true
+    },
+    "cta": "Follow for the launch"
+  },
+  "place": {
+    "title": "The place",
+    "body": {
+      "text": "Savva is a specialty coffee house in Madinah. The room is quiet by design: soft light, a recently refreshed interior, and a terrace for the cooler hours. Doors open early and close at two.",
+      "draft": true
+    },
+    "items": [
       {
         "image": "assets/images/gallery/interior-entrance-string-lights.jpg",
         "alt": "The room from the entrance: wooden chairs and round tables under string lights, the SAVVA sign over the counter at the back"
@@ -168,80 +178,24 @@
         "alt": "The bar counter: stacks of sage SAVVA cups, the grinder and espresso machine, a plant on the marble top"
       },
       {
-        "image": "assets/images/gallery/interior-relief-wall-table.jpg",
-        "alt": "An embossed white relief wall beside a table with a cinnamon roll and an iced coffee"
-      },
-      {
-        "image": "assets/images/gallery/interior-table-red-flowers.jpg",
-        "alt": "Red roses in a tall glass vase on a marble table, beside a ribbed ceramic jug"
-      },
-      {
-        "image": "assets/images/gallery/interior-sofa-tray-espresso.jpg",
-        "alt": "A wooden tray on a low table: brownie squares, a glass of water and an espresso"
-      },
-      {
-        "image": "assets/images/gallery/terrace-storefront-evening.jpg",
-        "alt": "The SAVVA sign above the glass front after dark, with outdoor tables and rattan chairs"
-      },
-      {
-        "image": "assets/images/gallery/storefront-daylight-plants.jpg",
-        "alt": "The lit sign under the arcade by day, olive trees in front of the entrance"
-      },
-      {
-        "image": "assets/images/gallery/terrace-tables-night.jpg",
-        "alt": "Outdoor tables along the wooden deck at night, the lit interior behind the glazing"
-      },
-      {
-        "image": "assets/images/gallery/barista-with-iced-coffee.jpg",
-        "alt": "A barista in a sand-coloured SAVVA tee holding an iced coffee outside the café"
-      },
-      {
-        "image": "assets/images/gallery/iced-drinks-on-wooden-shelf.jpg",
-        "alt": "Three branded cups in a row on a wooden ledge in hard sunlight"
-      }
-    ]
-  },
-  "experience": {
-    "title": "What to expect",
-    "items": [
-      {
-        "id": "specialty-coffee",
-        "label": "Specialty Coffee"
-      },
-      {
-        "id": "fresh-desserts",
-        "label": "Fresh Desserts"
-      },
-      {
-        "id": "cozy-interior",
-        "label": "Cozy Interior"
-      },
-      {
-        "id": "free-wifi",
-        "label": "Free Wi-Fi"
-      },
-      {
-        "id": "outdoor-seating",
-        "label": "Outdoor Seating"
-      },
-      {
-        "id": "friendly-staff",
-        "label": "Friendly Staff"
+        "image": "assets/images/gallery/interior-seating-white-tables.jpg",
+        "alt": "A long beige sofa under two arched windows, white pedestal tables and round moulded chairs between potted trees"
       }
     ]
   },
   "visit": {
-    "title": "Find us in Madinah",
+    "title": "Find us",
     "addressLabel": "Address",
     "phoneLabel": "Phone",
-    "hoursLabel": "Opening Hours",
+    "hoursLabel": "Opening hours",
     "showMap": "Show map",
     "mapTitle": "Savva on Google Maps",
+    "mapPreviewAlt": "Decorative placeholder; the map loads when you press Show map",
     "openInMaps": "Open in Google Maps",
     "copyAddress": "Copy address",
     "addressCopied": "Copied",
     "openNow": "Open now",
-    "closedNow": "Closed now",
+    "closedNow": "Closed",
     "opensAt": "Opens at {time}",
     "closesAt": "Closes at {time}",
     "days": {
@@ -254,67 +208,21 @@
       "fri": "Friday"
     }
   },
-  "instagram": {
-    "title": "@savva_cafe",
-    "cta": "Follow on Instagram",
-    "note": "The nine most recent posts as of 14 September 2026.",
-    "items": [
-      {
-        "image": "assets/images/instagram/madini-cookies-closeup.jpg",
-        "alt": "Madini Cookies close up, black sesame and dried fruit filling the frame",
-        "href": "https://www.instagram.com/savva_cafe/p/DdPEf8uNOSa/"
-      },
-      {
-        "image": "assets/images/instagram/iced-berry-drink.jpg",
-        "alt": "A deep red iced drink in a branded SAVVA cup on a wooden table",
-        "href": "https://www.instagram.com/savva_cafe/p/DdMxDh9MvzH/"
-      },
-      {
-        "image": "assets/images/instagram/frozen-berry-drink.jpg",
-        "alt": "A frozen berry drink in a clear SAVVA Coffee cup, a red splash above it",
-        "href": "https://www.instagram.com/savva_cafe/reel/DdJ6WD4sOUq/"
-      },
-      {
-        "image": "assets/images/instagram/pouring-berry-drink.jpg",
-        "alt": "A red drink poured over ice into a branded cup",
-        "href": "https://www.instagram.com/savva_cafe/p/DdHV3QCsEbd/"
-      },
-      {
-        "image": "assets/images/instagram/espresso-into-savva-cups.jpg",
-        "alt": "Espresso pouring into stacked sage and terracotta SAVVA cups",
-        "href": "https://www.instagram.com/savva_cafe/reel/DdCGu6UM5rV/"
-      },
-      {
-        "image": "assets/images/instagram/sandwich-and-iced-coffee-window-seat.jpg",
-        "alt": "A wrapped sandwich and an iced coffee on a board beside an open laptop at the window",
-        "href": "https://www.instagram.com/savva_cafe/p/Dc_kJc2MzdV/"
-      },
-      {
-        "image": "assets/images/instagram/tray-at-car-window.jpg",
-        "alt": "A tray with an iced drink and a slice of cake handed through a car window",
-        "href": "https://www.instagram.com/savva_cafe/p/Dc8_ifwsihu/"
-      },
-      {
-        "image": "assets/images/instagram/sandwich-on-branded-plate.jpg",
-        "alt": "A halved sesame-bun sandwich on a SAVVA-monogrammed plate against greenery",
-        "href": "https://www.instagram.com/savva_cafe/p/Dc6pEniMBhh/"
-      },
-      {
-        "image": "assets/images/instagram/three-cups-on-counter.jpg",
-        "alt": "Three branded cups on the counter: berry, caramel and iced coffee",
-        "href": "https://www.instagram.com/savva_cafe/p/Dc37CqYsmCr/"
-      }
-    ]
-  },
   "footer": {
-    "logoAlt": "The SAVVA Coffee wordmark",
+    "logoAlt": "Savva Coffee",
     "navTitle": "Explore",
     "followTitle": "Follow",
     "findTitle": "Find us",
     "contactTitle": "Contact",
     "instagram": "Instagram",
     "maps": "Google Maps",
-    "copyright": "© {year} Savva. All rights reserved.",
-    "ratingNote": "4.7 on Google, from 729 reviews."
+    "copyright": "© {year} Savva Coffee",
+    "ratingNote": "{value} on Google, from {count} reviews"
+  },
+  "tabs": {
+    "home": "Home",
+    "menu": "Menu",
+    "promo": "Rewards",
+    "visit": "Visit"
   }
 }

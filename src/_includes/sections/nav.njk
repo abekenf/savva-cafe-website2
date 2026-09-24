@@ -1,16 +1,14 @@
-{# section: nav — sticky page chrome: brand mark, six anchors, language switch,
-   burger below 768px. Markup and styling only; the scroll state, the panel and
-   the active link are set by ticket 06 through the data-attributes declared here.
-   Styling lives in src/css/main.css so it ships in the cached stylesheet instead
-   of once per page. #}
+{# section: nav — light bar. Mark, four anchors, language pair, and the one act
+   the bar carries. Markup and styling only: the scrolled state, the panel and
+   the active link are set by app.js through the data-attributes declared here.
+   Below 768px the anchors move to the bottom tab bar, so the bar keeps only
+   the mark, the language pair and the burger for the rest. #}
 {% from "macros/brand.njk" import mark %}
 {% from "macros/nav.njk" import navLinkItems, languageSwitch %}
 
 <nav id="nav" class="nav" data-nav aria-label="{{ t.a11y.primaryNav }}">
   <div class="container-page nav__bar">
     <a class="nav__brand" href="#hero" aria-label="{{ t.nav.brandAlt }}">
-      {# Inlined, not <img>: the mark is recoloured through currentColor, and
-         src/assets/images/ is not copied to the output. #}
       {{ mark("nav__mark") }}
     </a>
 
@@ -21,10 +19,7 @@
     <div class="nav__end">
       {{ languageSwitch(t, "nav__lang", "nav__lang-current", "nav__lang-sep", "nav__lang-other") }}
 
-      {# The reference keeps its main act in a frame at the end of the bar; here it
-         is the same act the hero leads with. Hidden below 1024px, where the
-         burger panel takes over. #}
-      <a class="btn-frame nav__cta" href="{{ site.links.maps }}" target="_blank" rel="noopener">{{ t.hero.ctaDirections }}</a>
+      <a class="btn btn--primary nav__cta" href="{{ site.links.maps }}" target="_blank" rel="noopener">{{ t.hero.ctaDirections }}</a>
 
       <button class="nav__toggle" type="button" data-nav-toggle aria-expanded="false"
               aria-controls="nav-panel" aria-label="{{ t.a11y.openMenu }}"
@@ -34,7 +29,7 @@
     </div>
   </div>
 
-  {# Closed until ticket 06 opens it; `hidden` keeps it out of the tab order. #}
+  {# Closed until app.js opens it; `hidden` keeps it out of the tab order. #}
   <div class="nav__panel" id="nav-panel" hidden>
     <ul class="nav__panel-list">
       {{ navLinkItems(t.nav.links, "nav__panel-link") }}

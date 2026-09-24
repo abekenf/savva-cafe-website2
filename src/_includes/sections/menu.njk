@@ -1,38 +1,32 @@
-{# section: menu — six signature items, order fixed by the dictionary.
-   An item whose `image` is an empty string, or whose file is not on disk yet,
-   gets the branded sage tile instead of someone else's photograph.
-   Styling lives in src/css/main.css so it ships in the cached stylesheet instead
-   of once per page. Cards cap at 360px and centre in their grid cell: the
-   narrowest real photo (matcha-latte.jpg) is only 360px wide, so a wider box
-   would upscale it past 1x. #}
+{# section: menu — the centre of the page. Six signature items as cards, each a
+   photograph, a name and one line. No prices: the owner asked for a showcase,
+   not a price list. An item without a frame gets the branded tile. #}
 {% from "macros/brand.njk" import monogram %}
-
-{% from "macros/ornament.njk" import sectionHead %}
 
 <section id="menu" class="section menu" aria-labelledby="menu-title">
   <div class="container-page">
-    {{ sectionHead("menu-title", t.menu.title) }}
+    <header class="section-head">
+      <h2 id="menu-title" class="section-title">{{ t.menu.title }}</h2>
+      <p class="section-lead">{{ t.menu.lead }}{% if t.menu.leadDraft and build.preview %} <span class="draft-badge" title="{{ t.a11y.draftBadgeHint }}">{{ t.a11y.draftBadge }}</span>{% endif %}</p>
+    </header>
 
     <ul class="menu__grid">
       {% for item in t.menu.items %}
-      <li>
-        <article class="card menu__card mx-auto w-full max-w-[360px]" data-menu-item="{{ item.id }}" data-reveal data-reveal-delay="{{ loop.index0 * 60 }}">
-          <div class="menu__frame">
-            {% if item.image and item.image in media.files %}
-              {% image item.image, item.imageAlt, "(min-width: 1024px) min(360px, 29vw), (min-width: 640px) min(360px, 44vw), 90vw" %}
-            {% else %}
-              <div class="menu__tile" role="img" aria-label="{{ item.imageAlt }}">
-                {{ monogram("menu__monogram") }}
-                <p class="menu__tile-note">{{ t.menu.photoComingSoon }}</p>
-              </div>
-            {% endif %}
-          </div>
-
-          <div class="menu__body">
-            <h3 class="menu__name">{{ item.name }}</h3>
-            <p class="menu__desc">{{ item.desc }}{% if item.descDraft and build.preview %} <span class="draft-badge" title="{{ t.a11y.draftBadgeHint }}">{{ t.a11y.draftBadge }}</span>{% endif %}</p>
-          </div>
-        </article>
+      <li class="card menu__card" data-menu-item="{{ item.id }}" data-reveal data-reveal-delay="{{ loop.index0 * 60 }}">
+        <div class="menu__frame">
+          {% if item.image in media.files %}
+            {% image item.image, item.imageAlt, "(min-width: 1024px) 30vw, (min-width: 640px) 44vw, 88vw", false, "menu__photo" %}
+          {% else %}
+            <div class="menu__tile">
+              {{ monogram("menu__monogram") }}
+              <p class="menu__tile-note">{{ t.menu.photoComingSoon }}</p>
+            </div>
+          {% endif %}
+        </div>
+        <div class="menu__body">
+          <h3 class="menu__name">{{ item.name }}</h3>
+          <p class="menu__desc">{{ item.desc }}{% if item.descDraft and build.preview %} <span class="draft-badge" title="{{ t.a11y.draftBadgeHint }}">{{ t.a11y.draftBadge }}</span>{% endif %}</p>
+        </div>
       </li>
       {% endfor %}
     </ul>

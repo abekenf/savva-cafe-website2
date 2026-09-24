@@ -1,0 +1,27 @@
+{# section: promo — the rewards programme, announced before it exists. One dark
+   card on the light page, three steps, and an honest "coming soon": the
+   mechanic itself (scanning the ZATCA QR on the receipt, points, the draw)
+   needs a server and is the next stage of work, not this one. Until then the
+   action button follows the account that will announce it. #}
+
+<section id="promo" class="section promo" aria-labelledby="promo-title">
+  <div class="container-page">
+    <div class="promo__card" data-reveal>
+      <div class="promo__intro">
+        <p class="promo__soon">{{ t.promo.soon }}</p>
+        <h2 id="promo-title" class="section-title promo__title">{{ t.promo.title }}</h2>
+        <p class="promo__lead">{{ t.promo.lead }}{% if t.promo.leadDraft and build.preview %} <span class="draft-badge" title="{{ t.a11y.draftBadgeHint }}">{{ t.a11y.draftBadge }}</span>{% endif %}</p>
+        <a class="btn btn--cream" href="{{ site.links.instagram }}" target="_blank" rel="noopener">{{ t.promo.cta }}</a>
+      </div>
+
+      <ol class="promo__steps">
+        {% for step in t.promo.steps %}
+        <li class="promo__step">
+          <span class="promo__num" aria-hidden="true">{{ loop.index }}</span>
+          <span>{{ step.label }}</span>
+        </li>
+        {% endfor %}
+      </ol>
+    </div>
+  </div>
+</section>

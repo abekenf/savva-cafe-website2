@@ -3,7 +3,7 @@
    `sprite()` goes into the page body exactly once (layouts/base.njk); `mark()`
    and `monogram()` are <use> references to it. Two reasons the mark is inline
    SVG and not <img src>: the single path is fill="currentColor", which is what
-   makes it dark on the cream bar and cream on the espresso footer, and
+   makes it dark on the cream bar and cream on the dark footer, and
    src/assets/images/ is not copied to the output at all.
 
    Before this file the two paths were pasted five times into every page —

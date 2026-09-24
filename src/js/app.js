@@ -1,4 +1,4 @@
-// Savva Cafe behaviour. Contract: data-* attributes only, eight independent parts below.
+// Savva Cafe behaviour. Contract: data-* attributes only, six independent parts below.
 (function () {
   "use strict";
 
@@ -11,7 +11,7 @@
     return Array.prototype.slice.call((context || document).querySelectorAll(selector));
   }
 
-  // Shared focus trap for the nav panel and the lightbox.
+  // Focus trap for the nav panel.
   function trapFocus(e, root) {
     if (e.key !== "Tab") return;
     const focusable = queryAll(FOCUSABLE, root);
@@ -91,135 +91,6 @@
     }
     toggle.addEventListener("click", () => setOpen(panel.hidden));
     panel.addEventListener("click", e => e.target.closest("a") && setOpen(false));
-  }
-
-  // parallax — hero drifts at 12% of scroll via `transform`. Reads [data-parallax].
-  function parallax() {
-    const layers = queryAll("[data-parallax]");
-    if (!layers.length || reducedMotion) return;
-    let ticking = false;
-    function paint() {
-      const offset = scrollY * 0.12;
-      layers.forEach(el => el.style.transform = "translate3d(0, " + offset + "px, 0)");
-      ticking = false;
-    }
-    addEventListener("scroll", () => {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(paint);
-    }, PASSIVE);
-    paint();
-  }
-
-  // lightbox — <dialog> built on first click. Reads [data-lightbox], [data-lightbox-group]; glyphs flip for RTL.
-  function lightbox() {
-    const triggers = queryAll("[data-lightbox]");
-    if (!triggers.length) return;
-
-    const labels = isArabic
-      ? { close: "إغلاق العارض", prev: "الصورة السابقة", next: "الصورة التالية" }
-      : { close: "Close viewer", prev: "Previous photo", next: "Next photo" };
-    let dialog;
-    let image;
-    let caption;
-    let group = [];
-    let index = 0;
-    let opener = null;
-
-    function makeButton(className, glyph, label, onClick) {
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = className;
-      btn.textContent = glyph;
-      btn.setAttribute("aria-label", label);
-      btn.addEventListener("click", onClick);
-      return btn;
-    }
-    function move(direction) {
-      if (!group.length) return;
-      index = (index + direction + group.length) % group.length;
-      paint();
-    }
-    // The tile's own currentSrc was picked for a ~308px box; the dialog is up to
-    // 1100px wide, so it takes the widest candidate the frame actually has.
-    function widest(img) {
-      let best = null;
-      (img.getAttribute("srcset") || "").split(",").forEach(function (part) {
-        const pair = part.trim().split(/\s+/);
-        const width = pair.length === 2 ? parseInt(pair[1], 10) : NaN;
-        if (!isNaN(width) && (!best || width > best.width)) best = { url: pair[0], width: width };
-      });
-      return best ? best.url : img.currentSrc || img.src;
-    }
-    function paint() {
-      const img = group[index].querySelector("img");
-      if (!img) return;
-      image.src = widest(img);
-      caption.textContent = img.alt || "";
-    }
-    function build() {
-      dialog = document.createElement("dialog");
-      dialog.className = "lightbox";
-      dialog.setAttribute("aria-modal", "true");
-      const figure = document.createElement("figure");
-      figure.className = "lightbox__figure";
-      image = document.createElement("img");
-      image.className = "lightbox__image";
-      image.alt = "";
-      caption = document.createElement("figcaption");
-      caption.className = "lightbox__caption";
-      caption.id = "lightbox-caption";
-      figure.append(image, caption);
-      dialog.setAttribute("aria-labelledby", caption.id);
-
-      const prevGlyph = isArabic ? "›" : "‹";
-      const nextGlyph = isArabic ? "‹" : "›";
-      dialog.append(
-        makeButton("lightbox__close", "×", labels.close, () => dialog.close()),
-        makeButton("lightbox__nav lightbox__nav--prev", prevGlyph, labels.prev, () => move(-1)),
-        figure,
-        makeButton("lightbox__nav lightbox__nav--next", nextGlyph, labels.next, () => move(1))
-      );
-
-      dialog.addEventListener("click", e => e.target === dialog && dialog.close());
-      dialog.addEventListener("keydown", e => {
-        // Explicit: native <dialog> Escape-close was unreliable in testing.
-        if (e.key === "Escape") { e.preventDefault(); dialog.close(); }
-        else if (e.key === "ArrowRight") move(1);
-        else if (e.key === "ArrowLeft") move(-1);
-        else trapFocus(e, dialog);
-      });
-      dialog.addEventListener("close", () => {
-        document.body.style.overflow = "";
-        if (opener) opener.focus();
-      });
-      let startX = null;
-      dialog.addEventListener("touchstart", e => startX = e.changedTouches[0].clientX, PASSIVE);
-      dialog.addEventListener("touchend", e => {
-        if (startX === null) return;
-        const dx = e.changedTouches[0].clientX - startX;
-        if (Math.abs(dx) > 40) move(dx < 0 ? 1 : -1);
-        startX = null;
-      }, PASSIVE);
-
-      document.body.appendChild(dialog);
-    }
-
-    triggers.forEach(tile => {
-      tile.addEventListener("click", () => {
-        if (!dialog) build();
-        const groupName = tile.dataset.lightboxGroup || "";
-        group = queryAll('[data-lightbox][data-lightbox-group="' + groupName + '"]');
-        index = group.indexOf(tile);
-        opener = tile;
-        paint();
-        dialog.showModal();
-        // showModal() alone leaves the page behind the backdrop scrollable,
-        // so a wheel over the photo moves the page instead of nothing.
-        document.body.style.overflow = "hidden";
-      });
-    });
-
   }
 
   // toTop — scrolls to top, appears past the first screen. Builds and owns its
@@ -322,23 +193,8 @@
     });
   }
 
-  // lateFonts — switches on the fonts nothing on the first screen draws with, once
-  // the page has loaded and painted. Today that is Amiri for the Arabic section headings: 42 KB
-  // that, requested at parse time, sat in front of the first paint on a slow
-  // connection. CSS keys it off `html.fonts-late`; without JavaScript the headings
-  // simply stay in IBM Plex Sans Arabic.
-  function lateFonts() {
-    const root = document.documentElement;
-    // After load *and* after a frame has been painted: on a fast connection the
-    // load event can fire before the first paint, and a font requested then
-    // still competes with it.
-    const enable = () => requestAnimationFrame(() => requestAnimationFrame(() => root.classList.add("fonts-late")));
-    if (document.readyState === "complete") enable();
-    else window.addEventListener("load", enable, { once: true });
-  }
-
   function init() {
-    reveal(); nav(); parallax(); lightbox(); toTop(); map(); hours(); copy(); lateFonts();
+    reveal(); nav(); toTop(); map(); hours(); copy();
   }
 
   if (document.readyState === "loading") {

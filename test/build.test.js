@@ -67,8 +67,8 @@ test("each page declares its own language and direction", () => {
   }
 });
 
-test("nine sections are present on both pages", () => {
-  const ids = ["hero", "about", "menu", "gallery", "experience", "visit", "instagram"];
+test("the five sections are present on both pages", () => {
+  const ids = ["hero", "menu", "promo", "place", "visit"];
   for (const page of pages) {
     for (const id of ids) assert.ok(page.doc.includes(`id="${id}"`), `${page.lang}: no #${id}`);
     assert.ok(/<nav\b/.test(page.doc), `${page.lang}: no <nav>`);
@@ -79,7 +79,8 @@ test("nine sections are present on both pages", () => {
 test("every image has a non-empty alt", () => {
   for (const page of pages) {
     const imgs = tags(page.doc, "img");
-    assert.ok(imgs.length > 20, `${page.lang}: only ${imgs.length} images`);
+    // One in the hero, one per menu card that has a frame, three of the room.
+    assert.ok(imgs.length >= 7, `${page.lang}: only ${imgs.length} images`);
     for (const img of imgs) {
       const alt = attr(img, "alt");
       assert.ok(alt && alt.trim() !== "", `${page.lang}: empty alt on ${img.slice(0, 90)}`);
@@ -111,21 +112,15 @@ test("opening hours are seven rows, one per day", () => {
   }
 });
 
-test("nine Instagram tiles link to nine different posts", () => {
+test("the tab bar names the four places a guest goes", () => {
   for (const page of pages) {
-    const posts = new Set(
-      (page.doc.match(/https:\/\/www\.instagram\.com\/savva_cafe\/(?:p|reel)\/[A-Za-z0-9_-]+/g) ?? [])
-    );
-    assert.equal(posts.size, 9, `${page.lang}`);
-  }
-});
-
-test("eleven gallery tiles open the lightbox", () => {
-  for (const page of pages) {
-    const tiles = tags(page.doc, "button").filter(
-      (t) => attr(t, "data-lightbox-group") === "gallery"
-    );
-    assert.equal(tiles.length, 11, `${page.lang}`);
+    const links = tags(page.doc, "a").filter((t) => /class="tabs__link/.test(t));
+    assert.equal(links.length, 4, `${page.lang}: four tabs`);
+    const targets = links.map((t) => attr(t, "href"));
+    assert.deepEqual(targets, ["#hero", "#menu", "#promo", "#visit"], `${page.lang}`);
+    for (const target of targets) {
+      assert.ok(page.doc.includes(`id="${target.slice(1)}"`), `${page.lang}: ${target} has no section`);
+    }
   }
 });
 
@@ -180,10 +175,10 @@ test("Open Graph carries a 1200x630 image that exists in the build", () => {
   assert.notEqual(meta(html.en, "og:image"), meta(html.ar, "og:image"));
 });
 
-test("the Twitter card is a large summary and the theme colour is the brand sage", () => {
+test("the Twitter card is a large summary and the theme colour is the page's own ground", () => {
   for (const page of pages) {
     assert.equal(meta(page.doc, "twitter:card"), "summary_large_image");
-    assert.equal(meta(page.doc, "theme-color"), "#808366");
+    assert.equal(meta(page.doc, "theme-color"), "#f7f1e9");
   }
 });
 
@@ -325,8 +320,15 @@ test("the preloaded font is the one the first screen draws with, and it is shipp
 /* --- content ------------------------------------------------------------- */
 
 test("both dictionaries carry the same keys", () => {
+  // A draft node is one string, not two keys: `{ "text": …, "draft": true }` is
+  // the shape scripts/content-lib.js owns, and one language may still be a
+  // draft where the other is finished. Counting its innards would call that a
+  // mismatch, which is exactly what the convention allows.
+  const isDraft = (v) =>
+    v && typeof v === "object" && !Array.isArray(v) &&
+    typeof v.text === "string" && typeof v.draft === "boolean";
   const keys = (value, prefix = "") =>
-    value && typeof value === "object"
+    value && typeof value === "object" && !isDraft(value)
       ? Object.entries(value).flatMap(([k, v]) => keys(v, prefix ? `${prefix}.${k}` : k))
       : [prefix];
   const en = keys(JSON.parse(fs.readFileSync(path.join(root, "src/_data/content.en.json"), "utf8")));

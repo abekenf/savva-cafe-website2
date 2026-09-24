@@ -1,15 +1,15 @@
-{# The nine sections of the page, in order. Both language versions include the
-   same files; all language-specific strings come from `t`. #}
+{# Five sections, in the order the reference app puts its tabs: the room, then
+   what to order, then the rewards programme, then how to get here. Both
+   language versions include the same files; every string comes from `t`. #}
 {% include "sections/nav.njk" %}
 
 <main id="main">
   {% include "sections/hero.njk" %}
-  {% include "sections/about.njk" %}
   {% include "sections/menu.njk" %}
-  {% include "sections/gallery.njk" %}
-  {% include "sections/experience.njk" %}
+  {% include "sections/promo.njk" %}
+  {% include "sections/place.njk" %}
   {% include "sections/visit.njk" %}
-  {% include "sections/instagram.njk" %}
 </main>
 
 {% include "sections/footer.njk" %}
+{% include "sections/tabs.njk" %}

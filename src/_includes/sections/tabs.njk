@@ -1,0 +1,21 @@
+{# Bottom tab bar, phones only — the reference is an app, and this is the part
+   of it that translates honestly to a page: the four places a guest goes.
+   Plain anchors, so it works with JavaScript off; app.js marks the active one
+   through the same data-nav-link contract the header uses. #}
+
+<nav class="tabs" aria-label="{{ t.a11y.tabBar }}">
+  <ul class="tabs__list">
+    <li><a class="tabs__link" href="#hero" data-nav-link="hero" aria-current="false">
+      <svg class="tabs__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-4v-6h-6v6H5a1 1 0 0 1-1-1Z"/></svg>
+      <span>{{ t.tabs.home }}</span></a></li>
+    <li><a class="tabs__link" href="#menu" data-nav-link="menu" aria-current="false">
+      <svg class="tabs__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 3v8a3 3 0 0 0 6 0V3M10 14v7"/><path d="M18 3c-1.5 2-2 4-2 6s.5 3 2 3v9"/></svg>
+      <span>{{ t.tabs.menu }}</span></a></li>
+    <li><a class="tabs__link" href="#promo" data-nav-link="promo" aria-current="false">
+      <svg class="tabs__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3.5 9.5h17v3h-17zM5 12.5h14V20a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1ZM12 9.5V21"/><path d="M12 9.5S10.5 4 8 4a2.2 2.2 0 0 0 0 5.5ZM12 9.5S13.5 4 16 4a2.2 2.2 0 0 1 0 5.5Z"/></svg>
+      <span>{{ t.tabs.promo }}</span></a></li>
+    <li><a class="tabs__link" href="#visit" data-nav-link="visit" aria-current="false">
+      <svg class="tabs__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0C18.5 15.4 12 21 12 21Z"/><circle cx="12" cy="10" r="2.3"/></svg>
+      <span>{{ t.tabs.visit }}</span></a></li>
+  </ul>
+</nav>
